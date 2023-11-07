@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function SideNav({ toggleBrandVoiceClick, isBrandVoiceOpen }) {
+interface SideNavProps {
+  toggleBrandVoiceClick?: () => void;
+  isBrandVoiceOpen?: boolean;
+
+}
+
+const SideNav: React.FC<SideNavProps> = ({ toggleBrandVoiceClick, isBrandVoiceOpen }) => {
   return (
     <div className="side-nav px-2">
       <div className="border-bottom m-2 pe-0">
@@ -122,3 +128,5 @@ export default function SideNav({ toggleBrandVoiceClick, isBrandVoiceOpen }) {
     </div>
   );
 }
+
+export default SideNav

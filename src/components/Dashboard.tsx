@@ -2,7 +2,12 @@ import React from "react";
 import SideNav from "./SideNav";
 import Header from "./Header";
 
-function Dashboard({ toggleBrandVoiceClick, isBrandVoiceOpen }) {
+interface DashboardProps {
+  toggleBrandVoiceClick: () => void;
+  isBrandVoiceOpen: boolean;
+}
+
+const Dashboard: React.FC<DashboardProps> = ({ toggleBrandVoiceClick, isBrandVoiceOpen }) => {
   return (
     <div className="grid">
       <SideNav

@@ -1,13 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-// @ts-ignore
 import Dashboard from "./components/Dashboard";
-// @ts-ignore
-import KnowledgeBase from "./components/KnowledgeBase/KnowledgeBase";
-// @ts-ignore
-import VoiceTone from "./components/VoiceTone";
-// @ts-ignore
+import BrandVoice from "./components/BrandVoice/BrandVoice";
+import BrandTone from "./components/BrandTone/BrandTone";
 import Chat from "./components/Chat";
 import { useState } from "react";
 
@@ -31,9 +27,9 @@ function App() {
             />
           }
         />
-        <Route path="/knowledge_base" element={<KnowledgeBase toggleBrandVoiceClick={toggleBrandVoiceClick}
+        <Route path="/knowledge_base" element={<BrandVoice toggleBrandVoiceClick={toggleBrandVoiceClick}
           isBrandVoiceOpen={isBrandVoiceOpen} />} />
-        <Route path="/voice_n_tone" element={<VoiceTone toggleBrandVoiceClick={toggleBrandVoiceClick}
+        <Route path="/voice_n_tone" element={<BrandTone toggleBrandVoiceClick={toggleBrandVoiceClick}
           isBrandVoiceOpen={isBrandVoiceOpen} />} />
         <Route path="/chat" element={<Chat />} />
       </Routes>

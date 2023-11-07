@@ -2,7 +2,12 @@ import React from "react";
 import SideNav from "./SideNav";
 import Header from "./Header";
 
-function Chat() {
+interface ChatProps {
+  toggleBrandVoiceClick?: () => void;
+  isBrandVoiceOpen?: boolean;
+}
+
+const Chat: React.FC<ChatProps> = () => {
   return (
     <div className="grid">
       <SideNav />

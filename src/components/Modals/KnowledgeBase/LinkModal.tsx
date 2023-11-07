@@ -1,7 +1,13 @@
-import Button from "react-bootstrap/Button";
+import React from "react";
+// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-export default function LinkModal(props) {
+interface LinkModalProps {
+  onHide: () => void;
+  show : boolean;
+}
+
+const LinkModal: React.FC<LinkModalProps> = (props) => {
   return (
     <Modal
       {...props}
@@ -88,3 +94,5 @@ export default function LinkModal(props) {
     </Modal>
   );
 }
+
+export default LinkModal

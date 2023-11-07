@@ -1,7 +1,13 @@
-import Button from "react-bootstrap/Button";
+import React from "react";
+// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-export default function FileModal(props) {
+interface FileModalProps {
+  onHide: () => void;
+  show: boolean;
+}
+
+const FileModal: React.FC<FileModalProps> = (props) => {
   return (
     <Modal
       {...props}
@@ -38,7 +44,7 @@ export default function FileModal(props) {
             <label htmlFor="fileInput" className="form-label fw-semibold">
               File
             </label>
-            <input type="file" class="form-control" id="fileInput" />
+            <input type="file" className="form-control" id="fileInput" />
           </div>
           <div className="mb-3">
             <label htmlFor="tagsInput" className="form-label fw-semibold">
@@ -76,3 +82,5 @@ export default function FileModal(props) {
     </Modal>
   );
 }
+
+export default FileModal
