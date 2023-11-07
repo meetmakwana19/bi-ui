@@ -1,0 +1,99 @@
+.app {
+  /* display: flex; */
+  color: #212121;
+}
+.side-nav {
+  min-width: 25vw;
+  border: 1px solid #00000026;
+  height: 100vh;
+  grid-area: sidenav;
+}
+.header {
+  border-bottom: 1px solid #00000026;
+  height: 20vh;
+  /* position: fixed; */
+  overflow: hidden;
+  font-size: smaller;
+  grid-area: header;
+}
+.sidenav-btn {
+  min-width: 20vw;
+}
+li {
+  list-style: none;
+}
+.bold-gray {
+  color: #727275;
+  font-weight: 400;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "sidenav header"
+    "sidenav main"
+    "sidenav ....";
+}
+
+.add-knowledge-btn {
+  height: 30%;
+  background: #675af2;
+}
+
+.active {
+  /* background-color: #675AF2; Your desired background color */
+  /* color: #fff; Your desired text color */
+}
+
+#KBModalLabel ~ p {
+  font-size: 0.8rem;
+}
+.square-btn-div ~ p {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.modal-lg {
+  width: 50%;
+}
+
+.square-btn-div > div {
+  width: 15rem;
+}
+
+table {
+  width: 90%;
+  border-collapse: separate;
+  /* border-radius: 50px!important; */
+}
+tbody {
+  color: lightgray !important;
+}
+th:first-of-type {
+  border-top-left-radius: 20%;
+}
+th:last-of-type {
+  border-top-right-radius: 20%;
+}
+tr:last-of-type td:first-of-type {
+  border-bottom-left-radius: 20%;
+}
+tr:last-of-type td:last-of-type {
+  border-bottom-right-radius: 20%;
+}
+
+tr td:first-child {
+  text-align: center;
+}
+
+tr td:last-child {
+  text-align: center;
+}
+.dropdown-menu .btn {
+  --bs-btn-border-radius: 0px;
+  width: 100%;
+  text-align: left;
+  padding: 0.7rem;
+}
+
