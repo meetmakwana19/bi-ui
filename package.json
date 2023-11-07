@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@contentstack/venus-components": "^1.4.38",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
     "react": "^18.2.0",
