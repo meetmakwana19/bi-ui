@@ -41,10 +41,10 @@ li {
   background: #675af2;
 }
 
-.active {
-  /* background-color: #675AF2; Your desired background color */
-  /* color: #fff; Your desired text color */
-}
+/* .active {
+  background-color: #675AF2; 
+  /* color: #fff; Your desired text color
+} */
 
 #KBModalLabel ~ p {
   font-size: 0.8rem;
