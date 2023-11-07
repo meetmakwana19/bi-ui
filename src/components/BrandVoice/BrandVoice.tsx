@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import SideNav from "../SideNav";
-import Header from "../Header";
+import SideNav from "../SideNav/SideNav";
+import Header from "../Header/Header";
 import TextModal from "../Modals/KnowledgeBase/TextModal";
 import FileModal from "../Modals/KnowledgeBase/FileModal";
 import LinkModal from "../Modals/KnowledgeBase/LinkModal";

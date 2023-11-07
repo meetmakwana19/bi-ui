@@ -1,6 +1,6 @@
 import React from "react";
-import SideNav from "./SideNav";
-import Header from "./Header";
+import SideNav from "../SideNav/SideNav";
+import Header from "../Header/Header";
 
 interface ChatProps {
   toggleBrandVoiceClick?: () => void;
