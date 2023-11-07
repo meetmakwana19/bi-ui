@@ -1,10 +1,14 @@
 import React from "react";
 import Header from "./Header";
 
-export default function Main(){
+interface MainProps {}
+
+const Main: React.FC<MainProps> = () => {
     return(
         <div>
             <Header/>
         </div>
     )
 }
+
+export default Main

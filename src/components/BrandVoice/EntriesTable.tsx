@@ -1,13 +1,15 @@
 import React from "react";
 import DotsDropdown from "./DotsDropdown";
 
-function EntriesTable() {
+interface EntriesTableProps {}
+
+const EntriesTable: React.FC<EntriesTableProps> = () => {
   return (
-    <table class="table table-hover p-2 bordered">
+    <table className="table table-hover p-2 bordered">
       <thead className="text-uppercase fw-medium">
         <tr className="table-active">
           <th className="text-center">
-            <i class="bi bi-ui-checks-grid"></i>
+            <i className="bi bi-ui-checks-grid"></i>
           </th>
           <th scope="col">
             Name <i className="bi bi-chevron-down ms-1"></i>
@@ -21,11 +23,11 @@ function EntriesTable() {
         <tr>
           <td>
             {" "}
-            <input class="form-check-input" type="checkbox" value="" />
+            <input className="form-check-input" type="checkbox" value="" />
           </td>
           <td>
             {" "}
-            <i class="bi bi-text-left"></i> &nbsp; New Knowledge base
+            <i className="bi bi-text-left"></i> &nbsp; New Knowledge base
           </td>
           <td>Sree</td>
           <td>06/11/2023</td>
@@ -36,12 +38,12 @@ function EntriesTable() {
         <tr>
           <td>
             {" "}
-            <input class="form-check-input" type="checkbox" value="" />
+            <input className="form-check-input" type="checkbox" value="" />
           </td>
 
           <td>
             {" "}
-            <i class="bi bi-text-left"></i> &nbsp; Domestic Animal
+            <i className="bi bi-text-left"></i> &nbsp; Domestic Animal
           </td>
           <td>Sree</td>
           <td>06/11/2023</td>
@@ -52,12 +54,12 @@ function EntriesTable() {
         <tr>
           <td>
             {" "}
-            <input class="form-check-input" type="checkbox" value="" />
+            <input className="form-check-input" type="checkbox" value="" />
           </td>
 
           <td>
             {" "}
-            <i class="bi bi-text-left"></i> &nbsp; Programming(dynamically
+            <i className="bi bi-text-left"></i> &nbsp; Programming(dynamically
             typed)
           </td>
           <td>Sree</td>
@@ -69,11 +71,11 @@ function EntriesTable() {
         <tr>
           <td>
             {" "}
-            <input class="form-check-input" type="checkbox" value="" />
+            <input className="form-check-input" type="checkbox" value="" />
           </td>
           <td>
             {" "}
-            <i class="bi bi-text-left"></i> &nbsp; IMAX Sound
+            <i className="bi bi-text-left"></i> &nbsp; IMAX Sound
           </td>
           <td>Sree</td>
           <td>06/11/2023</td>

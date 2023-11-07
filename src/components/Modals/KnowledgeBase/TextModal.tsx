@@ -1,7 +1,13 @@
-import Button from "react-bootstrap/Button";
+import React from "react";
+// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-export default function TextModal(props) {
+interface TextModalProps {
+  onHide: () => void;
+  show: boolean;
+}
+
+const TextModal: React.FC<TextModalProps> = (props) => {
   return (
     <Modal
       {...props}
@@ -44,7 +50,7 @@ export default function TextModal(props) {
             <textarea
               className="form-control"
               id="descriptionInput"
-              rows="3"
+              rows={3}
               placeholder="Write or paste a copy    "
             ></textarea>
           </div>
@@ -84,3 +90,5 @@ export default function TextModal(props) {
     </Modal>
   );
 }
+
+export default TextModal

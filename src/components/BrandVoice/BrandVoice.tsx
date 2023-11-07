@@ -6,7 +6,12 @@ import FileModal from "../Modals/KnowledgeBase/FileModal";
 import LinkModal from "../Modals/KnowledgeBase/LinkModal";
 import EntriesTable from "./EntriesTable";
 
-function KnowledgeBase({ toggleBrandVoiceClick, isBrandVoiceOpen }) {
+interface BrandVoiceProps {
+  toggleBrandVoiceClick: () => void;
+  isBrandVoiceOpen: boolean;
+}
+
+const BrandVoice: React.FC<BrandVoiceProps> = ({ toggleBrandVoiceClick, isBrandVoiceOpen }) => {
   const [modalShow, setModalShow] = useState(false);
   const [fileModalShow, setFileModalShow] = useState(false);
   const [linkModalShow, setLinkModalShow] = useState(false)
@@ -25,10 +30,10 @@ function KnowledgeBase({ toggleBrandVoiceClick, isBrandVoiceOpen }) {
         </p>
 
         <div className="d-flex justify-content-between">
-          <div class="input-group mb-3 w-50">
+          <div className="input-group mb-3 w-50">
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               placeholder="Search by name, description or tags"
               aria-label="Username"
               aria-describedby="basic-addon1"
@@ -47,7 +52,7 @@ function KnowledgeBase({ toggleBrandVoiceClick, isBrandVoiceOpen }) {
           <div
             className="modal fade"
             id="menuModal"
-            tabindex="-1"
+            tabIndex={-1}
             aria-labelledby="KBModalLabel"
             aria-hidden="true"
           >
@@ -76,49 +81,49 @@ function KnowledgeBase({ toggleBrandVoiceClick, isBrandVoiceOpen }) {
                     Intelligence? Please select one that applies.
                   </h6>
                   <div className="d-flex p-3 square-btn-div">
-                    <div
+                    <button
                       className="square-btn p-4 border text-center rounded-4"
                       type="button"
                       onClick={() => setModalShow(true)}
                       data-bs-dismiss="modal"
                     >
                       <i
-                        class="bi bi-text-left fs-1"
+                        className="bi bi-text-left fs-1"
                         style={{ color: "#675af2" }}
                       ></i>
                       <p className="fw-semibold">From text</p>
                       <p style={{ fontSize: "0.85rem" }}>
                         Write or copy paste text.
                       </p>
-                    </div>
-                    <div
+                    </button>
+                    <button
                       className="square-btn p-4 border text-center rounded-4 btn mx-4"
                       type="button"
                       onClick={() => setFileModalShow(true)}
                       data-bs-dismiss="modal"
                     >
                       <i
-                        class="bi bi-file-earmark-text fs-1"
+                        className="bi bi-file-earmark-text fs-1"
                         style={{ color: "#675af2" }}
                       ></i>
                       <p className="fw-semibold">Upload file</p>
                       <p style={{ fontSize: "0.85rem" }}>.pdf supported</p>
-                    </div>
-                    <div
+                    </button>
+                    <button
                       className="square-btn p-4 border text-center rounded-4"
                       type="button"
                       onClick={() => setLinkModalShow(true)}
                       data-bs-dismiss="modal"
                     >
                       <i
-                        class="bi bi-link-45deg fs-1"
+                        className="bi bi-link-45deg fs-1"
                         style={{ color: "#675af2" }}
                       ></i>
                       <p className="fw-semibold">Enter URL</p>
                       <p style={{ fontSize: "0.85rem" }}>
                         Brand Intelligence will scan a site.
                       </p>
-                    </div>
+                    </button>
                   </div>
                   <p className="bold-gray m-0">
                     You must own or have permission to use any content you
@@ -150,4 +155,4 @@ function KnowledgeBase({ toggleBrandVoiceClick, isBrandVoiceOpen }) {
   );
 }
 
-export default KnowledgeBase;
+export default BrandVoice;

@@ -1,6 +1,8 @@
 import React from "react";
 
-export default function Header() {
+interface HeaderProps {}
+
+const Header: React.FC<HeaderProps> = () => {
   return (
     <div className="header py-3 px-4">
       <h2 className="fw-bolder">Brand Voice</h2>
@@ -11,3 +13,5 @@ export default function Header() {
     </div>
   );
 }
+
+export default Header

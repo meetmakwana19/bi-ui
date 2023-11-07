@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import TextModal from "./TextModal";
 
-export default function MenuModal(props) {
+interface MenuModalProps{
+  onHide: () => void;
+  show: boolean;
+}
+
+const MenuModal: React.FC<MenuModalProps> = (props) => {
   const [textModalShow, setTextModalShow] = useState(false);
-  console.warn("text modal ", textModalShow);
-  console.warn("menu modal here ", props.show);
-  console.warn("hide func : ", props.onHide);
 
   return (
     <Modal {...props} size="lg" aria-labelledby="KBModalLabel" centered>
@@ -21,14 +23,14 @@ export default function MenuModal(props) {
           </p>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body className="p-4 fs-7">
+      <Modal.Body className="d-flex p-4 fs-7">
         <div className="modal-body">
           <h6 style={{ color: "#000000c9" }}>
             What type of content would you like to give to Brand Intelligence?
             Please select one that applies.
           </h6>
           <div className="d-flex p-3 square-btn-div">
-            <div
+            <button
               className="square-btn p-4 border text-center rounded-4"
               type="button"
                 // onClick={() => {
@@ -45,8 +47,8 @@ export default function MenuModal(props) {
               ></i>
               <p className="fw-semibold">From text</p>
               <p style={{ fontSize: "0.85rem" }}>Write or copy paste text.</p>
-            </div>
-            <div
+            </button>
+            <button
               className="square-btn p-4 border text-center rounded-4 btn mx-4"
               type="button"
             >
@@ -56,8 +58,8 @@ export default function MenuModal(props) {
               ></i>
               <p className="fw-semibold">Upload file</p>
               <p style={{ fontSize: "0.85rem" }}>.pdf supported</p>
-            </div>
-            <div
+            </button>
+            <button
               className="square-btn p-4 border text-center rounded-4"
               type="button"
             >
@@ -69,7 +71,7 @@ export default function MenuModal(props) {
               <p style={{ fontSize: "0.85rem" }}>
                 Brand Intelligence will scan a site.
               </p>
-            </div>
+            </button>
           </div>
           <p className="bold-gray m-0">
             You must own or have permission to use any content you submit to
@@ -78,7 +80,7 @@ export default function MenuModal(props) {
           </p>
           <TextModal
             show={textModalShow}
-            setMenuModalShow={props.setMenuModalShow}
+            // setMenuModalShow={props.setMenuModalShow}
             onHide={() => setTextModalShow(false)}
           />
         </div>
@@ -86,3 +88,5 @@ export default function MenuModal(props) {
     </Modal>
   );
 }
+
+export default MenuModal

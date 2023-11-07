@@ -1,7 +1,13 @@
-import Button from "react-bootstrap/Button";
+import React from "react";
+// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-export default function LinkModal(props) {
+interface FileModalProps {
+  onHide: () => void;
+  show: boolean;
+}
+
+const FileModal: React.FC<FileModalProps> = (props) => {
   return (
     <Modal
       {...props}
@@ -35,22 +41,10 @@ export default function LinkModal(props) {
             />
           </div>
           <div className="mb-3">
-            <label
-              htmlFor="descriptionInput"
-              className="form-label fw-semibold"
-            >
-              URL Link
+            <label htmlFor="fileInput" className="form-label fw-semibold">
+              File
             </label>
-            <input
-              type="text"
-              className="form-control"
-              id="nameInput"
-              aria-describedby="nameHelp"
-              placeholder=""
-            />
-            <div id="tagsHelp" className="form-text mx-2">
-              Enter a valid, text-heavy site URL
-            </div>
+            <input type="file" className="form-control" id="fileInput" />
           </div>
           <div className="mb-3">
             <label htmlFor="tagsInput" className="form-label fw-semibold">
@@ -71,7 +65,7 @@ export default function LinkModal(props) {
         </form>{" "}
       </Modal.Body>
       <Modal.Footer>
-        {/* <Button onClick={props.onHide} className="btn-light">
+        {/* <Button onClick={props.onHide} className="btn-light" data-bs-target="#menuModal">
           Back
         </Button> */}
         <button
@@ -88,3 +82,5 @@ export default function LinkModal(props) {
     </Modal>
   );
 }
+
+export default FileModal
