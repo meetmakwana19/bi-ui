@@ -2,17 +2,27 @@
   /* display: flex; */
   color: #212121;
 }
+.grid {
+  display: grid !important;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "sidenav header"
+    "sidenav main"
+    "sidenav ....";
+}
 .side-nav {
   min-width: 20vw;
   border: 1px solid #00000026;
   height: 100vh;
+  top: 0;
   grid-area: sidenav;
+  z-index: 5;
 }
 .header {
   border-bottom: 1px solid #00000026;
   height: 20vh;
-  /* position: fixed; */
   overflow: hidden;
+  
   font-size: smaller;
   grid-area: header;
 }
@@ -25,15 +35,6 @@ li {
 .bold-gray {
   color: #727275;
   font-weight: 400;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-areas:
-    "sidenav header"
-    "sidenav main"
-    "sidenav ....";
 }
 
 .add-knowledge-btn {
@@ -62,7 +63,7 @@ li {
   width: 15rem;
 }
 
-.square-btn{
+.square-btn {
   background-color: white;
 }
 
@@ -100,4 +101,3 @@ tr td:last-child {
   text-align: left;
   padding: 0.7rem;
 }
-

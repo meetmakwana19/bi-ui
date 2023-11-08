@@ -8,8 +8,7 @@ import BrandTone from "./components/BrandTone/BrandTone";
 import Chat from "./components/Chats/Chat";
 import { useState } from "react";
 import Main from "./components/Main";
-import SideNav from "./components/SideNav";
-import Header from "./components/Header";
+import SideNav from "./components/SideNav/SideNav";
 import { Button } from "@contentstack/venus-components";
 
 function App() {
@@ -38,9 +37,9 @@ function App() {
           isBrandVoiceOpen={isBrandVoiceOpen} />} />
         <Route path="/chat" element={<Chat />} />
       </Routes> */}
-      <SideNav/>
-      <Button>Hello</Button>
-      {/* <Main/> */}
+      {/* <SideNav/> */}
+      {/* <Button>Hello</Button> */}
+      <Main/>
     </div>
   );
 }
