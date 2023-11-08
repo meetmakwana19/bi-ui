@@ -17,6 +17,12 @@
   top: 0;
   grid-area: sidenav;
   z-index: 5;
+  background-color: #f7f9fc;
+  padding: 1rem;
+}
+.side-nav  div{
+  margin-top: 1.3rem;
+  margin-bottom: 1rem;
 }
 .header {
   border-bottom: 1px solid #00000026;
