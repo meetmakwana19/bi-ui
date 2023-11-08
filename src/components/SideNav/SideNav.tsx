@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { ListRow } from '@contentstack/venus-components'
 
 interface SideNavProps {
@@ -8,7 +7,7 @@ interface SideNavProps {
 
 }
 
-const SideNav: React.FC<SideNavProps> = ({ toggleBrandVoiceClick, isBrandVoiceOpen }) => {
+const SideNav: React.FC<SideNavProps> = () => {
   return (
     <div className="side-nav">
       <div>

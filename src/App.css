@@ -4,11 +4,12 @@
 }
 .grid {
   display: grid !important;
-  grid-template-columns: 1fr 3fr;
+  /* fr must be calculated based on side-nav's min-width */
+  grid-template-columns: 1fr 4fr;
   grid-template-areas:
     "sidenav header"
     "sidenav main"
-    "sidenav ....";
+    "sidenav main"
 }
 .side-nav {
   min-width: 20vw;
@@ -25,12 +26,18 @@
   margin-bottom: 1rem;
 }
 .header {
+  display: flex;
+  align-items: center;
   border-bottom: 1px solid #00000026;
   height: 20vh;
   overflow: hidden;
-  
+  background-color: #f7f9fc;
   font-size: smaller;
   grid-area: header;
+  padding: 2.5rem 1.5rem;
+}
+.header h2{
+  margin-left: 0.5rem;
 }
 .sidenav-btn {
   min-width: 20vw;
