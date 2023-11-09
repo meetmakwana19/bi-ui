@@ -2,6 +2,7 @@
   /* display: flex; */
   color: #212121;
 }
+
 .grid {
   display: grid !important;
   /* fr must be calculated based on side-nav's min-width */
@@ -10,6 +11,7 @@
     "sidenav header"
     "sidenav main"
 }
+
 .side-nav {
   min-width: 20vw;
   border: 1px solid #00000026;
