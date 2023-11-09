@@ -7,12 +7,17 @@ const Header: React.FC<HeaderProps> = () => {
   return (
     <div className="header">
       <section className="header-left">
-        <Icon icon="Hamburger" size="small" hover={true} hoverType="secondary" shadow="medium" />
-        <h2>Brand Voice <Help text="Your Brand Voice enables Intelligence Hub to access information unique to what you are writing, as well as your specific tone(s) and style(s)" type="primary" alignment="right" > Help Text here</Help>
-        </h2>
+        <main>
+          <Icon icon="Hamburger" size="small" hover={true} hoverType="secondary" shadow="medium" />
+          <h2>Brand Voice <Help text="Your Brand Voice enables Intelligence Hub to access information unique to what you are writing, as well as your specific tone(s) and style(s)" type="primary" alignment="right" />
+          </h2>
+        </main>
+        <footer>
+          <p>All Knowledge Base <Help text="Upload documentsor information you want Intelligence Hub to be able to reference in your outputs." type="primary" alignment="right" /></p>
+        </footer>
       </section>
 
-      <Button icon="AddPlus" buttonType="primary" className="add-kb-btn" >Add Knowledge</Button>
+      <Button icon="AddPlus" buttonType="primary" >Add Knowledge</Button>
     </div>
   );
 }
