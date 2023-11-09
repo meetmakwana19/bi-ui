@@ -9,7 +9,6 @@
   grid-template-areas:
     "sidenav header"
     "sidenav main"
-    "sidenav main";
 }
 .side-nav {
   min-width: 20vw;
@@ -53,11 +52,14 @@
   margin-top: 0.5rem;
   margin-left: 3rem;
 }
+.main-area{
+  grid-area: main;
+}
+.
+
+/* ----------- */
 .sidenav-btn {
   min-width: 20vw;
-}
-li {
-  list-style: none;
 }
 .bold-gray {
   color: #727275;

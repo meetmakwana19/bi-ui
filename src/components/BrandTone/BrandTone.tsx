@@ -1,6 +1,4 @@
 import React from 'react'
-import SideNav from "../SideNav/SideNav";
-import Header from "../Header/Header";
 
 interface BrandToneProps {
   toggleBrandVoiceClick: () => void;
@@ -9,12 +7,7 @@ interface BrandToneProps {
 
 const BrandTone: React.FC<BrandToneProps> = ({ toggleBrandVoiceClick, isBrandVoiceOpen }) => {
   return (
-    <div className="grid">
-      <SideNav
-        toggleBrandVoiceClick={toggleBrandVoiceClick}
-        isBrandVoiceOpen={isBrandVoiceOpen}
-      />
-      <Header />
+    <div className='main-area'>
       <div className="voice-tone py-3 px-4">
         <h3>Voice & Tone</h3>
       </div>
