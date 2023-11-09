@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import SideNav from "../SideNav/SideNav";
-import Header from "../Header/Header";
 import TextModal from "../Modals/KnowledgeBase/TextModal";
 import FileModal from "../Modals/KnowledgeBase/FileModal";
 import LinkModal from "../Modals/KnowledgeBase/LinkModal";
@@ -16,12 +14,7 @@ const BrandVoice: React.FC<BrandVoiceProps> = ({ toggleBrandVoiceClick, isBrandV
   const [fileModalShow, setFileModalShow] = useState(false);
   const [linkModalShow, setLinkModalShow] = useState(false)
   return (
-    <div className="grid">
-      <SideNav
-        toggleBrandVoiceClick={toggleBrandVoiceClick}
-        isBrandVoiceOpen={isBrandVoiceOpen}
-      />
-      <Header />
+    <div className="main-area">
       <div className="know-base py-3 px-4">
         <h3>All knowledge base</h3>
         <p className="bold-gray">

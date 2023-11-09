@@ -1,7 +1,5 @@
+import { Help } from '@contentstack/venus-components';
 import React from 'react'
-// import SideNav from "../SideNav/SideNav";
-// import Header from "../Header/Header";
-import {Help} from '@contentstack/venus-components'
 
 interface BrandToneProps {}
 
