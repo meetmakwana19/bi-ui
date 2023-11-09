@@ -37,9 +37,17 @@
   font-size: smaller;
   grid-area: header;
   padding: 2.5rem 1.5rem;
+  justify-content: space-between;
+}
+.header section{
+  display: flex;
+  align-items: center;
 }
 .header h2{
   margin-left: 0.5rem;
+}
+.add-kb-btn{
+  /* float: right; */
 }
 .sidenav-btn {
   min-width: 20vw;
