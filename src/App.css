@@ -12,6 +12,19 @@
     "sidenav main"
 }
 
+.main-style{
+  display: flex;
+  flex-direction: column; 
+  
+}
+
+.brand-tone-style{
+  display: flex;
+  flex-direction: column;
+  background-color: #675af2;
+  
+}
+
 .side-nav {
   min-width: 20vw;
   border: 1px solid #00000026;
@@ -19,7 +32,7 @@
   top: 0;
   grid-area: sidenav;
   z-index: 5;
-  background-color: #f7f9fc;
+  background-color: #f7f9fc00;
   padding: 1rem;
 }
 .side-nav div {
