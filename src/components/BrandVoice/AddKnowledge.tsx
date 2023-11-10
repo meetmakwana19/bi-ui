@@ -3,20 +3,9 @@ import React from "react";
 import MenuModal from "../Modals/KnowledgeBase/MenuModal";
 
 function AddKnowledge() {
-
-  const onClose = () => {
-    console.log("Closing");
-    
-  }
   const handleClick = () => {
     cbModal({
-      component: (props) => <MenuModal {...props}/>,
-      modalProps: {
-        onClose,
-        onOpen: () => {
-          console.log("Opening");
-        }
-      } 
+      component: (props: any) => <MenuModal {...props}/>,
     })
   }
   return (

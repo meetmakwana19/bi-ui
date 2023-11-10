@@ -9,7 +9,7 @@ interface BrandVoiceProps {
   isBrandVoiceOpen: boolean;
 }
 
-const BrandVoice: React.FC<BrandVoiceProps> = ({ toggleBrandVoiceClick, isBrandVoiceOpen }) => {
+const BrandVoice: React.FC<BrandVoiceProps> = () => {
   const [modalShow, setModalShow] = useState(false);
   const [fileModalShow, setFileModalShow] = useState(false);
   const [linkModalShow, setLinkModalShow] = useState(false)
@@ -17,17 +17,6 @@ const BrandVoice: React.FC<BrandVoiceProps> = ({ toggleBrandVoiceClick, isBrandV
     <div className="main-area">
       <div className="know-base py-3 px-4">
         <div className="d-flex justify-content-between">
-
-
-          <button
-            type="button"
-            className="btn btn-primary add-knowledge-btn"
-            data-bs-toggle="modal"
-            data-bs-target="#menuModal"
-          >
-            <i className="bi bi-plus-lg"></i> Add Knowledge
-          </button>
-
           <div
             className="modal fade"
             id="menuModal"
