@@ -12,18 +12,8 @@
     "sidenav main"
 }
 
-.main-style{
-  display: flex;
-  flex-direction: column; 
-  
-}
 
-.brand-tone-style{
-  display: flex;
-  flex-direction: column;
-  background-color: #675af2;
-  
-}
+
 
 .side-nav {
   min-width: 20vw;
@@ -35,10 +25,12 @@
   background-color: #f7f9fc00;
   padding: 1rem;
 }
+
 .side-nav div {
   margin-top: 1.3rem;
   margin-bottom: 1rem;
 }
+
 .header {
   display: flex;
   align-items: center;
