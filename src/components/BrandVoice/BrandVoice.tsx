@@ -16,22 +16,8 @@ const BrandVoice: React.FC<BrandVoiceProps> = ({ toggleBrandVoiceClick, isBrandV
   return (
     <div className="main-area">
       <div className="know-base py-3 px-4">
-        <h3>All knowledge base</h3>
-        <p className="bold-gray">
-          Your Brand Voice enables Jasper to access information unique to what
-          you are writing, as well as your specific tone(s) and style(s).
-        </p>
-
         <div className="d-flex justify-content-between">
-          <div className="input-group mb-3 w-50">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search by name, description or tags"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </div>
+
 
           <button
             type="button"

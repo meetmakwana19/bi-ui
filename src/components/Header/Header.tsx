@@ -1,5 +1,6 @@
 import { Button, Help, Icon } from "@contentstack/venus-components";
 import React from "react";
+import AddKnowledge from "../BrandVoice/AddKnowledge";
 
 interface HeaderProps { }
 
@@ -16,8 +17,7 @@ const Header: React.FC<HeaderProps> = () => {
           <p>All Knowledge Base <Help text="Upload documentsor information you want Intelligence Hub to be able to reference in your outputs." type="primary" alignment="right" /></p>
         </footer>
       </section>
-
-      <Button icon="AddPlus" buttonType="primary" >Add Knowledge</Button>
+      <AddKnowledge />
     </div>
   );
 }
