@@ -1,0 +1,15 @@
+.brand-tone-style{
+    min-width: 80vw;
+    grid-area: main ;
+    /* background-color: #675af2; */
+  }
+
+.heading-button{
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.heading{
+  background-color: aquamarine;
+}

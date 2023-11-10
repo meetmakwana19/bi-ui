@@ -11,11 +11,13 @@ const Main: React.FC<MainProps> = () => {
     return (
         <div className="grid">
             <SideNav />
-            <Header />
-            <Routes>
-                <Route path="/" element={<BrandVoice />} />
-                <Route path="/user" element={<BrandTone />} />
-            </Routes>
+            {/* <div className="content">
+            </div> */}
+                <Header />
+                <Routes>
+                    <Route path="/" element={<BrandVoice />} />
+                    <Route path="/user" element={<BrandTone />} />
+                </Routes>
         </div>
     )
 }
