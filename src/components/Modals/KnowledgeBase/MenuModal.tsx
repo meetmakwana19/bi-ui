@@ -40,6 +40,11 @@ const LinkCardContent: React.FC<any> = () => {
 const MenuModal: React.FC<MenuModalProps> = (props) => {
   const [textModalShow, setTextModalShow] = useState(false);
 
+  const genericCardObj = document.querySelector(".GenericCard");
+  genericCardObj?.addEventListener("click", () => {
+    // alert("hello")
+  })
+  
   return (
     <>
       <ModalHeader title="Add to knowledge base" closeModal={props.closeModal} closeIconTestId="cs-default-header-close" />
@@ -50,9 +55,9 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
             Please select one that applies.
           </h6>
           <div className="square-btn-div">
-            <GenericCard mainContent={<TextCardContent />}/>
-            <GenericCard mainContent={<FileCardContent />} />
-            <GenericCard mainContent={<LinkCardContent />} />
+            <GenericCard mainContent={<TextCardContent />} disableActiveFn={true}/>
+            <GenericCard mainContent={<FileCardContent />} disableActiveFn={true} />
+            <GenericCard mainContent={<LinkCardContent />} disableActiveFn={true} />
           </div>
           <p className="bold-gray">
             You must own or have permission to use any content you submit to

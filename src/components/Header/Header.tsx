@@ -1,4 +1,4 @@
-import { Button, Help, Icon } from "@contentstack/venus-components";
+import { Help, Icon } from "@contentstack/venus-components";
 import React from "react";
 import AddKnowledge from "../BrandVoice/AddKnowledge";
 

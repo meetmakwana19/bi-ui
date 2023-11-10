@@ -1,5 +1,4 @@
 import { Button, cbModal } from "@contentstack/venus-components";
-import React from "react";
 import MenuModal from "../Modals/KnowledgeBase/MenuModal";
 
 function AddKnowledge() {

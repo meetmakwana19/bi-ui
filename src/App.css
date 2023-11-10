@@ -68,7 +68,7 @@
   border: 0.001rem solid lightgray;
 }
 
-.GenericCardfooter ,.GenericCard__star-button{
+.GenericCardfooter {
   display: none!important;
 }
 
