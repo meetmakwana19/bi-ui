@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TextModal from "../Modals/KnowledgeBase/TextModal";
 import FileModal from "../Modals/KnowledgeBase/FileModal";
 import LinkModal from "../Modals/KnowledgeBase/LinkModal";
-import EntriesTable from "./EntriesTable";
+import TableEntries from "./TableEntries";
 
 interface BrandVoiceProps {
   toggleBrandVoiceClick: () => void;
@@ -117,7 +117,7 @@ const BrandVoice: React.FC<BrandVoiceProps> = () => {
           </div>
         </div>
 
-        <EntriesTable/>
+        <TableEntries />
       </div>
     </div>
   );

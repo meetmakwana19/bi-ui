@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = () => {
           </h2>
         </main>
         <footer>
-          <p>All Knowledge Base <Help text="Upload documentsor information you want Intelligence Hub to be able to reference in your outputs." type="primary" alignment="right" /></p>
+          <div>All Knowledge Base <Help text="Upload documentsor information you want Intelligence Hub to be able to reference in your outputs." type="primary" alignment="right" /></div>
         </footer>
       </section>
       <AddKnowledge />
