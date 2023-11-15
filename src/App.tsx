@@ -6,7 +6,7 @@ import Dashboard from "./components/Dashboard";
 // @ts-ignore
 import KnowledgeBase from "./components/KnowledgeBase/KnowledgeBase";
 // @ts-ignore
-import VoiceTone from "./components/VoiceTone";
+import VoiceTone from "./components/UserVoice/VoiceTone";
 // @ts-ignore
 import Chat from "./components/Chat";
 import { useState } from "react";

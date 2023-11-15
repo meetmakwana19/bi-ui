@@ -1,6 +1,6 @@
 import React from "react";
-import SideNav from "./SideNav";
-import Header from "./Header";
+import SideNav from "../SideNav";
+import Header from "../Header";
 
 function VoiceTone({ toggleBrandVoiceClick, isBrandVoiceOpen }) {
   return (
