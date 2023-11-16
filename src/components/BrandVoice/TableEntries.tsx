@@ -2,89 +2,65 @@ import { InfiniteScrollTable, Table } from "@contentstack/venus-components"
 import { useState } from "react"
 
 function TableEntries() {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [itemStatusMap, setItemStatusMap] = useState({});
+  const [totalCounts, setTotalCounts] = useState(null);
 
   const columns = [
     {
       Header: 'Name',
       id: 'name',
-      accessor: (data: any) => {
-        // console.log("getting data : ", data)
-        return (
-          <p>{data.name}</p>
-        )
-      },
+      accessor: (data: any) => (
+        <div>{data.title}</div>
+      ),
     },
     {
       Header: 'Created By',
       id: 'created_by',
-      accessor: (data: any) => {
-        return (
-          <div> {data.email}</div >
-        )
-      },
+      accessor: (data: any) => (
+        <div>{data.completed}</div>
+      ),
     },
     {
       Header: 'Created At',
       id: 'created_at',
       accessor: (data: any) => (
-        <div>{data.id}</div>
+        <div>{data.userId}</div>
       ),
     },
   ];
 
-  // Just FYI :- fetchTableData passes these default args to fetchData here ---> { skip: 0, limit: 30, startIndex: 0, stopIndex: 29 }
-  const fetchData = async ({ limit, startIndex }: { limit: any, startIndex: any }) => {
+  const fetchData = async ({ sortBy, searchText, skip, limit, startIndex, stopIndex }) => {
     try {
-
-      console.log("Getting limit : ", limit, " and startIndex : ", startIndex);
-
       setLoading(true);
-      limit = 5;
 
-      // _page is for pagination with each page having 10 entries.
-      // _limit is to limit the response array out of total 500.
-      // so fetching comments?_page=1&_limit=30 means it'll fetch 10 items on first load coz 10 items are there on page 1.
-      const response = await fetch(`https://jsonplaceholder.typicode.com/comments?_page=${startIndex / limit + 1}&_limit=${limit}`);
-
+      console.log("=========", startIndex, " and ", limit);
+      
+      // Using JSONPlaceholder as an example API
+      const response = await fetch(`https://jsonplaceholder.typicode.com/todos?_page=${startIndex / limit + 1}&_limit=${limit}`);
       const responseData = await response.json();
 
-      console.log("fetchData response : ", responseData);
-
+      console.log("respnse : ", responseData);
+      
       setLoading(false);
-
       setData([...data, ...responseData]);
+      setTotalCounts(responseData.length);
     } catch (error) {
-      console.error('fetchData -> Error : ', error);
+      console.error('fetchData -> error', error);
     }
   };
 
-  // loadMoreItems can get same props as fetchTableData
-  const loadMoreItems = async ({ limit, startIndex, stopIndex }: { limit: number, startIndex: number, stopIndex: number }) => {
-    // the props are already coming from InfiniteScrollTable.
+  const loadMoreItems = async ({ sortBy, searchText, skip, limit, startIndex, stopIndex }) => {
     try {
       setLoading(true);
 
-      console.log("Scroll Getting limit : ", limit, " and startIndex : ", startIndex);
-
-      // this request fetches the next set of items which are not yet visible on the table but will be visible once scrolled down.
-      const response = await fetch(`https://jsonplaceholder.typicode.com/comments?_page=${startIndex / limit + 1}&_limit=${limit}`);
+      // Using JSONPlaceholder as an example API
+      const response = await fetch(`https://jsonplaceholder.typicode.com/todos?_page=${startIndex / limit + 1}&_limit=${limit}`);
       const responseData = await response.json();
-
-      // Updating item statuses and simulating loaded states
-      console.log("Map is ", itemStatusMap);
-      
-      const updatedItemStatusMap: Record<number, string> = { ...itemStatusMap };
-      for (let index = startIndex; index <= stopIndex; index++) {
-        updatedItemStatusMap[index] = 'loaded';
-      }
-
-      setItemStatusMap(updatedItemStatusMap);
 
       setLoading(false);
       setData([...data, ...responseData]);
+      setTotalCounts(responseData.length);
     } catch (error) {
       console.error('loadMoreItems -> error', error);
     }
@@ -97,16 +73,16 @@ function TableEntries() {
         uniqueKey={'id'}
         fetchTableData={fetchData}
         loading={loading}
-        totalCounts={100} //must set this first for the table to initialize with so that scrolling can work properly.
+        totalCounts={totalCounts}
         loadMoreItems={loadMoreItems}
-        itemStatusMap={itemStatusMap}
-        minBatchSizeToFetch={5} //Min batch size or data size(limit) to fetch on scroll. So this value goes to the limit prop of loadMoreItems
+        itemStatusMap={{}}
+        minBatchSizeToFetch={10}
         initialSortBy={[]} // No initial sorting for simplicity
-        viewSelector={true} // Settings icon
-        searchPlaceholder="Search by name, description or tags"
-        canSearch={true}
-        canRefresh={true}
-      // tableHeight={150}
+        viewSelector={false} // Hide the view selector for simplicity
+        columnSelector={false} // Hide the column selector for simplicity
+        searchPlaceholder="Search" // Provide a placeholder for the search input
+        canSearch={true} // Enable search functionality
+        canRefresh={true} // Enable refresh functionality
       />
     </>
   )
