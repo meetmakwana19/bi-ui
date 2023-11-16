@@ -92,6 +92,10 @@
   font-weight: 400;
 }
 
+/* for InfiniteScrollTable's search input div */
+.TablePanel .Search--primary {
+  width: 18.5rem!important;
+}
 /* ----------- */
 #KBModalLabel ~ p {
   font-size: 0.8rem;
