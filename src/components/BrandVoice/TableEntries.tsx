@@ -1,4 +1,4 @@
-import { InfiniteScrollTable, Table } from "@contentstack/venus-components"
+import { InfiniteScrollTable } from "@contentstack/venus-components"
 import { useState } from "react"
 
 function TableEntries() {
