@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextModal from "./TextModal";
 import { GenericCard, Icon, ModalBody, ModalHeader } from "@contentstack/venus-components";
 
@@ -39,12 +39,28 @@ const LinkCardContent: React.FC<any> = () => {
 }
 const MenuModal: React.FC<MenuModalProps> = (props) => {
   const [textModalShow, setTextModalShow] = useState(false);
+  const histroy = 
 
-  const genericCardObj = document.querySelector(".GenericCard");
-  genericCardObj?.addEventListener("click", () => {
-    // alert("hello")
-  })
-  
+  // useEffect hook for handling event listener on the GenericCard component.
+  useEffect(() => {
+    const handleCardClick = () => {
+      alert("Card Clicked");
+    };
+
+    const genericCardObj = document.querySelectorAll(".GenericCard");
+
+    genericCardObj.forEach((node) => {
+      node.addEventListener("click", handleCardClick);
+    });
+
+    return () => {
+      // Cleanup the event listeners when the component unmounts
+      genericCardObj.forEach((node) => {
+        node.removeEventListener("click", handleCardClick);
+      });
+    };
+  }, []); // Empty dependency array ensures that the effect runs once after the initial render
+
   return (
     <>
       <ModalHeader title="Add to knowledge base" closeModal={props.closeModal} closeIconTestId="cs-default-header-close" />
@@ -55,7 +71,7 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
             Please select one that applies.
           </h6>
           <div className="square-btn-div">
-            <GenericCard mainContent={<TextCardContent />} disableActiveFn={true}/>
+            <GenericCard mainContent={<TextCardContent />} disableActiveFn={true} />
             <GenericCard mainContent={<FileCardContent />} disableActiveFn={true} />
             <GenericCard mainContent={<LinkCardContent />} disableActiveFn={true} />
           </div>

@@ -5,8 +5,8 @@ import LinkModal from "../Modals/KnowledgeBase/LinkModal";
 import TableEntries from "./TableEntries";
 
 interface BrandVoiceProps {
-  toggleBrandVoiceClick: () => void;
-  isBrandVoiceOpen: boolean;
+  // toggleBrandVoiceClick: () => void;
+  // isBrandVoiceOpen: boolean;
 }
 
 const BrandVoice: React.FC<BrandVoiceProps> = () => {
