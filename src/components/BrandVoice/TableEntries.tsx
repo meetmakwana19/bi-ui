@@ -5,6 +5,9 @@ function TableEntries() {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [itemStatusMap, setItemStatusMap] = useState({});
+  let [selectedAssets, updateSelectedAssets] = useState({});
+  let [resetRowSelection, updateResetRowSelection] = useState(false);
+
 
   const columns = [
     {
@@ -16,6 +19,8 @@ function TableEntries() {
           <p>{data.name}</p>
         )
       },
+      default: true,
+      addToColumnSelector: true,
     },
     {
       Header: 'Created By',
@@ -25,6 +30,8 @@ function TableEntries() {
           <div> {data.email}</div >
         )
       },
+      default: true,
+      addToColumnSelector: true,
     },
     {
       Header: 'Created At',
@@ -32,6 +39,8 @@ function TableEntries() {
       accessor: (data: any) => (
         <div>{data.id}</div>
       ),
+      default: true,
+      addToColumnSelector: true,
     },
   ];
 
@@ -75,7 +84,7 @@ function TableEntries() {
 
       // Updating item statuses and simulating loaded states
       console.log("Map is ", itemStatusMap);
-      
+
       const updatedItemStatusMap: Record<number, string> = { ...itemStatusMap };
       for (let index = startIndex; index <= stopIndex; index++) {
         updatedItemStatusMap[index] = 'loaded';
@@ -89,6 +98,26 @@ function TableEntries() {
       console.error('loadMoreItems -> error', error);
     }
   };
+
+  const onRowSelectProp = [
+    {
+      label: 'Log selected Items',
+      cb: (data: any) => {
+        console.log('selected data', data);
+        updateResetRowSelection(true);
+      },
+    },
+  ];
+
+  const getSelectedRow = (singleSelectedRowIds: any) => {
+    let selectedObj: Record<string, boolean> = {};
+    singleSelectedRowIds.forEach((assetUid: any) => {
+      selectedObj[assetUid] = true;
+    });
+
+    updateSelectedAssets({ ...selectedObj });
+  };
+
   return (
     <>
       <InfiniteScrollTable
@@ -106,7 +135,14 @@ function TableEntries() {
         searchPlaceholder="Search by name, description or tags"
         canSearch={true}
         canRefresh={true}
-      // tableHeight={150}
+        // tableHeight={150}
+
+        isRowSelect={true} // Pass true to add checkboxes in each row.
+        // following are optional checkbox props
+        fullRowSelect={true}
+        bulkActionList={onRowSelectProp}
+        initialSelectedRowIds={selectedAssets}
+        getSelectedRow={getSelectedRow}
       />
     </>
   )
