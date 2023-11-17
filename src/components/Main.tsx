@@ -13,7 +13,7 @@ const Main: React.FC<MainProps> = () => {
             <SideNav />
             {/* <div className="content">
             </div> */}
-                <Header />
+                {/* <Header />   */}
                 <Routes>
                     <Route path="/" element={<BrandVoice />} />
                     <Route path="/user" element={<UserTone />} />
