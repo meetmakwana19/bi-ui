@@ -1,5 +1,5 @@
 import EntryHeader from '../../Header/EntryHeader';
-import { Button, FieldLabel, Help, TextInput, Textarea } from '@contentstack/venus-components';
+import { Button, EditableTags, FieldLabel, Help, TextInput, Textarea } from '@contentstack/venus-components';
 
 function AddEntry() {
   return (
@@ -16,7 +16,7 @@ function AddEntry() {
         </div>
         <div className="field-div">
           <FieldLabel htmlFor="name">Tags <Help text="Tags will help you find pertinent Knowledge Base entries more easily." /></FieldLabel>
-          <TextInput version="v2" width="full" required={true} placeholder="Select from existing tags or type to create new ones" />
+          <EditableTags version="v2" width="full" required={true} placeholder="Select from existing tags or type to create new ones" />
         </div>
         <Button icon="AddPlus" buttonType="primary" version="v2" >
           Add to Knowledge Base
