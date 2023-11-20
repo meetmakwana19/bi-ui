@@ -40,12 +40,11 @@ const LinkCardContent: React.FC<any> = () => {
 }
 const MenuModal: React.FC<MenuModalProps> = (props) => {
   const [textModalShow, setTextModalShow] = useState(false);
-  // const navigate = useNavigation();
 
   // useEffect hook for handling event listener on the GenericCard component.
   useEffect(() => {
     const handleCardClick = () => {
-      alert("Card Clicked");
+      props.closeModal();
       props.navigate("/new_entry")
     };
 
@@ -64,7 +63,7 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
   }, []); // Empty dependency array ensures that the effect runs once after the initial render
 
   return (
-    <>
+    <div>
       <ModalHeader title="Add to knowledge base" closeModal={props.closeModal} closeIconTestId="cs-default-header-close" />
       <ModalBody>
         <div className="modal-body">
@@ -89,7 +88,7 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
           />
         </div>
       </ModalBody>
-    </>
+    </div>
   );
 }
 
