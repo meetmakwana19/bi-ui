@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "./Header/Header";
 import SideNav from "./SideNav/SideNav";
 import { Outlet, Route, Routes } from "react-router-dom";
@@ -13,7 +13,7 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
         <>
             <div className="grid">
                 <SideNav />
-                <Header />
+                <Header title="User Tone"/>
                 {children}
                 <Outlet />
             </div>
