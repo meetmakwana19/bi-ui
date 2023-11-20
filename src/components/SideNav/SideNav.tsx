@@ -15,10 +15,10 @@ const SideNav: React.FC<SideNavProps> = () => {
         <h2><b>Intelligence Hub</b></h2>
       </div>
 
-      <NavLink to="/">
+      <NavLink to="/" style={{ textDecoration: 'none' }}>
         <ListRow rightArrow={true} active={true} content="Brand Voice" />
       </NavLink>
-      <NavLink to="/user">
+      <NavLink to="/user" style={{ textDecoration: 'none' }}>
         <ListRow rightArrow={true} active={true} content="User" />
       </NavLink>
 
