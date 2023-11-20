@@ -33,7 +33,7 @@
   align-items: center;
   border-bottom: 1px solid #00000026;
   height: 20vh;
-  overflow: hidden;
+  overflow: hidden!important;
   background-color: #f7f9fc;
   font-size: smaller;
   grid-area: header;
@@ -59,6 +59,7 @@
 
 .main-area{
   grid-area: main;
+  min-width: 80vw;
 }
 
 .modal-body h6 {
