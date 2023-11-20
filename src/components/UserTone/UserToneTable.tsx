@@ -97,25 +97,25 @@ const UserToneTable: React.FC = () => {
         console.log("Getting limit : ", limit, " and startIndex : ", startIndex);
 
         try {
-            const itemStatusMapTempCopy: ItemStatusMap = { ...itemStatusMap };
+            const itemStatusMapCopy: ItemStatusMap = { ...itemStatusMap };
 
             for (let index = startIndex; index <= stopIndex; index++) {
-                itemStatusMapTempCopy[index] = 'loading';
+                itemStatusMapCopy[index] = 'loading';
             }
 
-            setItemStatusMap(itemStatusMapTempCopy);
+            setItemStatusMap(itemStatusMapCopy);
             setLoading(true);
 
             const response = await fetch(`https://jsonplaceholder.typicode.com/todos?_page=${startIndex / limit + 1}&_limit=${limit}`);
             const responseData = await response.json();
 
-            const updatedItemStatusMapTempCopy: ItemStatusMap = { ...itemStatusMap }
+            const updatedItemStatusMapCopy: ItemStatusMap = { ...itemStatusMap }
 
             responseData.forEach((_item: string, index: number) => {
-                updatedItemStatusMapTempCopy[startIndex + index] = 'loaded';
+                updatedItemStatusMapCopy[startIndex + index] = 'loaded';
             });
 
-            setItemStatusMap({ ...updatedItemStatusMapTempCopy });
+            setItemStatusMap(updatedItemStatusMapCopy);
             setLoading(false);
             setData((data) => [...data, ...responseData]);
             setTotalCounts((prevTotalCounts) => prevTotalCounts + responseData.length);
@@ -135,7 +135,7 @@ const UserToneTable: React.FC = () => {
         loading: loading,
         totalCounts: totalCounts,
         itemStatusMap: itemStatusMap,
-        minBatchSizeToFetch: 30,
+        minBatchSizeToFetch: 5,
         loadMoreItems: loadMoreItems,
         searchPlaceholder: "Search by Name, Description or Tags",
         canSearch: true,
