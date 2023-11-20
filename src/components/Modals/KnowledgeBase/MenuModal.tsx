@@ -6,6 +6,7 @@ interface MenuModalProps {
   onHide: () => void;
   show: boolean;
   closeModal: any;
+  navigate: any,
 }
 
 const TextCardContent: React.FC<any> = () => {
@@ -39,12 +40,13 @@ const LinkCardContent: React.FC<any> = () => {
 }
 const MenuModal: React.FC<MenuModalProps> = (props) => {
   const [textModalShow, setTextModalShow] = useState(false);
-  const histroy = 
+  // const navigate = useNavigation();
 
   // useEffect hook for handling event listener on the GenericCard component.
   useEffect(() => {
     const handleCardClick = () => {
       alert("Card Clicked");
+      props.navigate("/new_entry")
     };
 
     const genericCardObj = document.querySelectorAll(".GenericCard");
