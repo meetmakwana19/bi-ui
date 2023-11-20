@@ -96,3 +96,35 @@
 .TablePanel .Search--primary {
   width: 18.5rem!important;
 }
+
+.entry-header{
+  background-color: white;
+}
+
+.add-entry{
+  background-color: #f7f9fc;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-entry form{
+  margin: 0 auto;
+  margin-bottom: 5em;
+  width: 40%;
+}
+
+.field-div{
+  margin: 2em 0;
+  background-color: white;
+  padding: 5%;
+  border-radius: 0.8rem;
+  border: 1px solid #dde3ee;
+}
+
+.field-div .FieldLabel {
+  margin-bottom: 0.7rem;
+}
+
+.field-div ~ button{
+  float: right;
+}
