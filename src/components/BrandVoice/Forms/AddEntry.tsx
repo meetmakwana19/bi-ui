@@ -18,7 +18,7 @@ function AddEntry() {
           <FieldLabel htmlFor="name">Tags <Help text="Tags will help you find pertinent Knowledge Base entries more easily." /></FieldLabel>
           <EditableTags version="v2" width="full" required={true} placeholder="Select from existing tags or type to create new ones" />
         </div>
-        <Button icon="AddPlus" buttonType="primary" version="v2" >
+        <Button icon="" buttonType="primary" version="v2" >
           Add to Knowledge Base
         </Button>
 

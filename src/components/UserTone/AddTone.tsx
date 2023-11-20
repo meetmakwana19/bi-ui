@@ -1,16 +1,22 @@
-import React from 'react'
-import { Button, Help } from '@contentstack/venus-components'
-import './UserTone.css'
+import { Button, cbModal } from "@contentstack/venus-components";
+import MenuModal from "../Modals/KnowledgeBase/MenuModal";
+import { useNavigate } from "react-router-dom";
 
-
-const AddTone: React.FC = () => {
+function AddTone() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    cbModal({
+      // passing down navigate object because MenuModal isn't directly under the router component tree. 
+      component: (props: any) => <MenuModal {...props} navigate={navigate}/>,
+    })
+  }
   return (
-    <div className='heading-button'>
-      <h2>User Tone <Help text="User Tone enables Contentstack to align content with your brand's voice and personality." type="primary" alignment="right" />
-      </h2>
-      <Button icon="AddPlus" buttonType="primary" size='regular' >Add Tone</Button>
+    <div>
+      <Button icon="AddPlus" buttonType="primary" id="add-knowledge-modal" onClick={handleClick}>
+        Add Tone
+      </Button>
     </div>
-  )
+  );
 }
 
-export default AddTone
+export default AddTone;
