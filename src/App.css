@@ -13,11 +13,11 @@
 }
 
 .side-nav {
-  min-width: 20vw;
+  min-width: 19vw;
   height: 100%;
   top: 0;
   grid-area: sidenav;
-  z-index: -1;
+  z-index: 0;
   background-color: #f7f9fc00;
   padding: 1rem;
   /* border: 1px solid #00000026; */
@@ -39,6 +39,7 @@
   grid-area: header;
   padding: 2.5rem 1.5rem;
   justify-content: space-between;
+  z-index: 1;
 }
 .header section {
   display: flex;
