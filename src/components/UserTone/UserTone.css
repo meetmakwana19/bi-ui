@@ -13,3 +13,32 @@
 .heading{
   background-color: aquamarine;
 }
+
+.user-tone-entry{
+  background-color: #f7f9fc;
+
+}
+
+.user-tone-entry form{
+  margin: 0 auto;
+  margin-bottom: 5em;
+  width: 50%;
+}
+
+.tone-field-div {
+  margin: 2em 0;
+  background-color: white;
+  padding: 2%;
+  border-radius: 0.8rem;
+  border: 1px solid #dde3ee;
+  display: flex;
+  flex-direction: column;
+}
+
+.tone-content-padding{
+  padding-bottom: 0.5rem;
+}
+
+.tone-field-div ~ button{
+  float: right;
+}

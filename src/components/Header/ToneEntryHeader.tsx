@@ -1,7 +1,7 @@
 import { Help, Icon } from '@contentstack/venus-components'
 import { useNavigate } from 'react-router-dom'
 
-const EntryHeader = () => {
+const ToneEntryHeader = () => {
     const navigate = useNavigate();
     return (
         <div className="header entry-header">
@@ -10,7 +10,7 @@ const EntryHeader = () => {
                     <Icon icon="BackArrow" size="small" hover={true} hoverType="secondary" shadow="medium" onClick={() => {
                         navigate(-1)
                     }} />
-                    <h2>Add to knowledge base &nbsp;
+                    <h2>Add User Tone &nbsp;
                         <Help text="Give Brand Intelligence facts to more accurately write about any topic." type="primary" alignment="right" />
                     </h2>
                 </main>
@@ -21,4 +21,4 @@ const EntryHeader = () => {
         </div>)
 }
 
-export default EntryHeader
+export default ToneEntryHeader
