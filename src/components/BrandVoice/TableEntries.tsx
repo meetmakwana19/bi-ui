@@ -51,7 +51,8 @@ function TableEntries() {
       console.log("Getting limit : ", limit, " and startIndex : ", startIndex);
 
       setLoading(true);
-      limit = 5;
+      // let 30 be default
+      // limit = 5;
 
       // _page is for pagination with each page having 10 entries.
       // _limit is to limit the response array out of total 500.
@@ -129,7 +130,7 @@ function TableEntries() {
         totalCounts={100} //must set this first for the table to initialize with so that scrolling can work properly.
         loadMoreItems={loadMoreItems}
         itemStatusMap={itemStatusMap}
-        minBatchSizeToFetch={5} //Min batch size or data size(limit) to fetch on scroll. So this value goes to the limit prop of loadMoreItems
+        // minBatchSizeToFetch={30} //Min batch size or data size(limit) to fetch on scroll. So this value goes to the limit prop of loadMoreItems
         initialSortBy={[]} // No initial sorting for simplicity
         viewSelector={true} // Settings icon
         searchPlaceholder="Search by name, description or tags"
