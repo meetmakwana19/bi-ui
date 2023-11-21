@@ -17,10 +17,10 @@
   height: 100%;
   top: 0;
   grid-area: sidenav;
-  z-index: 0;
+  z-index: 1;
   background-color: #f7f9fc00;
   padding: 1rem;
-  /* border: 1px solid #00000026; */
+  border: 0;
 }
 
 .side-nav div {
