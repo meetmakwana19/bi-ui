@@ -18,7 +18,7 @@ const TextModal: React.FC<TextModalProps> = (props) => {
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           <h1 className="modal-title fs-5" id="KBModalLabel">
-            Add to knowledge base
+            Add to knowledge base 
           </h1>
           <p className="bold-gray m-0">
             Give Brand Intelligence facts to more accurately write about any

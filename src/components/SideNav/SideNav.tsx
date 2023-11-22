@@ -16,10 +16,10 @@ const SideNav: React.FC<SideNavProps> = () => {
       </div>
 
       <NavLink to="/" style={{ textDecoration: 'none' }}>
-        <ListRow rightArrow={true} active={true} content="Brand Voice" />
+        <ListRow active={true} content="Brand Voice" />
       </NavLink>
       <NavLink to="/user" style={{ textDecoration: 'none' }}>
-        <ListRow rightArrow={true} active={true} content="User" />
+        <ListRow active={true} content="User" />
       </NavLink>
 
     </div>

@@ -8,6 +8,7 @@ import AddEntry from "./BrandVoice/Forms/AddEntry";
 import { Help } from "@contentstack/venus-components";
 import AddKnowledge from "./BrandVoice/AddKnowledge";
 import AddTone from "./UserTone/AddTone";
+import AddUserToneForm from "./UserTone/Forms/AddUserToneForm";
 
 interface MainProps { }
 
@@ -64,7 +65,10 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
                         <>
                             <AddKnowledge />
                         </>
-                    ) : <AddTone />}
+                    ) : 
+                        <>
+                            <AddTone />
+                        </>}
                 />
                 {children}
                 <Outlet />
@@ -84,6 +88,7 @@ const Main: React.FC<MainProps> = () => {
 
             {/* ROUTE PART-2 forms */}
             <Route path="new_entry" element={<AddEntry />} />
+            <Route path="add_new_user_tone" element={<AddUserToneForm />} />
         </Routes>
     );
 };

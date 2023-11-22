@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import TextModal from "./TextModal";
 import { GenericCard, Icon, ModalBody, ModalHeader } from "@contentstack/venus-components";
 
 interface MenuModalProps {
@@ -38,33 +37,35 @@ const LinkCardContent: React.FC<any> = () => {
     </div>
   )
 }
-const MenuModal: React.FC<MenuModalProps> = (props) => {
-  // const [textModalShow, setTextModalShow] = useState(false);
 
-  // useEffect hook for handling event listener on the GenericCard component.
-  useEffect(() => {
-    const handleCardClick = () => {
-      props.closeModal();
-      props.navigate("/new_entry")
-    };
 
-    const genericCardObj = document.querySelectorAll(".GenericCard");
 
-    genericCardObj.forEach((node) => {
-      node.addEventListener("click", handleCardClick);
-    });
-
-    return () => {
-      // Cleanup the event listeners when the component unmounts
+const AddUserToneModal: React.FC<MenuModalProps> = (props) => {
+    
+    // useEffect hook for handling event listener on the GenericCard component.
+    useEffect(() => {
+      const handleCardClick = () => {
+        props.closeModal();
+        props.navigate("/add_new_user_tone")
+      };
+    
+      const genericCardObj = document.querySelectorAll(".GenericCard");
+    
       genericCardObj.forEach((node) => {
-        node.removeEventListener("click", handleCardClick);
+        node.addEventListener("click", handleCardClick);
       });
-    };
-  }, []); // Empty dependency array ensures that the effect runs once after the initial render
-
-  return (
+    
+      return () => {
+        // Cleanup the event listeners when the component unmounts
+        genericCardObj.forEach((node) => {
+          node.removeEventListener("click", handleCardClick);
+        });
+      };
+    }, []); // Empty dependency array ensures that the effect runs once after the initial render
+  
+    return (
     <div>
-      <ModalHeader title="Add to knowledge base" closeModal={props.closeModal} closeIconTestId="cs-default-header-close" />
+      <ModalHeader title="Add User Tone" closeModal={props.closeModal} closeIconTestId="cs-default-header-close" />
       <ModalBody>
         <div className="modal-body">
           <h6 >
@@ -81,15 +82,10 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
             Intelligence Hub. Using Intelligence Hub to violate someone
             else's rights is a violation of our Terms of Service.
           </p>
-          {/* <TextModal
-            show={textModalShow}
-            // setMenuModalShow={props.setMenuModalShow}
-            onHide={() => setTextModalShow(false)}
-          /> */}
         </div>
       </ModalBody>
     </div>
-  );
+  )
 }
 
-export default MenuModal
+export default AddUserToneModal
