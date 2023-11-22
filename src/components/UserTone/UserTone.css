@@ -16,7 +16,8 @@
 
 .user-tone-entry{
   background-color: #f7f9fc;
-
+  display: flex;
+  flex-direction: column;
 }
 
 .user-tone-entry form{
@@ -26,17 +27,15 @@
 }
 
 .tone-field-div {
-  margin: 2em 0;
+  margin: 1.5em 0;
   background-color: white;
-  padding: 2%;
+  padding: 4%;
   border-radius: 0.8rem;
   border: 1px solid #dde3ee;
-  display: flex;
-  flex-direction: column;
 }
 
 .tone-content-padding{
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.7rem;
 }
 
 .tone-field-div ~ button{
