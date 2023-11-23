@@ -120,7 +120,7 @@ function TableEntries() {
   };
 
   return (
-    <>
+    <div className="table-entries">
       <InfiniteScrollTable
         columns={columns}
         data={data}
@@ -145,8 +145,8 @@ function TableEntries() {
         initialSelectedRowIds={selectedAssets}
         getSelectedRow={getSelectedRow}
       />
-    </>
+    </div>
   )
 }
 
-export default TableEntries
+export default TableEntries;

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function AddKnowledge() {
   const navigate = useNavigate();
+  
   const handleClick = () => {
     cbModal({
       // passing down navigate object because MenuModal isn't directly under the router component tree. 

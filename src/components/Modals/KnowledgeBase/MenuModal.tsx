@@ -41,6 +41,7 @@ const LinkCardContent: React.FC<any> = () => {
 const MenuModal: React.FC<MenuModalProps> = (props) => {
   // const [textModalShow, setTextModalShow] = useState(false);
 
+  console.log("hello ", props);
   // useEffect hook for handling event listener on the GenericCard component.
   useEffect(() => {
     const handleCardClick = () => {

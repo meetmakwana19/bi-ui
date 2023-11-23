@@ -13,14 +13,16 @@
 }
 
 .side-nav {
-  min-width: 19vw;
-  height: 100%;
-  top: 0;
-  grid-area: sidenav;
-  z-index: 1;
-  background-color: #f7f9fc00;
-  padding: 1rem;
   border: 0;
+
+  /* ignore the following due to adaptation of PageLayout */
+  /* min-width: 19vw; */
+  /* height: 100%; */
+  /* top: 0; */
+  /* grid-area: sidenav; */
+  /* z-index: 1; */
+  /* background-color: #f7f9fc00; */
+  /* padding: 1rem; */
 }
 
 .side-nav div {
@@ -154,4 +156,8 @@
 
 .field-div ~ button {
   float: right;
+}
+
+.table-entries{
+  position: fixed;
 }
