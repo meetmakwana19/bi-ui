@@ -176,7 +176,7 @@ const UserToneTable: React.FC = () => {
         uniqueKey: 'id',
         fetchTableData: fetchData,
         loading: loading,
-        totalCounts: totalCounts,
+        totalCounts: 100,
         itemStatusMap: itemStatusMap,
         minBatchSizeToFetch: 5,
         loadMoreItems: loadMoreItems,
@@ -196,7 +196,7 @@ const UserToneTable: React.FC = () => {
     };
 
     return (
-        <div className="table-entries">
+        <div className='table-entries' className="table-entries">
             <InfiniteScrollTable {...tableProps} />
         </div>
     )

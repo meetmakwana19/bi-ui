@@ -132,7 +132,7 @@ function TableEntries() {
         // minBatchSizeToFetch={30} //Min batch size or data size(limit) to fetch on scroll. So this value goes to the limit prop of loadMoreItems
         initialSortBy={[]} // No initial sorting for simplicity
         viewSelector={true} // Settings icon
-        searchPlaceholder="Search by name, description or tags"
+        searchPlaceholder="Search by Name, Description or Tags"
         canSearch={true}
         canRefresh={true}
         // tableHeight={150}
