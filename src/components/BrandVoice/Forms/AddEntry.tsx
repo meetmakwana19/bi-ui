@@ -1,10 +1,10 @@
-import EntryHeader from '../../Header/EntryHeader';
+// import EntryHeader from '../../Header/EntryHeader';
 import { Button, EditableTags, FieldLabel, Help, TextInput, Textarea } from '@contentstack/venus-components';
 
 function AddEntry() {
   return (
     <div className='add-entry'>
-      <EntryHeader />
+      {/* <EntryHeader /> */}
       <form action="submit">
         <div className="field-div">
           <FieldLabel htmlFor="name">Name</FieldLabel>
