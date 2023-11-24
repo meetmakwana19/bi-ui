@@ -13,6 +13,18 @@ function Layout() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const defaultAction = [{
+    label: '+ Add Entry',
+    onClick: () => {
+      cbModal({
+        // passing down navigate object because MenuModal isn't directly under the router component tree. 
+        component: (props: any) => <MenuModal {...props} navigate={navigate} />,
+      })
+    },
+    type: 'primary'
+  }]
+
+
   const knowledgeAction = [
     {
       label: '+ Add Knowledge',
@@ -37,6 +49,7 @@ function Layout() {
       type: 'primary'
     }
   ]
+  const noAction = [{}]
 
   // const actions = location.pathname === "/" ? knowledgeAction : toneAction;
 
@@ -70,6 +83,7 @@ function Layout() {
   //   }} actions={location.pathname === "/" ? knowledgeAction : toneAction}
   //   />
   // }
+
   const header = {
     component: (
       <PageHeader
@@ -107,34 +121,42 @@ function Layout() {
               case "/add_new_user_tone":
                 title = (
                   <>
-                    <Icon icon="BackArrow" size="small" hover={true} hoverType="secondary" shadow="medium" onClick={() => {
-                      navigate(-1)
-                    }} />
-                    Add User Tone &nbsp;
-                    <Help
-                      text="Give Brand Intelligence facts to more accurately write about any topic."
-                      type="primary"
-                      alignment="right"
-                    />
-                  </>
-                );
-                break;
-
-                case "/new_entry":
-                  title = (
-                    <>
+                    <div className="layout_form_heading_style">
                       <Icon icon="BackArrow" size="small" hover={true} hoverType="secondary" shadow="medium" onClick={() => {
                         navigate(-1)
                       }} />
-                      Add to knowledge base &nbsp;
+                      
+                        Add User Tone &nbsp;
+                      
                       <Help
                         text="Give Brand Intelligence facts to more accurately write about any topic."
                         type="primary"
                         alignment="right"
                       />
-                    </>
-                  );
-                  break;
+                    </div>
+                  </>
+                );
+                break;
+
+              case "/new_entry":
+                title = (
+                  <>
+                  <div className="layout_form_heading_style">
+                    <Icon icon="BackArrow" size="small" hover={true} hoverType="secondary" shadow="medium" onClick={() => {
+                      navigate(-1)
+                    }} />
+
+                    Add to knowledge base &nbsp;
+                    
+                    <Help
+                      text="Give Brand Intelligence facts to more accurately write about any topic."
+                      type="primary"
+                      alignment="right"
+                    />
+                  </div>
+                  </>
+                );
+                break;
               // Add more cases as needed
 
               default:
@@ -154,7 +176,12 @@ function Layout() {
         }}
         //@ts-ignore
         actions={
-          location.pathname === "/" ? knowledgeAction : toneAction 
+          location.pathname === "/" ? knowledgeAction :
+            location.pathname === "/user" ? toneAction :
+            location.pathname === "/add_new_user_tone" ? noAction :
+            location.pathname === "/new_entry" ? noAction :
+            // Add more conditions as needed
+                defaultAction
         }
       />
     )
