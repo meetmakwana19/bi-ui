@@ -196,7 +196,7 @@ const UserToneTable: React.FC = () => {
     };
 
     return (
-        <div className='table-entries'>
+        <div className="table-entries">
             <InfiniteScrollTable {...tableProps} />
         </div>
     )
