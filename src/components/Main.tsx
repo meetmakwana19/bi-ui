@@ -88,7 +88,7 @@ const Main: React.FC<MainProps> = () => {
 
             {/* ROUTE PART-2 forms */}
             <Route path="new_entry" element={<AddEntry />} />
-            <Route path="add_new_user_tone" element={<AddUserToneForm />} />
+            <Route path="new_user_tone" element={<AddUserToneForm />} />
         </Routes>
     );
 };
