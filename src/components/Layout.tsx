@@ -169,7 +169,7 @@ function Layout() {
       <>
         <PageLayout type="list" header={header}
           leftSidebar={leftSidebar}
-          content={content} hasBackground={true} version='v2' />
+          content={content} hasBackground={false} version='v2' />
         {children}
         <Outlet />
       </>
