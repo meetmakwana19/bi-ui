@@ -161,3 +161,11 @@
 .table-entries{
   position: fixed;
 }
+
+.PageTitle{
+  display: contents;
+}
+
+.add-form-layout .PageLayout__body{
+  padding: 0;
+}

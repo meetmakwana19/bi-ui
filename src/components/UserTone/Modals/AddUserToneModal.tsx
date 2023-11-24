@@ -46,7 +46,7 @@ const AddUserToneModal: React.FC<MenuModalProps> = (props) => {
     useEffect(() => {
       const handleCardClick = () => {
         props.closeModal();
-        props.navigate("/add_new_user_tone")
+        props.navigate("/add_tone")
       };
     
       const genericCardObj = document.querySelectorAll(".GenericCard");
