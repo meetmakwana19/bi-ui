@@ -174,3 +174,11 @@
   align-items: center;
 
 }
+
+.PageTitle{
+  display: contents;
+}
+
+.add-form-layout .PageLayout__body{
+  padding: 0;
+}

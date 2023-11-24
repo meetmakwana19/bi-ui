@@ -46,7 +46,7 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
   useEffect(() => {
     const handleCardClick = () => {
       props.closeModal();
-      props.navigate("/new_entry")
+      props.navigate("/add_knowledge")
     };
 
     const genericCardObj = document.querySelectorAll(".GenericCard");
