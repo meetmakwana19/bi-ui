@@ -1,72 +1,5 @@
-.app {
-  /* display: flex; */
-  color: #212121;
-}
-
-.grid {
-  display: grid !important;
-  /* fr must be calculated based on side-nav's min-width */
-  grid-template-columns: 1fr 4fr;
-  grid-template-areas:
-    "sidenav header"
-    "sidenav main";
-}
-
 .side-nav {
   border: 0;
-
-  /* ignore the following due to adaptation of PageLayout */
-  /* min-width: 19vw; */
-  /* height: 100%; */
-  /* top: 0; */
-  /* grid-area: sidenav; */
-  /* z-index: 1; */
-  /* background-color: #f7f9fc00; */
-  /* padding: 1rem; */
-}
-
-.side-nav div {
-  margin-top: 1.3rem;
-  margin-bottom: 1rem;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #00000026;
-  height: 20vh;
-  overflow: hidden !important;
-  background-color: #f7f9fc;
-  font-size: smaller;
-  grid-area: header;
-  padding: 2.5rem 1.5rem;
-  justify-content: space-between;
-  z-index: 1;
-}
-
-.header section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.header main {
-  display: flex;
-  align-items: center;
-}
-
-.header h2 {
-  margin-left: 0.5rem;
-}
-
-.header footer {
-  margin-top: 0.5rem;
-  margin-left: 3rem;
-}
-
-.main-area {
-  grid-area: main;
-  min-width: 80vw;
 }
 
 .modal-body h6 {
@@ -83,7 +16,6 @@
   pointer-events: none;
   opacity: 0.5;
   background-color: #f2f2f2;
-
 }
 
 .GenericCard:not(:first-child)::before {
@@ -113,7 +45,9 @@
 }
 
 .menu-card-content svg {
-  filter: invert(31%) sepia(73%) saturate(1990%) hue-rotate(231deg) brightness(97%) contrast(95%);
+  /* for the cs-icons color */
+  filter: invert(31%) sepia(73%) saturate(1990%) hue-rotate(231deg)
+    brightness(97%) contrast(95%);
 }
 
 .square-btn-div {
@@ -160,7 +94,7 @@
   margin-bottom: 0.7rem;
 }
 
-.field-div~button {
+.field-div ~ button {
   float: right;
 }
 
@@ -173,13 +107,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-
 }
 
-.PageTitle{
+.PageTitle {
   display: contents;
 }
 
-.add-form-layout .PageLayout__body{
+.add-form-layout .PageLayout__body {
   padding: 0;
 }

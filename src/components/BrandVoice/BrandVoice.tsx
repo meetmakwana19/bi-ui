@@ -6,7 +6,7 @@ interface BrandVoiceProps {
 
 const BrandVoice: React.FC<BrandVoiceProps> = () => {
   return (
-    <div className="main-area">
+    <div>
       <TableEntries />
     </div>
   );
