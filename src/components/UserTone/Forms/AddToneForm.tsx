@@ -1,5 +1,6 @@
 import { Button, EditableTags, FieldLabel, Help, PageHeader, PageLayout, TextInput, Textarea } from '@contentstack/venus-components';
 import { useNavigate } from 'react-router-dom';
+import '../UserTone.css';
 
 function AddToneForm() {
 

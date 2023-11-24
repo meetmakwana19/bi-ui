@@ -166,7 +166,7 @@ const UserToneTable: React.FC = () => {
         updateSelectedAssets({ ...selectedObj });
     };
 
-    const getViewByValue = (selectedViewBy) => {
+    const getViewByValue = (selectedViewBy: any) => {
         updateViewBy(selectedViewBy)
       }
 
@@ -196,7 +196,7 @@ const UserToneTable: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className="table-entries">
             <InfiniteScrollTable {...tableProps} />
         </div>
     )

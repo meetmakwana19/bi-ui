@@ -160,6 +160,7 @@
 
 .table-entries{
   position: fixed;
+  overflow-y: auto;
 }
 
 .PageTitle{
