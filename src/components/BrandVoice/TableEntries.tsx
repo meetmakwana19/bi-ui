@@ -8,7 +8,6 @@ function TableEntries() {
   let [selectedAssets, updateSelectedAssets] = useState({});
   let [resetRowSelection, updateResetRowSelection] = useState(false);
 
-
   const columns = [
     {
       Header: 'Name',

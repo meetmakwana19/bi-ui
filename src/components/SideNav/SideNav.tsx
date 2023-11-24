@@ -1,19 +1,14 @@
 import React from "react";
-import { Icon, LeftNavigation, ListRow } from '@contentstack/venus-components'
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import BrandVoice from "../BrandVoice/BrandVoice";
+import { Icon, LeftNavigation } from '@contentstack/venus-components'
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface SideNavProps {
-  toggleBrandVoiceClick?: () => void;
-  isBrandVoiceOpen?: boolean;
 }
 
 const SideNav: React.FC<SideNavProps> = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("-------- ", location.pathname);
-  
 
   const navigationData: any = [
     {
@@ -21,14 +16,14 @@ const SideNav: React.FC<SideNavProps> = () => {
       onclick: () => navigate("/"),
       id: "Brand-Voice",
       icon: <Icon icon="WhatsNew" version="v2" size="medium" />,
-      default: location.pathname === "/" ? true: false,
+      default: location.pathname === "/" ? true : false,
     },
     {
       title: "User",
       onclick: () => navigate("/user"),
       id: "User",
       icon: <Icon icon="UsersRoles" version="v2" size="medium" />,
-      default: location.pathname === "/user" ? true: false,
+      default: location.pathname === "/user" ? true : false,
     },
   ]
   const navigationProps = {
@@ -37,7 +32,7 @@ const SideNav: React.FC<SideNavProps> = () => {
   }
 
   return (
-    <LeftNavigation navigationProps={navigationProps} headerContent={false}/>
+    <LeftNavigation navigationProps={navigationProps} headerContent={false} />
   );
 }
 
