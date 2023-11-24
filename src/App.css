@@ -166,7 +166,7 @@
 
 .table-entries {
   position: fixed;
-  overflow-y: auto;
+  overflow: auto;
 }
 
 .layout_form_heading_style {

@@ -49,7 +49,6 @@ function Layout() {
       type: 'primary'
     }
   ]
-  const noAction = [{}]
 
   const header = {
     component: (
@@ -141,7 +140,7 @@ function Layout() {
         actions={
           location.pathname === "/" ? knowledgeAction :
             location.pathname === "/user" ? toneAction :
-            location.pathname === "/add_new_user_tone" ? noAction :
+            location.pathname === "/new_user_tone" ? noAction :
             location.pathname === "/new_entry" ? noAction :
             // Add more conditions as needed
                 defaultAction
