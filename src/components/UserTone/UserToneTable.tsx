@@ -12,12 +12,24 @@ interface ColumnDataObject {
     [key: string]: string;
 }
 
+interface SelectedAssets {
+    [key: string]: boolean;
+  }
+  
+  interface RowSelectProp {
+    label: string;
+    cb: (data: any) => void;
+  }
+
 const UserToneTable: React.FC = () => {
 
     const [data, setData] = useState<DataObject[]>([]);
     const [loading, setLoading] = useState(false);
     const [totalCounts, setTotalCounts] = useState(null);
     const [itemStatusMap, setItemStatusMap] = useState<ItemStatusMap>({});
+    const [selectedAssets, updateSelectedAssets] = useState<SelectedAssets>({});
+    const [resetRowSelection, updateResetRowSelection] = useState<boolean>(false);
+    const [viewBy, updateViewBy] = useState('Comfort')
 
 
     const columns = [
@@ -29,6 +41,8 @@ const UserToneTable: React.FC = () => {
                     <div>{data.title}</div>
                 )
             },
+            default: true,
+            addToColumnSelector: true,
         },
         {
             Header: 'Created By',
@@ -38,6 +52,8 @@ const UserToneTable: React.FC = () => {
                     <div>{data.userId}</div>
                 )
             },
+            default: true,
+            addToColumnSelector: true,
         },
         {
             Header: 'Created At',
@@ -47,6 +63,8 @@ const UserToneTable: React.FC = () => {
                     <div>{data.id}</div>
                 )
             },
+            default: true,
+            addToColumnSelector: true,
         },
         {
             Header: 'Tags',
@@ -56,13 +74,14 @@ const UserToneTable: React.FC = () => {
                     <div>{data.completed}</div>
                 )
             },
+            default: true,
+            addToColumnSelector: true,
         },
     ];
-
     // console.log(typeof columns);  //Just debugging stuff
 
     // Just FYI :- fetchTableData passes these default args to fetchData here ---> { skip: 0, limit: 30, startIndex: 0, stopIndex: 29 }
-    const fetchData = async ({ limit, startIndex}: { limit: number, startIndex: number}) => {  //{sortBy, searchText, skip, limit, startIndex, stopIndex} use this to customize the api call eg. const response: any = await fakeServer({ skip: 0, limit: 30, sortBy })
+    const fetchData = async ({ limit, startIndex }: { limit: number, startIndex: number }) => {  //{sortBy, searchText, skip, limit, startIndex, stopIndex} use this to customize the api call eg. const response: any = await fakeServer({ skip: 0, limit: 30, sortBy })
         try {
 
             const itemStatusMapTemp: ItemStatusMap = {};
@@ -127,6 +146,30 @@ const UserToneTable: React.FC = () => {
         }
     }
 
+
+    const onRowSelectProp = [
+        {
+            label: 'Log selected Items',
+            cb: (data: any) => {
+                console.log('selected data', data);
+                updateResetRowSelection(true);
+            },
+        },
+    ];
+
+    const getSelectedRow = (singleSelectedRowIds: any) => {
+        const selectedObj: Record<string, boolean> = {};
+        singleSelectedRowIds.forEach((assetUid: any) => {
+            selectedObj[assetUid] = true;
+        });
+
+        updateSelectedAssets({ ...selectedObj });
+    };
+
+    const getViewByValue = (selectedViewBy) => {
+        updateViewBy(selectedViewBy)
+      }
+
     const tableProps = {
         columns: columns,
         data: data,
@@ -140,6 +183,15 @@ const UserToneTable: React.FC = () => {
         searchPlaceholder: "Search by Name, Description or Tags",
         canSearch: true,
         canRefresh: true,
+
+        isRowSelect: true, // Pass true to add checkboxes in each row.
+        // following are optional checkbox props
+        fullRowSelect: true,
+        // bulkActionList: onRowSelectProp,
+        initialSelectedRowIds: selectedAssets,
+        getSelectedRow: getSelectedRow,
+        getViewByValue: getViewByValue,
+
 
     };
 

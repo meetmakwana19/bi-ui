@@ -1,13 +1,13 @@
 import React from 'react'
 import '../UserTone.css';
-import ToneEntryHeader from '../../Header/ToneEntryHeader';
+// import ToneEntryHeader from '../../Header/ToneEntryHeader';
 import { Button, EditableTags, FieldLabel, Help, TextInput, Textarea } from '@contentstack/venus-components';
 
 const AddUserToneForm = () => {
   
     return (
       <div className='user-tone-entry'>
-        <ToneEntryHeader />
+        {/* <ToneEntryHeader /> */}
         <form action="submit">
           <div className="tone-field-div">
             <FieldLabel className='tone-content-padding' htmlFor="name">Title</FieldLabel>
