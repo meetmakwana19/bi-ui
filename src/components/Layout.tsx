@@ -13,6 +13,9 @@ function Layout() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  console.log("yoooooooo- ", location.pathname);
+  
+
   const knowledgeAction = [
     {
       label: '+ Add Knowledge',
@@ -135,7 +138,7 @@ function Layout() {
         }}
         //@ts-ignore
         actions={
-          location.pathname === "/" ? knowledgeAction : toneAction
+          location.pathname === "/" || location.pathname === "/knowledge_base" ? knowledgeAction : toneAction
         }
       />
     )
