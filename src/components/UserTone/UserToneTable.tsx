@@ -16,10 +16,6 @@ interface SelectedAssets {
     [key: string]: boolean;
   }
   
-  interface RowSelectProp {
-    label: string;
-    cb: (data: any) => void;
-  }
 
 const UserToneTable: React.FC = () => {
 
@@ -145,17 +141,6 @@ const UserToneTable: React.FC = () => {
             setLoading(false);
         }
     }
-
-
-    const onRowSelectProp = [
-        {
-            label: 'Log selected Items',
-            cb: (data: any) => {
-                console.log('selected data', data);
-                updateResetRowSelection(true);
-            },
-        },
-    ];
 
     const getSelectedRow = (singleSelectedRowIds: any) => {
         const selectedObj: Record<string, boolean> = {};

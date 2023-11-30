@@ -1,8 +1,6 @@
-import React from 'react'
 import { Button, cbModal } from "@contentstack/venus-components";
 import AddUserToneModal from './Modals/AddUserToneModal';
 import { useNavigate } from "react-router-dom";
-
 
 const AddTone = () => {
 

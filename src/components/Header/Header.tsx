@@ -1,6 +1,5 @@
-import { Help, Icon } from "@contentstack/venus-components";
+import { Icon } from "@contentstack/venus-components";
 import React from "react";
-import AddKnowledge from "../BrandVoice/AddKnowledge";
 
 interface HeaderProps { 
   title: any,
