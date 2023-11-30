@@ -16,7 +16,7 @@ function AddToneForm() {
               </div>
               <div className="tone-field-div">
                 <FieldLabel className='tone-content-padding' htmlFor="description">Edit User Tone <Help text="Below are the key insights Contentstack Intelligence has extracted about your Tone from the provided content" /></FieldLabel>
-                <Textarea version="v2" width="full" name="description" id="vinayak" testId="omsai" required={true} placeholder="Edit user tone here...." />
+                <Textarea version="v2" width="full" name="description" id="tone-input" testId="tone-input-test" required={true} placeholder="Edit user tone here...." />
               </div>
               <div className="tone-field-div">
                 <FieldLabel className='tone-content-padding' htmlFor="name">Tags <Help text="Tags will help you find pertinent Knowledge Base entries more easily." /></FieldLabel>

@@ -15,7 +15,7 @@ function AddKnowledgeForm() {
                     </div>
                     <div className="field-div">
                         <FieldLabel htmlFor="description">Background description</FieldLabel>
-                        <Textarea version="v2" width="full" required={true} rows="50" placeholder="Enter a name for knowledge base" />
+                        <Textarea version="v2" width="full" required={true} id="knowledge-input" testId="knowledge-input-test" placeholder="Enter a name for knowledge base" />
                     </div>
                     <div className="field-div">
                         <FieldLabel htmlFor="name">Tags <Help text="Tags will help you find pertinent Knowledge Base entries more easily." /></FieldLabel>
