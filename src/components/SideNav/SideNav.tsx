@@ -25,6 +25,13 @@ const SideNav: React.FC<SideNavProps> = () => {
       icon: <Icon icon="UsersRoles" version="v2" size="medium" />,
       default: location.pathname === "/user" ? true : false,
     },
+    {
+      title: "Knowledge Base",
+      onclick: () => navigate("/knowledge_base"),
+      id: "knowledge_base",
+      icon: <Icon icon="PublishRule" version="v2" size="medium" />,
+      default: location.pathname === "/knowledge_base" ? true : false,
+    },
   ]
   const navigationProps = {
     navigationTitle: "Intelligence Hub",

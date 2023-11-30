@@ -72,6 +72,19 @@ function Layout() {
                 );
                 break;
 
+              case "/knowledge_base":
+                title = (
+                  <>
+                    Kowledge Base
+                    <Help
+                      text="Your Brand Voice enables Intelligence Hub to access information unique to what you are writing, as well as your specific tone(s) and style(s)"
+                      type="primary"
+                      alignment="right"
+                    />
+                  </>
+                );
+                break;
+
               case "/add_tone":
                 title = (
                   <>
@@ -137,6 +150,7 @@ function Layout() {
     component: <Routes>
       <Route path="/" element={<TableEntries />} />
       <Route path="/user" element={<UserToneTable />} />
+      <Route path="/knowledge_base" element={<TableEntries />} />
       {/* <Route path="add_knowledge" element={<AddEntry />} /> */}
       {/* <Route path="add_tone" element={<AddUserToneForm />} /> */}
     </Routes>
@@ -162,6 +176,7 @@ function Layout() {
           {/* following routes are just for react-router-dom to know about the presence of these endpoints. Main content switching is handled in `content` method.*/}
           <Route index element={<BrandVoice />} />
           <Route path="/user" />
+          <Route path="/knowledge_base" element={<TableEntries />} />
         </Route>
 
         {/* ROUTE PART-2 forms */}
