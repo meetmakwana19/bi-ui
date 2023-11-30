@@ -101,6 +101,7 @@
 .table-entries {
   position: fixed;
   overflow: auto;
+  width: inherit;
 }
 
 .layout_form_heading_style {
