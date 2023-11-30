@@ -1,4 +1,4 @@
-import { InfiniteScrollTable } from "@contentstack/venus-components"
+import { InfiniteScrollTable, Truncate } from "@contentstack/venus-components"
 import { useState } from "react"
 
 function TableEntries() {
@@ -15,7 +15,8 @@ function TableEntries() {
       accessor: (data: any) => {
         // console.log("getting data : ", data)
         return (
-          <p>{data.name}</p>
+          // <p>{data.name}</p>
+          <Truncate isResponsive={true} truncateFrom="end">{data.name}</Truncate>
         )
       },
       default: true,
@@ -26,7 +27,8 @@ function TableEntries() {
       id: 'created_by',
       accessor: (data: any) => {
         return (
-          <div> {data.email}</div >
+          // <div> {data.email}</div >
+          <Truncate isResponsive={true} truncateFrom="end">{data.email}</Truncate>
         )
       },
       default: true,
