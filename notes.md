@@ -32,3 +32,34 @@ or
 npx serve -s dist
 ```
 
+## Downgrading :
+
+1. Change versions of react, react-dom to 16 and react-router-dom to 5. 
+2. Replace useNavigation hook with useHistory hook and use the following code to avoid changing the already widely used variable `navigate`.
+```
+  const histroy = useHistory();
+  const navigate = (path: any) => {
+    // react-router-dom v6 syntax :
+    histroy.push(path);
+  }
+```
+3. Keep using useLocation hook.
+4. Remove the use of `Outlet` of the react-router-dom.
+5. Make routing structure for version 5 like :
+```
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
+```
+```js
+export default funtion Layout(){
+  return(
+    <Router history={histroy}>
+      <Switch>
+        <Route path="/" component={MainLayout} />
+        <Route path="/" render={() => <BrandVoice />} />
+      </Switch>
+    </Router>
+  )
+}
+```

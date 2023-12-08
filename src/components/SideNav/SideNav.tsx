@@ -1,13 +1,17 @@
 import React from "react";
 import { Icon, LeftNavigation } from '@contentstack/venus-components'
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 interface SideNavProps {
 }
 
 const SideNav: React.FC<SideNavProps> = () => {
 
-  const navigate = useNavigate();
+  const histroy = useHistory();
+  const navigate = (path: any) => {
+    // react-router-dom v6 syntax :
+    histroy.push(path);
+  }
   const location = useLocation();
 
   const navigationData: any = [

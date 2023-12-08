@@ -1,10 +1,10 @@
 import { Button, EditableTags, FieldLabel, Help, PageHeader, PageLayout, TextInput, Textarea } from '@contentstack/venus-components';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function AddKnowledgeForm() {
 
-    const navigate = useNavigate();
-
+    const { goBack } = useHistory();
+  
     const content = {
         component: (
             <div className='add-entry'>
@@ -41,7 +41,7 @@ function AddKnowledgeForm() {
             }}
             />
         ),
-        backNavigation: () => navigate(-1),
+        backNavigation: () => goBack(),
     }
     return (
         <div className="add-form-layout">

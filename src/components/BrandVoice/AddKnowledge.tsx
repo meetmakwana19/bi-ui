@@ -1,9 +1,13 @@
 import { Button, cbModal } from "@contentstack/venus-components";
 import MenuModal from "../Modals/KnowledgeBase/MenuModal";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function AddKnowledge() {
-  const navigate = useNavigate();
+  const histroy = useHistory();
+  const navigate = (path: any) => {
+    // react-router-dom v6 syntax :
+    histroy.push(path);
+  }
   
   const handleClick = () => {
     cbModal({

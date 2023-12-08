@@ -1,10 +1,15 @@
 import { Button, cbModal } from "@contentstack/venus-components";
 import AddUserToneModal from './Modals/AddUserToneModal';
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const AddTone = () => {
 
-  const navigate = useNavigate();
+  const histroy = useHistory();
+  const navigate = (path: any) => {
+    // react-router-dom v6 syntax :
+    histroy.push(path);
+  }
+
   const handleClick = () => {
     cbModal({
       // passing down navigate object because MenuModal isn't directly under the router component tree. 

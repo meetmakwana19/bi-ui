@@ -1,5 +1,5 @@
 import { Help, PageHeader, PageLayout, cbModal, Icon } from "@contentstack/venus-components";
-import { Outlet, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Router, Switch, useHistory, useLocation } from "react-router-dom";
 import SideNav from "./SideNav/SideNav";
 import TableEntries from "./BrandVoice/TableEntries";
 import MenuModal from "./Modals/KnowledgeBase/MenuModal";
@@ -11,10 +11,14 @@ import AddKnowledgeForm from "./BrandVoice/Forms/AddKnowledgeForm";
 
 function Layout() {
   const location = useLocation();
-  const navigate = useNavigate();
+  const histroy = useHistory();
+  const navigate = (path: any) => {
+    // react-router-dom v6 syntax :
+    histroy.push(path);
+  }
 
   console.log("yoooooooo- ", location.pathname);
-  
+
 
   const knowledgeAction = [
     {
@@ -150,13 +154,19 @@ function Layout() {
   }
 
   const content = {
-    component: <Routes>
-      <Route path="/" element={<TableEntries />} />
-      <Route path="/user" element={<UserToneTable />} />
-      <Route path="/knowledge_base" element={<TableEntries />} />
-      {/* <Route path="add_knowledge" element={<AddEntry />} /> */}
-      {/* <Route path="add_tone" element={<AddUserToneForm />} /> */}
-    </Routes>
+    component: (() => {
+      switch (location.pathname) {
+        case "/" || "/intelligencehub":
+          return <TableEntries />
+        case "/user":
+          return <UserToneTable />
+        case "/knowledge_base":
+          return <TableEntries />
+        default:
+          return null;
+      }
+    }
+    )()
   }
 
   const MainLayout = ({ children }: React.PropsWithChildren<{}>) => {
@@ -165,27 +175,20 @@ function Layout() {
         <PageLayout type="list" header={header}
           leftSidebar={leftSidebar}
           content={content} hasBackground={false} version='v2' />
-        {children}
-        <Outlet />
       </>
     );
   };
 
   return (
     <div>
-      <Routes>
-        {/* ROUTE PART-1 main page */}
-        <Route path="/" element={<MainLayout />}>
-          {/* following routes are just for react-router-dom to know about the presence of these endpoints. Main content switching is handled in `content` method.*/}
-          <Route index element={<BrandVoice />} />
-          <Route path="/user" />
-          <Route path="/knowledge_base" element={<TableEntries />} />
-        </Route>
-
+      <Router history={histroy}>
+        {/* <Switch> */}
+        <Route path="/" component={MainLayout} />
         {/* ROUTE PART-2 forms */}
-        <Route path="add_knowledge" element={<AddKnowledgeForm />} />
-        <Route path="add_tone" element={<AddToneForm />} />
-      </Routes>
+        <Route path="/add_knowledge" render={() => <AddKnowledgeForm />} />
+        <Route path="/add_tone" component={AddToneForm} />
+        {/* </Switch> */}
+      </Router>
     </div>
   );
 }
