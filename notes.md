@@ -1,3 +1,5 @@
+> Always remember to make a `.npmrc` file to install venus components.
+
 ## Issues :
 
 ### 1. Venus styling not getting applied 
