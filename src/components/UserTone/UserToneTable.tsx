@@ -74,7 +74,6 @@ const UserToneTable: React.FC = () => {
             addToColumnSelector: true,
         },
     ];
-    // console.log(typeof columns);  //Just debugging stuff
 
     // Just FYI :- fetchTableData passes these default args to fetchData here ---> { skip: 0, limit: 30, startIndex: 0, stopIndex: 29 }
     const fetchData = async ({ limit, startIndex }: { limit: number, startIndex: number }) => {  //{sortBy, searchText, skip, limit, startIndex, stopIndex} use this to customize the api call eg. const response: any = await fakeServer({ skip: 0, limit: 30, sortBy })
@@ -109,7 +108,6 @@ const UserToneTable: React.FC = () => {
     // loadMoreItems can get same props as fetchTableData
     // the props are already coming from InfiniteScrollTable.
     const loadMoreItems = async ({ limit, startIndex, stopIndex }: { limit: number, startIndex: number, stopIndex: number }) => {
-        console.log("Getting limit : ", limit, " and startIndex : ", startIndex);
 
         try {
             const itemStatusMapCopy: ItemStatusMap = { ...itemStatusMap };

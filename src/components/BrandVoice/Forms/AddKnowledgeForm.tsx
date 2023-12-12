@@ -1,9 +1,13 @@
 import { Button, EditableTags, FieldLabel, Help, PageHeader, PageLayout, TextInput, Textarea } from '@contentstack/venus-components';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+// import { LocationDescriptor } from 'history';
 
 function AddKnowledgeForm() {
 
-    const navigate = useNavigate();
+    const history = useHistory();
+    // const navigate = (path:  LocationDescriptor<unknown> ) => {
+    //     history.push(path);
+    // };
 
     const content = {
         component: (
@@ -41,7 +45,7 @@ function AddKnowledgeForm() {
             }}
             />
         ),
-        backNavigation: () => navigate(-1),
+        backNavigation: () => history.goBack(),
     }
     return (
         <div className="add-form-layout">

@@ -1,27 +1,39 @@
 import { Button, EditableTags, FieldLabel, Help, PageHeader, PageLayout, TextInput, Textarea } from '@contentstack/venus-components';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+// import { LocationDescriptor } from 'history';
 import '../UserTone.css';
 
 function AddToneForm() {
 
-    const navigate = useNavigate();
+  const history = useHistory();
+  const navigate = (path: LocationDescriptor<unknown>) => {
+    history.push(path);
+  }
 
     const content = {
         component: (
             <div className='user-tone-entry'>
             <form action="submit">
+
+              {/* Title */}
               <div className="tone-field-div">
                 <FieldLabel className='tone-content-padding' htmlFor="name">Title</FieldLabel>
                 <TextInput version="v2" width="full" required={true} placeholder="Type something..." />
               </div>
+
+              {/* Description */}
               <div className="tone-field-div">
                 <FieldLabel className='tone-content-padding' htmlFor="description">Edit User Tone <Help text="Below are the key insights Contentstack Intelligence has extracted about your Tone from the provided content" /></FieldLabel>
                 <Textarea version="v2" width="full" name="description" id="tone-input" testId="tone-input-test" required={true} placeholder="Edit user tone here...." />
               </div>
+
+              {/* Tags */}
               <div className="tone-field-div">
                 <FieldLabel className='tone-content-padding' htmlFor="name">Tags <Help text="Tags will help you find pertinent Knowledge Base entries more easily." /></FieldLabel>
                 <EditableTags version="v2" width="full" required={true} placeholder="Add some tags" />
               </div>
+
+              {/* Add User Tone Button */}
               <Button buttonType="primary" version="v2" >
                 Add User Tone
               </Button>
@@ -42,7 +54,7 @@ function AddToneForm() {
             }}
             />
         ),
-        backNavigation: () => navigate(-1),
+        backNavigation: () => history.goBack(),
     }
     return (
         <div className="add-form-layout">

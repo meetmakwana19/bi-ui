@@ -14,7 +14,6 @@ interface MainProps { }
 
 const Layout = ({ children }: React.PropsWithChildren<{}>) => {
     const location = useLocation();
-    console.log("params is ", location.pathname);
 
     return (
         <>

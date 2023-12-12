@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
 import { GenericCard, Icon, ModalBody, ModalHeader } from "@contentstack/venus-components";
+// import { useHistory } from "react-router-dom";
+import { LocationDescriptor } from 'history';
+import { History, LocationState } from 'history';
 
 interface MenuModalProps {
   onHide: () => void;
   show: boolean;
   closeModal: any;
-  navigate: any,
+  // navigate: any,
+  history: History<LocationState>;
 }
 
 const TextCardContent: React.FC<any> = () => {
@@ -38,14 +42,18 @@ const LinkCardContent: React.FC<any> = () => {
   )
 }
 const MenuModal: React.FC<MenuModalProps> = (props) => {
-  // const [textModalShow, setTextModalShow] = useState(false);
 
-  console.log("hello ", props);
+    // Here beware as the history object is not the same as the one in the App.tsx file
+  // History here is the history object from layput as props. 
+  const navigate = (path: LocationDescriptor<unknown>) => {
+    props.history.push(path);
+  }
+
   // useEffect hook for handling event listener on the GenericCard component.
   useEffect(() => {
     const handleCardClick = () => {
       props.closeModal();
-      props.navigate("/add_knowledge")
+      navigate("/knowledge_base/add_knowledge")
     };
 
     const genericCardObj = document.querySelectorAll(".GenericCard");

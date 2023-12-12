@@ -1,33 +1,34 @@
 import React from "react";
 import { Icon, LeftNavigation } from '@contentstack/venus-components'
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 interface SideNavProps {
 }
 
-const SideNav: React.FC<SideNavProps> = () => {
+const SideNav: React.FC<SideNavProps> = (Props: any) => {
 
-  const navigate = useNavigate();
+  const navigate = useHistory();
+  
   const location = useLocation();
 
   const navigationData: any = [
     {
       title: "Brand Voice",
-      onclick: () => navigate("/"),
+      onclick: () => navigate.push('/'),
       id: "Brand-Voice",
       icon: <Icon icon="WhatsNew" version="v2" size="medium" />,
       default: location.pathname === "/" ? true : false,
     },
     {
       title: "User",
-      onclick: () => navigate("/user"),
+      onclick: () => navigate.push("/user"),
       id: "User",
       icon: <Icon icon="UsersRoles" version="v2" size="medium" />,
       default: location.pathname === "/user" ? true : false,
     },
     {
       title: "Knowledge Base",
-      onclick: () => navigate("/knowledge_base"),
+      onclick: () => navigate.push("/knowledge_base"),
       id: "knowledge_base",
       icon: <Icon icon="PublishRule" version="v2" size="medium" />,
       default: location.pathname === "/knowledge_base" ? true : false,

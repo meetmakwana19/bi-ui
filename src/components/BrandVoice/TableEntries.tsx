@@ -49,7 +49,7 @@ function TableEntries() {
   const fetchData = async ({ limit, startIndex }: { limit: any, startIndex: any }) => {
     try {
 
-      console.log("Getting limit : ", limit, " and startIndex : ", startIndex);
+      // console.log("Getting limit : ", limit, " and startIndex : ", startIndex);
 
       setLoading(true);
       // let 30 be default
@@ -62,7 +62,7 @@ function TableEntries() {
 
       const responseData = await response.json();
 
-      console.log("fetchData response : ", responseData);
+      // console.log("fetchData response : ", responseData);
 
       setLoading(false);
 
@@ -78,14 +78,14 @@ function TableEntries() {
     try {
       setLoading(true);
 
-      console.log("Scroll Getting limit : ", limit, " and startIndex : ", startIndex);
+      // console.log("Scroll Getting limit : ", limit, " and startIndex : ", startIndex);
 
       // this request fetches the next set of items which are not yet visible on the table but will be visible once scrolled down.
       const response = await fetch(`https://jsonplaceholder.typicode.com/comments?_page=${startIndex / limit + 1}&_limit=${limit}`);
       const responseData = await response.json();
 
       // Updating item statuses and simulating loaded states
-      console.log("Map is ", itemStatusMap);
+      // console.log("Map is ", itemStatusMap);
 
       const updatedItemStatusMap: Record<number, string> = { ...itemStatusMap };
       for (let index = startIndex; index <= stopIndex; index++) {
@@ -105,7 +105,7 @@ function TableEntries() {
     {
       label: 'Log selected Items',
       cb: (data: any) => {
-        console.log('selected data', data);
+        // console.log('selected data', data);
         updateResetRowSelection(true);
       },
     },

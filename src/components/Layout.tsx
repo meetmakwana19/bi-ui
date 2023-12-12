@@ -1,28 +1,29 @@
+import React, { Children } from 'react';
+// import ReactDOM from 'react-dom';
 import { Help, PageHeader, PageLayout, cbModal, Icon } from "@contentstack/venus-components";
-import { Outlet, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import SideNav from "./SideNav/SideNav";
 import TableEntries from "./BrandVoice/TableEntries";
 import MenuModal from "./Modals/KnowledgeBase/MenuModal";
 import UserToneTable from "./UserTone/UserToneTable";
 import AddUserToneModal from "./UserTone/Modals/AddUserToneModal";
-import BrandVoice from "./BrandVoice/BrandVoice";
+// import { LocationDescriptor } from 'history';
 import AddToneForm from "./UserTone/Forms/AddToneForm";
 import AddKnowledgeForm from "./BrandVoice/Forms/AddKnowledgeForm";
+import BrandVoice from "./BrandVoice/BrandVoice";
 
-function Layout() {
+
+function Layout(props: any) {
   const location = useLocation();
-  const navigate = useNavigate();
-
-  console.log("yoooooooo- ", location.pathname);
+  const history = useHistory();
   
-
   const knowledgeAction = [
     {
       label: '+ Add Knowledge',
-      onClick: () => {
+      onClick: (props) => {
         cbModal({
           // passing down navigate object because MenuModal isn't directly under the router component tree. 
-          component: (props: any) => <MenuModal {...props} navigate={navigate} />,
+          component: (props: any) => <MenuModal {...props} history={history} />,
         })
       },
       type: 'primary'
@@ -31,10 +32,10 @@ function Layout() {
   const toneAction = [
     {
       label: '+ Add Tone',
-      onClick: () => {
+      onClick: (props) => {
         cbModal({
           // passing down navigate object because MenuModal isn't directly under the router component tree. 
-          component: (props: any) => <AddUserToneModal {...props} navigate={navigate} />,
+          component: (props: any) => <AddUserToneModal {...props} history={history} />,
         })
       },
       type: 'primary'
@@ -44,12 +45,13 @@ function Layout() {
   const header = {
     component: (
       <PageHeader
+
         title={{
           label: (() => {
             let title;
             switch (location.pathname) {
 
-              case "/":
+              case "/" || "/brand_voice":
                 title = (
                   <>
                     Brand Voice
@@ -88,27 +90,27 @@ function Layout() {
                 );
                 break;
 
-              case "/add_tone":
-                title = (
-                  <>
-                    <Icon icon="BackArrow" size="small" hover={true} hoverType="secondary" shadow="medium" onClick={() => {
-                      navigate(-1)
-                    }} />
-                    Add User Tone &nbsp;
-                    <Help
-                      text="Give Brand Intelligence facts to more accurately write about any topic."
-                      type="primary"
-                      alignment="right"
-                    />
-                  </>
-                );
-                break;
+                // case "/add_tone":
+                //   title = (
+                //     <>
+                //       <Icon icon="BackArrow" size="small" hover={true} hoverType="secondary" shadow="medium" onClick={() => {
+                //         history.goBack()
+                //       }} />
+                //       Add User Tone &nbsp;
+                //       <Help
+                //         text="Give Brand Intelligence facts to more accurately write about any topic."
+                //         type="primary"
+                //         alignment="right"
+                //       />
+                //     </>
+                //   );
+                //   break;
 
-              case "/add_knowledge":
+                // case "/add_knowledge":
                 title = (
                   <>
                     <Icon icon="BackArrow" size="small" hover={true} hoverType="secondary" shadow="medium" onClick={() => {
-                      navigate(-1)
+                      history.goBack()
                     }} />
                     Add to knowledge base &nbsp;
                     <Help
@@ -119,6 +121,7 @@ function Layout() {
                   </>
                 );
                 break;
+
               // Add more cases as needed
 
               default:
@@ -136,10 +139,12 @@ function Layout() {
             return title;
           })()
         }}
-        //@ts-ignore
+
+        // @ts-ignore
         actions={
           location.pathname === "/" || location.pathname === "/knowledge_base" ? knowledgeAction : toneAction
         }
+
       />
     )
   };
@@ -149,43 +154,64 @@ function Layout() {
     component: <SideNav />
   }
 
+  // const content = {
+  //   component: 
+  //   <>
+  //     <Switch>      
+  //       <Route path="/" render={() => <TableEntries />} />
+  //       <Route path="/user" render={() => <UserToneTable />} />
+  //       <Route path="/knowledge_base" render={() => <TableEntries />} />
+  //     </Switch>
+  //   </>
+  // }
+
   const content = {
-    component: <Routes>
-      <Route path="/" element={<TableEntries />} />
-      <Route path="/user" element={<UserToneTable />} />
-      <Route path="/knowledge_base" element={<TableEntries />} />
-      {/* <Route path="add_knowledge" element={<AddEntry />} /> */}
-      {/* <Route path="add_tone" element={<AddUserToneForm />} /> */}
-    </Routes>
+    component: (() => {
+      switch (location.pathname) {
+        case "/" || "/brand_voice":
+          return <TableEntries />
+        case "/user":
+          return <UserToneTable />
+        case "/knowledge_base":
+          return <TableEntries />
+        default:
+          return null;
+      }
+    }
+    )()
   }
 
-  const MainLayout = ({ children }: React.PropsWithChildren<{}>) => {
+  const MainLayout = ({ children }: React.PropsWithChildren<unknown>) => {
     return (
       <>
-        <PageLayout type="list" header={header}
+        <PageLayout
+          type="list"
+          header={header}
           leftSidebar={leftSidebar}
-          content={content} hasBackground={false} version='v2' />
+          content={content} hasBackground={false} version='v2'
+        />
+
         {children}
-        <Outlet />
       </>
     );
   };
 
   return (
     <div>
-      <Routes>
-        {/* ROUTE PART-1 main page */}
-        <Route path="/" element={<MainLayout />}>
-          {/* following routes are just for react-router-dom to know about the presence of these endpoints. Main content switching is handled in `content` method.*/}
-          <Route index element={<BrandVoice />} />
-          <Route path="/user" />
-          <Route path="/knowledge_base" element={<TableEntries />} />
-        </Route>
-
-        {/* ROUTE PART-2 forms */}
-        <Route path="add_knowledge" element={<AddKnowledgeForm />} />
-        <Route path="add_tone" element={<AddToneForm />} />
-      </Routes>
+      {/* <Switch>
+            <Route path={["/", "/brand_voice"]} render={() => <MainLayout></MainLayout> } />
+            <Route path="/user" />
+            <Route path="/knowledge_base" />
+            <Route path="/knowledge_base/add_knowledge" render = {() => <AddKnowledgeForm />} />
+            <Route path="/user/add_tone" render = {() => <AddToneForm />} />
+            <Route/>
+          </Switch> */}
+      <Switch>
+        <Route path="/user/add_tone" render={() => <AddToneForm />} />
+        <Route path="/knowledge_base/add_knowledge" render={() => <AddKnowledgeForm />} />
+        <Route path="/brand_voice" render={() => <BrandVoice />} />
+        <Route path="/" render={() => <MainLayout />} />
+      </Switch>
     </div>
   );
 }
