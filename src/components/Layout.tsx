@@ -1,5 +1,3 @@
-import React, { Children } from 'react';
-// import ReactDOM from 'react-dom';
 import { Help, PageHeader, PageLayout, cbModal, Icon } from "@contentstack/venus-components";
 import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import SideNav from "./SideNav/SideNav";
@@ -7,7 +5,6 @@ import TableEntries from "./BrandVoice/TableEntries";
 import MenuModal from "./Modals/KnowledgeBase/MenuModal";
 import UserToneTable from "./UserTone/UserToneTable";
 import AddUserToneModal from "./UserTone/Modals/AddUserToneModal";
-// import { LocationDescriptor } from 'history';
 import AddToneForm from "./UserTone/Forms/AddToneForm";
 import AddKnowledgeForm from "./BrandVoice/Forms/AddKnowledgeForm";
 import BrandVoice from "./BrandVoice/BrandVoice";
@@ -16,7 +13,7 @@ import BrandVoice from "./BrandVoice/BrandVoice";
 function Layout(props: any) {
   const location = useLocation();
   const history = useHistory();
-  
+
   const knowledgeAction = [
     {
       label: '+ Add Knowledge',
@@ -198,14 +195,6 @@ function Layout(props: any) {
 
   return (
     <div>
-      {/* <Switch>
-            <Route path={["/", "/brand_voice"]} render={() => <MainLayout></MainLayout> } />
-            <Route path="/user" />
-            <Route path="/knowledge_base" />
-            <Route path="/knowledge_base/add_knowledge" render = {() => <AddKnowledgeForm />} />
-            <Route path="/user/add_tone" render = {() => <AddToneForm />} />
-            <Route/>
-          </Switch> */}
       <Switch>
         <Route path="/user/add_tone" render={() => <AddToneForm />} />
         <Route path="/knowledge_base/add_knowledge" render={() => <AddKnowledgeForm />} />
