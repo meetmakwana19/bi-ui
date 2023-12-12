@@ -1,19 +1,19 @@
-import React from "react";
-import Header from "./Header/Header";
-import SideNav from "./SideNav/SideNav";
-import { Outlet, Route, Routes, useLocation } from "react-router-dom";
-import BrandVoice from "./BrandVoice/BrandVoice";
-import UserTone from "./UserTone/UserTone";
-import AddEntry from "./BrandVoice/Forms/AddEntry";
+import React from 'react'
+import Header from "../Header/Header";
+import SideNav from "../SideNav/SideNav";
+import { Outlet, useLocation } from "react-router-dom";
 import { Help } from "@contentstack/venus-components";
-import AddKnowledge from "./BrandVoice/AddKnowledge";
-import AddTone from "./UserTone/AddTone";
-import AddUserToneForm from "./UserTone/Forms/AddUserToneForm";
+import AddKnowledge from "../BrandVoice/AddKnowledge";
+import AddTone from "../UserTone/AddTone";
 
-interface MainProps { }
 
-const Layout = ({ children }: React.PropsWithChildren<{}>) => {
+type LayoutProps = {
+    children: React.ReactNode;
+};
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
     const location = useLocation();
+    console.log("params is ", location.pathname);
 
     return (
         <>
@@ -76,20 +76,4 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
     );
 };
 
-const Main: React.FC<MainProps> = () => {
-    return (
-        <Routes>
-            {/* ROUTE PART-1 main page */}
-            <Route path="/" element={<Layout />}>
-                <Route index element={<BrandVoice />} />
-                <Route path="/user" element={<UserTone />} />
-            </Route>
-
-            {/* ROUTE PART-2 forms */}
-            <Route path="new_entry" element={<AddEntry />} />
-            <Route path="new_user_tone" element={<AddUserToneForm />} />
-        </Routes>
-    );
-};
-
-export default Main;
+export default Layout

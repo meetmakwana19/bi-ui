@@ -26,6 +26,4 @@ const AddUserToneForm = () => {
     )
 }
 
-export default AddUserToneForm
-
-
+export default AddUserToneForm;
