@@ -49,6 +49,49 @@ npx serve -s dist
 5. Carefully changed the navigation url without `#!` in the modal files.
 6. For backNavigation from the forms, directly navigated to a hardcore url due issues coming in `go(-1)`, `goBack()`......
 
+---
+
+## Building bundle of vite app :
+
+1. Run the build command to generate a `/dist` folder 
+```
+npm run build
+```
+2. Serve the build file using :
+```
+npm run preview
+```
+3. Open the url in browser and give the javascript bundle's path from the dist folder into the URL like `http://127.0.0.1:4173/assets/main-273a9c4c.js`
+4. Use the above url in the constants file of the ui-react.
+5. Following error was prevalent :
+```
+SyntaxError: Unexpected token 'export'
+    at eval (<anonymous>)
+    at IntelligenceHub.eval (index.tsx:82:16)
+```
+6. So the meaning of the error is that the js bundle is not compatible with ui-react coz of the `exports, imports` which ES Modules system. We need to expose the bundle in commonJS form of `module.exports`.
+7. This would need changes in the `vite.config.ts`
+   1. Initial issues faced : 
+      1. Adding umd format to the config will cause no css bundle generation.
+      ```
+      export default defineConfig({
+        plugins: [react()],
+        build: {
+          rollupOptions: {
+            output: {
+              format: "umd",
+            },
+          },
+        }
+      })
+      ```
+      2. So gave `cssCodeSplit: false` key since if it's disabled, all CSS in the entire project will be extracted into a single CSS file. from https://vitejs.dev/config/build-options#build-csscodesplit
+
+
+
+
+---
+
 ## Webpack setup :
 
 ## About Webpack :
