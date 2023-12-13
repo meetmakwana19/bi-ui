@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from "../Header/Header";
 import SideNav from "../SideNav/SideNav";
-import { Outlet, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Help } from "@contentstack/venus-components";
 import AddKnowledge from "../BrandVoice/AddKnowledge";
 import AddTone from "../UserTone/AddTone";
@@ -70,7 +70,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         </>}
                 />
                 {children}
-                <Outlet />
             </div>
         </>
     );

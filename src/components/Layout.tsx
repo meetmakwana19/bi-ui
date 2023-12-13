@@ -17,7 +17,7 @@ function Layout(props: any) {
   const knowledgeAction = [
     {
       label: '+ Add Knowledge',
-      onClick: (props) => {
+      onClick: (props: any) => {
         cbModal({
           // passing down navigate object because MenuModal isn't directly under the router component tree. 
           component: (props: any) => <MenuModal {...props} history={history} />,
@@ -29,7 +29,7 @@ function Layout(props: any) {
   const toneAction = [
     {
       label: '+ Add Tone',
-      onClick: (props) => {
+      onClick: (props: any) => {
         cbModal({
           // passing down navigate object because MenuModal isn't directly under the router component tree. 
           component: (props: any) => <AddUserToneModal {...props} history={history} />,
