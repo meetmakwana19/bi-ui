@@ -1,4 +1,5 @@
-import { Help, PageHeader, PageLayout, cbModal, Icon } from "@contentstack/venus-components";
+import { MouseEventHandler } from "react";
+import { Help, PageHeader, PageLayout, cbModal} from "@contentstack/venus-components";
 import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import SideNav from "./SideNav/SideNav";
 import TableEntries from "./BrandVoice/TableEntries";
@@ -10,34 +11,65 @@ import AddKnowledgeForm from "./BrandVoice/Forms/AddKnowledgeForm";
 import BrandVoice from "./BrandVoice/BrandVoice";
 
 
-function Layout(props: any) {
+interface ModalProps {
+  onHide: () => void;
+  show: boolean;
+  closeModal: () => void;
+}
+interface IHeaderAction {
+  label: string | React.ReactNode;
+  onClick?: MouseEventHandler;
+  type?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'muted' | 'light' | 'dark' | 'link' | 'sidebar';
+}
+interface CommonProperties{
+  type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'muted' | 'light' | 'dark' | 'link' | 'sidebar';
+
+}
+
+
+function Layout() {
   const location = useLocation();
   const history = useHistory();
 
-  const knowledgeAction = [
-    {
-      label: '+ Add Knowledge',
-      onClick: (props) => {
-        cbModal({
-          // passing down navigate object because MenuModal isn't directly under the router component tree. 
-          component: (props: any) => <MenuModal {...props} history={history} />,
-        })
-      },
-      type: 'primary'
+  const knowledgeAction = () : IHeaderAction[] => {
+    const commonProperties: CommonProperties  = {
+      type: "primary",
+    };
+  
+    switch (location.pathname) {
+      case "/":
+        return [
+          {
+            label: '+ Add Knowledge',
+            onClick: () => {
+              cbModal({
+                component: (props: ModalProps) => <MenuModal {...props} history={history} />,
+              });
+            },
+            ...commonProperties,
+          },
+        ];
+        case "/user":
+          return [
+            {
+              label: 'Custom Label',
+              onClick: () => {
+                cbModal({
+                  component: (props: ModalProps) => <AddUserToneModal {...props} history={history} />,
+                });
+              },
+              ...commonProperties,
+            },
+          ];
+          
+          // Add more cases for different paths if needed
+      default:
+        // Default case
+        return [];
     }
-  ]
-  const toneAction = [
-    {
-      label: '+ Add Tone',
-      onClick: (props) => {
-        cbModal({
-          // passing down navigate object because MenuModal isn't directly under the router component tree. 
-          component: (props: any) => <AddUserToneModal {...props} history={history} />,
-        })
-      },
-      type: 'primary'
-    }
-  ]
+  };
+  
+  
 
   const header = {
     component: (
@@ -87,38 +119,6 @@ function Layout(props: any) {
                 );
                 break;
 
-                // case "/add_tone":
-                //   title = (
-                //     <>
-                //       <Icon icon="BackArrow" size="small" hover={true} hoverType="secondary" shadow="medium" onClick={() => {
-                //         history.goBack()
-                //       }} />
-                //       Add User Tone &nbsp;
-                //       <Help
-                //         text="Give Brand Intelligence facts to more accurately write about any topic."
-                //         type="primary"
-                //         alignment="right"
-                //       />
-                //     </>
-                //   );
-                //   break;
-
-                // case "/add_knowledge":
-                title = (
-                  <>
-                    <Icon icon="BackArrow" size="small" hover={true} hoverType="secondary" shadow="medium" onClick={() => {
-                      history.goBack()
-                    }} />
-                    Add to knowledge base &nbsp;
-                    <Help
-                      text="Give Brand Intelligence facts to more accurately write about any topic."
-                      type="primary"
-                      alignment="right"
-                    />
-                  </>
-                );
-                break;
-
               // Add more cases as needed
 
               default:
@@ -137,30 +137,17 @@ function Layout(props: any) {
           })()
         }}
 
-        // @ts-ignore
         actions={
-          location.pathname === "/" || location.pathname === "/knowledge_base" ? knowledgeAction : toneAction
+          knowledgeAction()
         }
 
       />
     )
   };
 
-
   const leftSidebar = {
     component: <SideNav />
   }
-
-  // const content = {
-  //   component: 
-  //   <>
-  //     <Switch>      
-  //       <Route path="/" render={() => <TableEntries />} />
-  //       <Route path="/user" render={() => <UserToneTable />} />
-  //       <Route path="/knowledge_base" render={() => <TableEntries />} />
-  //     </Switch>
-  //   </>
-  // }
 
   const content = {
     component: (() => {

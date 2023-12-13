@@ -1,14 +1,10 @@
 import { Button, EditableTags, FieldLabel, Help, PageHeader, PageLayout, TextInput, Textarea } from '@contentstack/venus-components';
 import { useHistory } from 'react-router-dom';
-// import { LocationDescriptor } from 'history';
 import '../UserTone.css';
 
 function AddToneForm() {
 
   const history = useHistory();
-  const navigate = (path: LocationDescriptor<unknown>) => {
-    history.push(path);
-  }
 
     const content = {
         component: (
