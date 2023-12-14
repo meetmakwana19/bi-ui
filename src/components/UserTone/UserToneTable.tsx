@@ -74,12 +74,10 @@ const UserToneTable: React.FC = () => {
             addToColumnSelector: true,
         },
     ];
-    // console.log(typeof columns);  //Just debugging stuff
 
     // Just FYI :- fetchTableData passes these default args to fetchData here ---> { skip: 0, limit: 30, startIndex: 0, stopIndex: 29 }
     const fetchData = async ({ limit, startIndex }: { limit: number, startIndex: number }) => {  //{sortBy, searchText, skip, limit, startIndex, stopIndex} use this to customize the api call eg. const response: any = await fakeServer({ skip: 0, limit: 30, sortBy })
         try {
-
             const itemStatusMapTemp: ItemStatusMap = {};
             for (let index = 0; index <= 30; index++) {
                 itemStatusMapTemp[index] = 'loading';
@@ -109,8 +107,6 @@ const UserToneTable: React.FC = () => {
     // loadMoreItems can get same props as fetchTableData
     // the props are already coming from InfiniteScrollTable.
     const loadMoreItems = async ({ limit, startIndex, stopIndex }: { limit: number, startIndex: number, stopIndex: number }) => {
-        console.log("Getting limit : ", limit, " and startIndex : ", startIndex);
-
         try {
             const itemStatusMapCopy: ItemStatusMap = { ...itemStatusMap };
 
@@ -172,12 +168,10 @@ const UserToneTable: React.FC = () => {
         isRowSelect: true, // Pass true to add checkboxes in each row.
         // following are optional checkbox props
         fullRowSelect: true,
-        // bulkActionList: onRowSelectProp,
         initialSelectedRowIds: selectedAssets,
         getSelectedRow: getSelectedRow,
-        getViewByValue: getViewByValue,
-
-
+        // bulkActionList: onRowSelectProp,
+        // getViewByValue: getViewByValue,
     };
 
     return (
@@ -187,4 +181,4 @@ const UserToneTable: React.FC = () => {
     )
 }
 
-export default UserToneTable
+export default UserToneTable;

@@ -1,16 +1,32 @@
+import React, { useState } from 'react'
 import { InfiniteScrollTable, Truncate } from "@contentstack/venus-components"
-import { useState } from "react"
 
 interface ItemStatusMap {
   [key: number]: string;
 }
+interface DataObject {
+  [key: number]: string;
+}
 
-function TableEntries() {
-  const [data, setData] = useState<any[]>([]);
+interface ColumnDataObject {
+  [key: string]: string;
+}
+
+interface SelectedAssets {
+  [key: string]: boolean;
+}
+
+
+const TableEntries: React.FC = () => {
+
+  const [data, setData] = useState<DataObject[]>([]);
   const [loading, setLoading] = useState(false);
-  const [itemStatusMap, setItemStatusMap] = useState({});
-  let [selectedAssets, updateSelectedAssets] = useState({});
-  let [resetRowSelection, updateResetRowSelection] = useState(false);
+  const [totalCounts, setTotalCounts] = useState(null);
+  const [itemStatusMap, setItemStatusMap] = useState<ItemStatusMap>({});
+  const [selectedAssets, updateSelectedAssets] = useState<SelectedAssets>({});
+  const [resetRowSelection, updateResetRowSelection] = useState<boolean>(false);
+  const [viewBy, updateViewBy] = useState('Comfort')
+
 
   const columns = [
     {
@@ -50,14 +66,13 @@ function TableEntries() {
   ];
 
   // Just FYI :- fetchTableData passes these default args to fetchData here ---> { skip: 0, limit: 30, startIndex: 0, stopIndex: 29 }
-  const fetchData = async ({ limit, startIndex }: { limit: any, startIndex: any }) => {
+  const fetchData = async ({ limit, startIndex }: { limit: number, startIndex: number }) => {
     try {
-
-
       const itemStatusMapTemp: ItemStatusMap = {};
-      for (let i = 0; i <= 30; i++) {
-        itemStatusMapTemp[i] = "loading";
+      for (let index = 0; index <= 30; index++) {
+        itemStatusMapTemp[index] = 'loading';
       }
+
       setItemStatusMap(itemStatusMapTemp);
       setLoading(true);
 
@@ -68,52 +83,71 @@ function TableEntries() {
       // _limit is to limit the response array out of total 500.
       // so fetching comments?_page=1&_limit=30 means it'll fetch 10 items on first load coz 10 items are there on page 1.
       const response = await fetch(`https://jsonplaceholder.typicode.com/comments?_page=${startIndex / limit + 1}&_limit=${limit}`);
-
       const responseData = await response.json();
-
       responseData.forEach((_item: string, index: number) => {
-        itemStatusMapTemp[index] = "loaded";
-      })
-      setItemStatusMap({ ...itemStatusMap });
+        itemStatusMapTemp[index] = 'loaded';
+      });
 
+      setItemStatusMap({ ...itemStatusMapTemp });
       setLoading(false);
-
-      // setData([...data, ...responseData]);
       setData(responseData);
-      
-    } catch (error) {
-      console.error('fetchData -> Error : ', error);
+      setTotalCounts(responseData.length);
     }
-  };
+
+    catch (error) {
+      console.error('fetchData -> error', error);
+      setLoading(false);
+    }
+  }
 
   // loadMoreItems can get same props as fetchTableData
   const loadMoreItems = async ({ limit, startIndex, stopIndex }: { limit: number, startIndex: number, stopIndex: number }) => {
     // the props are already coming from InfiniteScrollTable.
     try {
-      setLoading(true);
+      const itemStatusMapCopy: ItemStatusMap = { ...itemStatusMap };
 
-      console.log("Scroll Getting limit : ", limit, " and startIndex : ", startIndex);
+      for (let index = startIndex; index <= stopIndex; index++) {
+        itemStatusMapCopy[index] = 'loading';
+      }
+
+      setItemStatusMap(itemStatusMapCopy);
+      setLoading(true);
 
       // this request fetches the next set of items which are not yet visible on the table but will be visible once scrolled down.
       const response = await fetch(`https://jsonplaceholder.typicode.com/comments?_page=${startIndex / limit + 1}&_limit=${limit}`);
       const responseData = await response.json();
 
       // Updating item statuses and simulating loaded states
-      console.log("Map is ", itemStatusMap);
+      const updatedItemStatusMapCopy: ItemStatusMap = { ...itemStatusMap }
 
-      const updatedItemStatusMap: Record<number, string> = { ...itemStatusMap };
-      for (let index = startIndex; index <= stopIndex; index++) {
-        updatedItemStatusMap[index] = 'loaded';
-      }
+      responseData.forEach((_item: string, index: number) => {
+        updatedItemStatusMapCopy[startIndex + index] = 'loaded';
+      });
 
-      setItemStatusMap(updatedItemStatusMap);
-
+      setItemStatusMap(updatedItemStatusMapCopy);
       setLoading(false);
-      setData([...data, ...responseData]);
-    } catch (error) {
-      console.error('loadMoreItems -> error', error);
+      setData((data) => [...data, ...responseData]);
+      setTotalCounts((prevTotalCounts) => prevTotalCounts + responseData.length);
+
     }
+    catch (error) {
+      console.error('fetchData -> error', error);
+      setLoading(false);
+    }
+  }
+
+  const getSelectedRow = (singleSelectedRowIds: any) => {
+    const selectedObj: Record<string, boolean> = {};
+    singleSelectedRowIds.forEach((assetUid: any) => {
+      selectedObj[assetUid] = true;
+    });
+
+    updateSelectedAssets({ ...selectedObj });
   };
+
+  const getViewByValue = (selectedViewBy: any) => {
+    updateViewBy(selectedViewBy)
+  }
 
   const onRowSelectProp = [
     {
@@ -125,15 +159,6 @@ function TableEntries() {
     },
   ];
 
-  const getSelectedRow = (singleSelectedRowIds: any) => {
-    let selectedObj: Record<string, boolean> = {};
-    singleSelectedRowIds.forEach((assetUid: any) => {
-      selectedObj[assetUid] = true;
-    });
-
-    updateSelectedAssets({ ...selectedObj });
-  };
-
   return (
     <div className="table-entries">
       <InfiniteScrollTable
@@ -143,15 +168,15 @@ function TableEntries() {
         fetchTableData={fetchData}
         loading={loading}
         totalCounts={100} //must set this first for the table to initialize with so that scrolling can work properly.
-        loadMoreItems={loadMoreItems}
         itemStatusMap={itemStatusMap}
-        // minBatchSizeToFetch={30} //Min batch size or data size(limit) to fetch on scroll. So this value goes to the limit prop of loadMoreItems
-        initialSortBy={[]} // No initial sorting for simplicity
-        viewSelector={true} // Settings icon
+        minBatchSizeToFetch={30} //Min batch size or data size(limit) to fetch on scroll. So this value goes to the limit prop of loadMoreItems
+        loadMoreItems={loadMoreItems}
         searchPlaceholder="Search by Name, Description or Tags"
         canSearch={true}
         canRefresh={true}
         // tableHeight={150}
+        // viewSelector={true} // Settings icon
+        // initialSortBy={[]} // No initial sorting for simplicity
 
         isRowSelect={true} // Pass true to add checkboxes in each row.
         // following are optional checkbox props
