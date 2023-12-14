@@ -44,10 +44,7 @@ window.renderIntelligenceHub = (
     currentOrganization: {},
     // check this
   }
-) => {
-
-  console.log("Hello from IH-UI");
-  
+) => {  
   ReactDOM.render(
     <ErrorBoundary>
       <BrowserRouter>

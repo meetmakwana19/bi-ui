@@ -51,6 +51,13 @@ npx serve -s dist
 
 ---
 
+## Changes in project to set it up for the micro-frontend : 
+
+1. First of all in the main entry point file of the project ie. `main.tsx`, we need to write a render function on the window function like `window.renderIntelligenceHub`.
+2. Changes in the vite config file to generate a umd type of bundle along with generating a single js bundle file which can have css injected into it.
+  
+---
+
 ## Building bundle of vite app :
 
 1. Run the build command to generate a `/dist` folder 
@@ -86,13 +93,61 @@ SyntaxError: Unexpected token 'export'
       })
       ```
       2. So gave `cssCodeSplit: false` key since if it's disabled, all CSS in the entire project will be extracted into a single CSS file. from https://vitejs.dev/config/build-options#build-csscodesplit
+8. If `window.process` is commented from the `index.html` then 
+   1. the app doesnt load in both **dev mode** & **prod mode** 
+   2. but the build file serves to ui-react. 
+   3. no separate CSS bundle is built.
+   4. In dev mode following errors appears : 
+   ```
+   Uncaught ReferenceError: process is not defined
+   ```
+   ```
+   Uncaught TypeError: window.renderIntelligenceHub is not a function
+    at HTMLDocument.<anonymous>
+   ```
+   But the above errors disappears when it is not commented.
+   5. In prod built mode following errors appears :
+   ```
+   Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "default-src 'none'". Note that 'script-src' was not explicitly set, so 'default-src' is used as a fallback.
+   ```
+   Also the following error because index.html is not generated :
+   ```
+   Failed to load resource: the server responded with a status of 404 (Not Found)
+   ```
+9. Following are the few links which were looked into :
+> https://github.com/vitejs/vite/discussions/6636
+> 
+10. But finally the following config worked and had to use `cssInjectedByJsPlugin` along with umd format 
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), cssInjectedByJsPlugin()],
+  build: {
+    rollupOptions: {
+      input: "src/main.tsx",
+      output: {
+        format: "umd",
+      },
+    },
+    cssCodeSplit: false,
+  }
+})
+
+```
+11. dd
 
 
 
 
 ---
 
-## Webpack setup :
+(Can ignore)
+
+## Webpack setup : 
 
 ## About Webpack :
 

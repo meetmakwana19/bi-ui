@@ -1,6 +1,10 @@
 import { InfiniteScrollTable, Truncate } from "@contentstack/venus-components"
 import { useState } from "react"
 
+interface ItemStatusMap {
+  [key: number]: string;
+}
+
 function TableEntries() {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
@@ -49,9 +53,14 @@ function TableEntries() {
   const fetchData = async ({ limit, startIndex }: { limit: any, startIndex: any }) => {
     try {
 
-      console.log("Getting limit : ", limit, " and startIndex : ", startIndex);
 
+      const itemStatusMapTemp: ItemStatusMap = {};
+      for (let i = 0; i <= 30; i++) {
+        itemStatusMapTemp[i] = "loading";
+      }
+      setItemStatusMap(itemStatusMapTemp);
       setLoading(true);
+
       // let 30 be default
       // limit = 5;
 
@@ -62,11 +71,16 @@ function TableEntries() {
 
       const responseData = await response.json();
 
-      console.log("fetchData response : ", responseData);
+      responseData.forEach((_item: string, index: number) => {
+        itemStatusMapTemp[index] = "loaded";
+      })
+      setItemStatusMap({ ...itemStatusMap });
 
       setLoading(false);
 
-      setData([...data, ...responseData]);
+      // setData([...data, ...responseData]);
+      setData(responseData);
+      
     } catch (error) {
       console.error('fetchData -> Error : ', error);
     }
