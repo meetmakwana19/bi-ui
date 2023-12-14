@@ -1,13 +1,12 @@
+import React from 'react'   
 import { Help, Icon } from '@contentstack/venus-components'
 import { useHistory } from 'react-router-dom'
-// import { LocationDescriptor } from 'history';
 
-const EntryHeader = () => {
+interface EntryHeaderProps { }
+
+const EntryHeader:React.FC<EntryHeaderProps> = () => {
 
     const history = useHistory();
-    // const navigate = (path: LocationDescriptor<unknown>) => {
-    //     history.push(path);
-    // };
 
     return (
         <div className="header entry-header">

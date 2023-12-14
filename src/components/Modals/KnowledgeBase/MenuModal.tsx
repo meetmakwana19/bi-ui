@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
 import { GenericCard, Icon, ModalBody, ModalHeader } from "@contentstack/venus-components";
-// import { useHistory } from "react-router-dom";
 import { LocationDescriptor } from 'history';
 import { History, LocationState } from 'history';
 
 interface MenuModalProps {
   onHide: () => void;
   show: boolean;
-  closeModal: any;
-  // navigate: any,
+  closeModal: () => void;
   history: History<LocationState>;
 }
 
-const TextCardContent: React.FC<any> = () => {
+const TextCardContent: React.FC = () => {
   return (
     <div className="menu-card-content">
       <Icon icon="MultiLineText" size="large" style={{ color: "#675af2" }} />
@@ -21,7 +19,7 @@ const TextCardContent: React.FC<any> = () => {
     </div>
   )
 }
-const FileCardContent: React.FC<any> = () => {
+const FileCardContent: React.FC = () => {
   return (
     <div className="menu-card-content">
       <Icon icon="File" size="large" style={{ color: "#675af2" }} />
@@ -30,7 +28,7 @@ const FileCardContent: React.FC<any> = () => {
     </div>
   )
 }
-const LinkCardContent: React.FC<any> = () => {
+const LinkCardContent: React.FC = () => {
   return (
     <div className="menu-card-content">
       <Icon icon="Link" size="large" style={{ color: "#675af2" }} />
@@ -43,7 +41,7 @@ const LinkCardContent: React.FC<any> = () => {
 }
 const MenuModal: React.FC<MenuModalProps> = (props) => {
 
-    // Here beware as the history object is not the same as the one in the App.tsx file
+  // Here beware as the history object is not the same as the one in the App.tsx file
   // History here is the history object from layput as props. 
   const navigate = (path: LocationDescriptor<unknown>) => {
     props.history.push(path);
@@ -89,11 +87,6 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
             Intelligence Hub. Using Intelligence Hub to violate someone
             else's rights is a violation of our Terms of Service.
           </p>
-          {/* <TextModal
-            show={textModalShow}
-            // setMenuModalShow={props.setMenuModalShow}
-            onHide={() => setTextModalShow(false)}
-          /> */}
         </div>
       </ModalBody>
     </div>

@@ -1,19 +1,22 @@
+import React from "react";
 import { Button, cbModal } from "@contentstack/venus-components";
 import MenuModal from "../Modals/KnowledgeBase/MenuModal";
 import { useHistory } from "react-router-dom";
-import { LocationDescriptor } from 'history';
+
+interface ModalProps {
+  onHide: () => void;
+  show: boolean;
+  closeModal: () => void;
+}
 
 function AddKnowledge() {
   
   const history = useHistory();
-  const navigate = (path: LocationDescriptor<unknown>) => {
-    history.push(path);
-  }
   
   const handleClick = () => {
     cbModal({
       // passing down navigate object because MenuModal isn't directly under the router component tree. 
-      component: (props: any) => <MenuModal {...props} navigate={navigate}/>,
+      component: (props: ModalProps) => <MenuModal {...props} history={history}/>,
     })
   }
   return (

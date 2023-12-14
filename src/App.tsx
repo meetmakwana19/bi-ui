@@ -2,7 +2,7 @@ import "@contentstack/venus-components/build/main.css"
 import "./App.css";
 // import Layout from "./components/Layout";
 // import {Switch, Route, Router} from "react-router-dom";
-import Layout from "./components/Layout";
+import Layout from "./components/Layout/Layout";
 
 
 function App(props: any) {

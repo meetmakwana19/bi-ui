@@ -1,14 +1,13 @@
-import { Icon } from "@contentstack/venus-components";
 import React from "react";
+import { Icon } from "@contentstack/venus-components";
 
-interface HeaderProps { 
-  title: any,
-  footerText: any,
-  addButton: any,
+interface HeaderProps {
+  title: string | React.ReactNode; 
+  footerText: string | React.ReactNode;
+  addButton: React.ReactNode;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
-
   
   return (
     <div className="header">

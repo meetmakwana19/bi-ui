@@ -1,27 +1,26 @@
+import React from 'react';
 import { Button, EditableTags, FieldLabel, Help, PageHeader, PageLayout, TextInput, Textarea } from '@contentstack/venus-components';
 import { useHistory } from 'react-router-dom';
-// import { LocationDescriptor } from 'history';
 
-function AddKnowledgeForm() {
+interface AddKnowledgeFormProps { }
+
+const AddKnowledgeForm: React.FC<AddKnowledgeFormProps> = () => {
 
     const history = useHistory();
-    // const navigate = (path:  LocationDescriptor<unknown> ) => {
-    //     history.push(path);
-    // };
 
     const content = {
         component: (
             <div className='add-entry'>
                 <form action="submit">
-                    <div className="field-div">
+                    <div className="field-div" id='add-knowledge-form-name'>
                         <FieldLabel htmlFor="name">Name</FieldLabel>
                         <TextInput version="v2" width="full" required={true} placeholder="Enter a name for knowledge base" />
                     </div>
-                    <div className="field-div">
+                    <div className="field-div" id='add-knowledge-form-description'>
                         <FieldLabel htmlFor="description">Background description</FieldLabel>
                         <Textarea version="v2" width="full" required={true} id="knowledge-input" testId="knowledge-input-test" placeholder="Enter a name for knowledge base" />
                     </div>
-                    <div className="field-div">
+                    <div className="field-div" id='add-knowledge-form-tag'>
                         <FieldLabel htmlFor="name">Tags <Help text="Tags will help you find pertinent Knowledge Base entries more easily." /></FieldLabel>
                         <EditableTags version="v2" width="full" required={true} placeholder="Select from existing tags or type to create new ones" />
                     </div>

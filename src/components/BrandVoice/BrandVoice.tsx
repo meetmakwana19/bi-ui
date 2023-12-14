@@ -1,8 +1,7 @@
 import React from "react";
 import TableEntries from "./TableEntries";
 
-interface BrandVoiceProps {
-}
+interface BrandVoiceProps {}
 
 const BrandVoice: React.FC<BrandVoiceProps> = () => {
   return (

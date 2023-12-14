@@ -2,9 +2,8 @@ import React from 'react'
 import './UserTone.css'
 import UserToneTable from './UserToneTable'
 
-interface BrandToneProps { }
 
-const BrandTone: React.FC<BrandToneProps> = () => {
+const BrandTone: React.FC = () => {
 
 return (
   <div className="brand-tone-style">

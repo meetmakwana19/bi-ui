@@ -3,13 +3,11 @@ import { GenericCard, Icon, ModalBody, ModalHeader } from "@contentstack/venus-c
 import { LocationDescriptor } from 'history';
 import { History, LocationState } from 'history';
 
-
-
 interface MenuModalProps {
-  onHide: () => void;
-  show: boolean;
-  closeModal: () => void;
-  history: History<LocationState>;
+    onHide: () => void;
+    show: boolean;
+    closeModal: () => void;
+    history: History<LocationState>;
 }
 
 const TextCardContent: React.FC = () => {
@@ -45,35 +43,35 @@ const LinkCardContent: React.FC = () => {
 const AddUserToneModal: React.FC<MenuModalProps> = (props) => {
 
 
-  // Here beware as the history object is not the same as the one in the App.tsx file
-  // History here is the history object from layput as props. 
+    // Here beware as the history object is not the same as the one in the App.tsx file
+    // History here is the history object from layput as props. 
 
-  const navigate = (path: LocationDescriptor<unknown>) => {
-    props.history.push(path);
-  }
+    const navigate = (path: LocationDescriptor<unknown>) => {
+        props.history.push(path);
+    }
 
     // useEffect hook for handling event listener on the GenericCard component.
     useEffect(() => {
-      const handleCardClick = () => {
+        const handleCardClick = () => {
 
-        navigate("/user/add_tone");
-        props.closeModal();
-      };
-    
-      const genericCardObj = document.querySelectorAll(".GenericCard");
-    
-      genericCardObj.forEach((node) => {
-        node.addEventListener("click", handleCardClick);
-      });
-    
-      return () => {
-        // Cleanup the event listeners when the component unmounts
+            navigate("/user/add_tone");
+            props.closeModal();
+        };
+
+        const genericCardObj = document.querySelectorAll(".GenericCard");
+
         genericCardObj.forEach((node) => {
-          node.removeEventListener("click", handleCardClick);
+            node.addEventListener("click", handleCardClick);
         });
-      };
+
+        return () => {
+            // Cleanup the event listeners when the component unmounts
+            genericCardObj.forEach((node) => {
+                node.removeEventListener("click", handleCardClick);
+            });
+        };
     }, []); // Empty dependency array ensures that the effect runs once after the initial render
-  
+
     return (
         <div>
             <ModalHeader title="Add User Tone" closeModal={props.closeModal} closeIconTestId="cs-default-header-close" />
