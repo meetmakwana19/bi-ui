@@ -149,15 +149,44 @@ function Layout() {
     component: <SideNav />
   }
 
+  // const content = {
+  //   component: 
+  //   <Routes>
+  //     <Route path="" element={<TableEntries />} />
+  //     <Route path="user" element={<UserToneTable />} />
+  //     <Route path="knowledge_base" element={<TableEntries />} />
+  //     {/* <Route path="add_knowledge" element={<AddEntry />} /> */}
+  //     {/* <Route path="add_tone" element={<AddUserToneForm />} /> */}
+  //   </Routes>
+  // }
   const content = {
-    component: <Routes>
-      <Route path="/" element={<TableEntries />} />
-      <Route path="/user" element={<UserToneTable />} />
-      <Route path="/knowledge_base" element={<TableEntries />} />
-      {/* <Route path="add_knowledge" element={<AddEntry />} /> */}
-      {/* <Route path="add_tone" element={<AddUserToneForm />} /> */}
-    </Routes>
+    component: (() => {
+      switch (location.pathname) {
+        case "/" || "/intelligencehub":
+          return <TableEntries />
+        case "/user":
+          return <UserToneTable />
+        case "/knowledge_base":
+          return <TableEntries />
+        default:
+          return null;
+      }
+    }
+      // <BrowserRouter>
+      // <Router>
+      //   <Switch>
+      //     <Route path="/intelligencehub" element={<TableEntries />} />
+      //     <Route path="/user" element={<UserToneTable />} />
+      //     <Route path="/knowledge_base" element={<TableEntries />} />
+      //     {/* <Route path="add_knowledge" element={<AddEntry />} /> */}
+      //     {/* <Route path="add_tone" element={<AddUserToneForm />} /> */}
+      //   </Switch>
+      // </Router>
+      // </BrowserRouter>
+    )()
+    // component: <TableEntries />
   }
+
 
   const MainLayout = ({ children }: React.PropsWithChildren<{}>) => {
     return (
@@ -174,12 +203,13 @@ function Layout() {
   return (
     <div>
       <Routes>
+        <Route path="/intelligence-hub" element={<h1>Hello World</h1>}/>
         {/* ROUTE PART-1 main page */}
         <Route path="/" element={<MainLayout />}>
-          {/* following routes are just for react-router-dom to know about the presence of these endpoints. Main content switching is handled in `content` method.*/}
-          <Route index element={<BrandVoice />} />
-          <Route path="/user" />
-          <Route path="/knowledge_base" element={<TableEntries />} />
+          {/* following routes are juswait for react-router-dom to know about the presence of these endpoints. Main content switching is handled in `content` method.*/}
+          {/* not rendering content within Route component because tha needs to happen on the PageLayout component level.*/}
+          <Route path="user" />
+          <Route path="knowledge_base" />
         </Route>
 
         {/* ROUTE PART-2 forms */}
