@@ -171,7 +171,7 @@ const TableEntries: React.FC = () => {
         itemStatusMap={itemStatusMap}
         minBatchSizeToFetch={30} //Min batch size or data size(limit) to fetch on scroll. So this value goes to the limit prop of loadMoreItems
         loadMoreItems={loadMoreItems}
-        searchPlaceholder="Search by Name, Description or Tags"
+        searchPlaceholder="Search by Name"
         canSearch={true}
         canRefresh={true}
         // tableHeight={150}

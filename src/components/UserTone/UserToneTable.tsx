@@ -161,7 +161,7 @@ const UserToneTable: React.FC = () => {
         itemStatusMap: itemStatusMap,
         minBatchSizeToFetch: 5,
         loadMoreItems: loadMoreItems,
-        searchPlaceholder: "Search by Name, Description or Tags",
+        searchPlaceholder: "Search by Name",
         canSearch: true,
         canRefresh: true,
 

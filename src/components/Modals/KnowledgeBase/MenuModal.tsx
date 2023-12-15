@@ -64,7 +64,7 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
 
   return (
     <div>
-      <ModalHeader title="Add to knowledge base" closeModal={props.closeModal} closeIconTestId="cs-default-header-close" />
+      <ModalHeader title="Add to brand voice" closeModal={props.closeModal} closeIconTestId="cs-default-header-close" />
       <ModalBody>
         <div className="modal-body">
           <h6 >

@@ -1,5 +1,5 @@
 import React from "react";
-import { Help, PageHeader, PageLayout, cbModal } from "@contentstack/venus-components";
+import { Help, Icon, PageHeader, PageLayout, cbModal } from "@contentstack/venus-components";
 import { Outlet, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import TableEntries from "./BrandVoice/TableEntries";
 import SideNav from "./SideNav/SideNav";
@@ -28,13 +28,11 @@ interface CommonProperties {
 
 const Layout = () => {
 
-  //States
   const location = useLocation();
   const navigate = useNavigate();
 
   console.log("yoooooooo- ", location.pathname);
 
-  //Actions
   const Action = (): IHeaderAction[] => {
     const commonProperties: CommonProperties = {
       type: "primary",
@@ -45,7 +43,7 @@ const Layout = () => {
       case "/" || "/brand_voice":
         return [
           {
-            label: 'Add Brand Voice',
+            label: `Add Brand Voice`,
             onClick: () => {
               cbModal({
                 component: (props: ModalProps) => <MenuModal {...props} navigate={navigate} />,
@@ -58,7 +56,7 @@ const Layout = () => {
       case "/user-tone":
         return [
           {
-            label: 'Add Tone',
+            label: 'Add User Tone',
             onClick: () => {
               cbModal({
                 component: (props: ModalProps) => <AddUserToneModal {...props} navigate={navigate} />,
@@ -71,7 +69,7 @@ const Layout = () => {
       case "/knowledge-base":
         return [
           {
-            label: 'Add Knowledge',
+            label: 'Add Knowledge Base',
             onClick: () => {
               cbModal({
                 component: (props: ModalProps) => <KnowledgeBaseModal {...props} navigate={navigate} />,
@@ -88,7 +86,6 @@ const Layout = () => {
     }
   };
 
-  //Header
   const header = {
     component: (
       <PageHeader
@@ -102,7 +99,7 @@ const Layout = () => {
                   <>
                     Brand Voice&nbsp;
                     <Help
-                      text="Your Brand Voice enables Intelligence Hub to access information unique to what you are writing, as well as your specific tone(s) and style(s)"
+                      text="Your Brand Voice enables Intelligence Hub to access information unique to what your brand is writing, as well as your specific tone(s) and style(s)"
                       type="primary"
                       alignment="right"
                     />
@@ -128,7 +125,7 @@ const Layout = () => {
                   <>
                     Kowledge Base&nbsp;
                     <Help
-                      text="Your Brand Voice enables Intelligence Hub to access information unique to what you are writing, as well as your specific tone(s) and style(s)"
+                      text="Knowledge Base refines contextual mastery and meticulously shapes your content, ensuring a narrative that resonates with precision."
                       type="primary"
                       alignment="right"
                     />
@@ -157,12 +154,10 @@ const Layout = () => {
     )
   };
 
-  //Left Sidebar
   const leftSidebar = {
     component: <SideNav />
   }
 
-  //Content
   const content = {
     component: (() => {
       switch (location.pathname) {
@@ -176,22 +171,9 @@ const Layout = () => {
           return null;
       }
     }
-      // <BrowserRouter>
-      // <Router>
-      //   <Switch>
-      //     <Route path="/intelligencehub" element={<TableEntries />} />
-      //     <Route path="/user" element={<UserToneTable />} />
-      //     <Route path="/knowledge_base" element={<TableEntries />} />
-      //     {/* <Route path="add_knowledge" element={<AddEntry />} /> */}
-      //     {/* <Route path="add_tone" element={<AddUserToneForm />} /> */}
-      //   </Switch>
-      // </Router>
-      // </BrowserRouter>
     )()
-    // component: <TableEntries />
   }
 
-  //Main Layout
   const MainLayout = ({ children }: React.PropsWithChildren) => {
     return (
       <>

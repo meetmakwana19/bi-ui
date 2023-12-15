@@ -12,12 +12,14 @@ const KnowledgeBaseForm: React.FC = () => {
             <div className='user-tone-entry'>
                 <form action="submit">
                     <div className="tone-field-div">
-                        <FieldLabel className='tone-content-padding' htmlFor="name">Title</FieldLabel>
-                        <TextInput version="v2" width="full" required={true} placeholder="Type something..." />
+                        <FieldLabel className='tone-content-padding' htmlFor="name">Name</FieldLabel>
+                        <TextInput version="v2" width="full" required={true} placeholder="Enter name here.." />
                     </div>
                     <div className="tone-field-div">
-                        <FieldLabel className='tone-content-padding' htmlFor="description">Edit Knowledge Base&nbsp;<Help text="Provide contentstack with an organized digital hub of information about you" /></FieldLabel>
-                        <Textarea version="v2" width="full" name="description" id="tone-input" testId="tone-input-test" required={true} placeholder="Edit user tone here...." />
+                        <FieldLabel className='tone-content-padding' htmlFor="description">Background Knowledge
+                            {/* &nbsp;<Help text="Provide Intelligence Hub with an additional contextual information for your content" /> */}
+                        </FieldLabel>
+                        <Textarea version="v2" width="full" name="description" id="tone-input" testId="tone-input-test" required={true} placeholder="Add Background Knowledge here...." />
                     </div>
                     <div className="tone-field-div">
                         <FieldLabel className='tone-content-padding' htmlFor="name">Tags <Help text="Tags will help you find pertinent Knowledge Base entries more easily." /></FieldLabel>
@@ -37,7 +39,7 @@ const KnowledgeBaseForm: React.FC = () => {
             <PageHeader title={{
                 label: (
                     <h2>Add Knowledge Base&nbsp;
-                        <Help text="Give Brand Intelligence facts to more accurately write about any topic." type="primary" alignment="right" />
+                        <Help text="Give Intelligence Hub some of your writings to generate more accurate context specific content." type="primary" alignment="right" />
                     </h2>
                 )
             }}

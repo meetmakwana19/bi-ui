@@ -19,7 +19,7 @@ const SideNav: React.FC<SideNavProps> = () => {
       default: location.pathname === "/" ? true : false,
     },
     {
-      title: "User",
+      title: "User Tone",
       onclick: () => navigate("user-tone"),
       id: "User",
       icon: <Icon icon="UsersRoles" version="v2" size="medium" />,

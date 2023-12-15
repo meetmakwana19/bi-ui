@@ -15,15 +15,15 @@ const BrandVoiceForm:React.FC = () => {
                         <TextInput version="v2" width="full" required={true} placeholder="Enter a name for knowledge base" />
                     </div>
                     <div className="field-div">
-                        <FieldLabel htmlFor="description">Background description</FieldLabel>
-                        <Textarea version="v2" width="full" required={true} id="knowledge-input" testId="knowledge-input-test" placeholder="Enter a name for knowledge base" />
+                        <FieldLabel htmlFor="description">Background description </FieldLabel> 
+                        <Textarea version="v2" width="full" required={true} id="knowledge-input" testId="knowledge-input-test" placeholder="Add knowledge base here..." />
                     </div>
                     <div className="field-div">
                         <FieldLabel htmlFor="name">Tags <Help text="Tags will help you find pertinent Knowledge Base entries more easily." /></FieldLabel>
                         <EditableTags version="v2" width="full" required={true} placeholder="Select from existing tags or type to create new ones" />
                     </div>
                     <Button icon="" buttonType="primary" version="v2" >
-                        Add to Knowledge Base
+                        Add to Brand Voice
                     </Button>
 
                 </form>
@@ -36,7 +36,7 @@ const BrandVoiceForm:React.FC = () => {
             <PageHeader title={{
                 label: (
                     <h2>Create Brand Voice&nbsp;
-                        <Help text="Give Brand Intelligence facts to more accurately write about any topic." type="primary" alignment="right" />
+                        <Help text="Give Intelligence Hub some of your writings to generate more accurate brand specific content." type="primary" alignment="right" />
                     </h2>
                 )
             }}
