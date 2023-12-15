@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { GenericCard, Icon, ModalBody, ModalHeader } from "@contentstack/venus-components";
+import { NavigateFunction } from "react-router-dom";
 
 interface MenuModalProps {
   onHide: () => void;
   show: boolean;
-  closeModal: any;
-  navigate: any,
+  closeModal: () => void;
+  navigate: NavigateFunction,
 }
 
-const TextCardContent: React.FC<any> = () => {
+const TextCardContent: React.FC = () => {
   return (
     <div className="menu-card-content">
       <Icon icon="MultiLineText" size="large" style={{ color: "#675af2" }} />
@@ -17,7 +18,7 @@ const TextCardContent: React.FC<any> = () => {
     </div>
   )
 }
-const FileCardContent: React.FC<any> = () => {
+const FileCardContent: React.FC = () => {
   return (
     <div className="menu-card-content">
       <Icon icon="File" size="large" style={{ color: "#675af2" }} />
@@ -26,7 +27,7 @@ const FileCardContent: React.FC<any> = () => {
     </div>
   )
 }
-const LinkCardContent: React.FC<any> = () => {
+const LinkCardContent: React.FC = () => {
   return (
     <div className="menu-card-content">
       <Icon icon="Link" size="large" style={{ color: "#675af2" }} />
@@ -37,34 +38,35 @@ const LinkCardContent: React.FC<any> = () => {
     </div>
   )
 }
-const MenuModal: React.FC<MenuModalProps> = (props) => {
-  // const [textModalShow, setTextModalShow] = useState(false);
 
-  console.log("hello ", props);
-  // useEffect hook for handling event listener on the GenericCard component.
-  useEffect(() => {
-    const handleCardClick = () => {
-      props.closeModal();
-      props.navigate("/brand-voice/add-brand-voice")
-    };
 
-    const genericCardObj = document.querySelectorAll(".GenericCard");
 
-    genericCardObj.forEach((node) => {
-      node.addEventListener("click", handleCardClick);
-    });
-
-    return () => {
-      // Cleanup the event listeners when the component unmounts
+const AddUserToneModal: React.FC<MenuModalProps> = (props) => {
+    
+    // useEffect hook for handling event listener on the GenericCard component.
+    useEffect(() => {
+      const handleCardClick = () => {
+        props.closeModal();
+        props.navigate("/knowledge-base/add-knowledge-base")
+      };
+    
+      const genericCardObj = document.querySelectorAll(".GenericCard");
+    
       genericCardObj.forEach((node) => {
-        node.removeEventListener("click", handleCardClick);
+        node.addEventListener("click", handleCardClick);
       });
-    };
-  }, []); // Empty dependency array ensures that the effect runs once after the initial render
-
-  return (
+    
+      return () => {
+        // Cleanup the event listeners when the component unmounts
+        genericCardObj.forEach((node) => {
+          node.removeEventListener("click", handleCardClick);
+        });
+      };
+    }, []); // Empty dependency array ensures that the effect runs once after the initial render
+  
+    return (
     <div>
-      <ModalHeader title="Add to knowledge base" closeModal={props.closeModal} closeIconTestId="cs-default-header-close" />
+      <ModalHeader title="Add Knowledge Base" closeModal={props.closeModal} closeIconTestId="cs-default-header-close" />
       <ModalBody>
         <div className="modal-body">
           <h6 >
@@ -81,15 +83,10 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
             Intelligence Hub. Using Intelligence Hub to violate someone
             else's rights is a violation of our Terms of Service.
           </p>
-          {/* <TextModal
-            show={textModalShow}
-            // setMenuModalShow={props.setMenuModalShow}
-            onHide={() => setTextModalShow(false)}
-          /> */}
         </div>
       </ModalBody>
     </div>
-  );
+  )
 }
 
-export default MenuModal
+export default AddUserToneModal

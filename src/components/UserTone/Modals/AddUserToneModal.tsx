@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { GenericCard, Icon, ModalBody, ModalHeader } from "@contentstack/venus-components";
+import { NavigateFunction } from "react-router-dom";
 
 interface MenuModalProps {
   onHide: () => void;
   show: boolean;
-  closeModal: any;
-  navigate: any,
+  closeModal: () => void;
+  navigate: NavigateFunction,
 }
 
-const TextCardContent: React.FC<any> = () => {
+const TextCardContent: React.FC = () => {
   return (
     <div className="menu-card-content">
       <Icon icon="MultiLineText" size="large" style={{ color: "#675af2" }} />
@@ -17,7 +18,7 @@ const TextCardContent: React.FC<any> = () => {
     </div>
   )
 }
-const FileCardContent: React.FC<any> = () => {
+const FileCardContent: React.FC = () => {
   return (
     <div className="menu-card-content">
       <Icon icon="File" size="large" style={{ color: "#675af2" }} />
@@ -26,7 +27,7 @@ const FileCardContent: React.FC<any> = () => {
     </div>
   )
 }
-const LinkCardContent: React.FC<any> = () => {
+const LinkCardContent: React.FC = () => {
   return (
     <div className="menu-card-content">
       <Icon icon="Link" size="large" style={{ color: "#675af2" }} />
@@ -46,7 +47,7 @@ const AddUserToneModal: React.FC<MenuModalProps> = (props) => {
     useEffect(() => {
       const handleCardClick = () => {
         props.closeModal();
-        props.navigate("/add_tone")
+        props.navigate("/user-tone/add-user-tone")
       };
     
       const genericCardObj = document.querySelectorAll(".GenericCard");

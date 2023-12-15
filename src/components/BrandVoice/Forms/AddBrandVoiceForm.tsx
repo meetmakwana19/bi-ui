@@ -1,7 +1,8 @@
+import React from 'react';
 import { Button, EditableTags, FieldLabel, Help, PageHeader, PageLayout, TextInput, Textarea } from '@contentstack/venus-components';
 import { useNavigate } from 'react-router-dom';
 
-function AddKnowledgeForm() {
+const BrandVoiceForm:React.FC = () => {
 
     const navigate = useNavigate();
 
@@ -34,7 +35,7 @@ function AddKnowledgeForm() {
         component: (
             <PageHeader title={{
                 label: (
-                    <h2>Add to knowledge base &nbsp;
+                    <h2>Create Brand Voice&nbsp;
                         <Help text="Give Brand Intelligence facts to more accurately write about any topic." type="primary" alignment="right" />
                     </h2>
                 )
@@ -50,4 +51,4 @@ function AddKnowledgeForm() {
     )
 }
 
-export default AddKnowledgeForm
+export default BrandVoiceForm

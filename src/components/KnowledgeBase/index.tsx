@@ -1,6 +1,6 @@
 import React from 'react'
-// import './UserTone.css'
-import UserToneTable from './UserToneTable'
+import './UserTone.css'
+import KnowledgeBaseTable from './Table/KnowledgeBaseTable'
 
 interface BrandToneProps { }
 
@@ -8,7 +8,7 @@ const BrandTone: React.FC<BrandToneProps> = () => {
 
 return (
   <div className="brand-tone-style">
-    <UserToneTable />
+    <KnowledgeBaseTable />
   </div>
 );
 }

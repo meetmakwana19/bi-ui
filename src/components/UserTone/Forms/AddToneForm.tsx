@@ -19,7 +19,7 @@ function AddToneForm() {
                 <Textarea version="v2" width="full" name="description" id="tone-input" testId="tone-input-test" required={true} placeholder="Edit user tone here...." />
               </div>
               <div className="tone-field-div">
-                <FieldLabel className='tone-content-padding' htmlFor="name">Tags <Help text="Tags will help you find pertinent Knowledge Base entries more easily." /></FieldLabel>
+                <FieldLabel className='tone-content-padding' htmlFor="name">Tags <Help text="Tags will help you find pertinent brand Voice entries more easily." /></FieldLabel>
                 <EditableTags version="v2" width="full" required={true} placeholder="Add some tags" />
               </div>
               <Button buttonType="primary" version="v2" >
@@ -35,7 +35,7 @@ function AddToneForm() {
         component: (
             <PageHeader title={{
                 label: (
-                    <h2>Add User Tone &nbsp;
+                    <h2>Add User Tone&nbsp;
                         <Help text="Give Brand Intelligence facts to more accurately write about any topic." type="primary" alignment="right" />
                     </h2>
                 )
