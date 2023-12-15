@@ -80,7 +80,7 @@ const UserToneTable: React.FC = () => {
         try {
 
             const itemStatusMapTemp: ItemStatusMap = {};
-            for (let index = 0; index <= 30; index++) {
+            for (let index = 0; index <= 29; index++) {
                 itemStatusMapTemp[index] = 'loading';
             }
 
@@ -96,7 +96,7 @@ const UserToneTable: React.FC = () => {
             setItemStatusMap({ ...itemStatusMapTemp });
             setLoading(false);
             setData(responseData);
-            setTotalCounts(responseData.length);
+            setTotalCounts(60);
         }
 
         catch (error) {
@@ -110,32 +110,35 @@ const UserToneTable: React.FC = () => {
     const loadMoreItems = async ({ limit, startIndex, stopIndex }: { limit: number, startIndex: number, stopIndex: number }) => {
 
         try {
+            setLoading(true);
+
             const itemStatusMapCopy: ItemStatusMap = { ...itemStatusMap };
 
             for (let index = startIndex; index <= stopIndex; index++) {
                 itemStatusMapCopy[index] = 'loading';
             }
-
             setItemStatusMap(itemStatusMapCopy);
-            setLoading(true);
 
             const response = await fetch(`https://jsonplaceholder.typicode.com/todos?_page=${startIndex / limit + 1}&_limit=${limit}`);
+            console.log(':::Server Response:', response);
+            console.log(':::Limit:', limit);
+            console.log(':::Start Index:', startIndex);
+
             const responseData = await response.json();
 
-            const updatedItemStatusMapCopy: ItemStatusMap = { ...itemStatusMap }
-
+            const updatedItemStatusMapCopy: ItemStatusMap = { ...itemStatusMap };
             responseData.forEach((_item: string, index: number) => {
                 updatedItemStatusMapCopy[startIndex + index] = 'loaded';
             });
-
             setItemStatusMap(updatedItemStatusMapCopy);
+
             setLoading(false);
-            setData((data) => [...data, ...responseData]);
+            setData((prevData) => [...prevData, ...responseData]);
             setTotalCounts((prevTotalCounts) => prevTotalCounts + responseData.length);
 
         }
         catch (error) {
-            console.error('fetchData -> error', error);
+            console.error('loadMoreItems -> error', error);
             setLoading(false);
         }
     }
@@ -159,7 +162,7 @@ const UserToneTable: React.FC = () => {
         uniqueKey: 'id',
         fetchTableData: fetchData,
         loading: loading,
-        totalCounts: 100,
+        totalCounts: totalCounts,
         itemStatusMap: itemStatusMap,
         minBatchSizeToFetch: 5,
         loadMoreItems: loadMoreItems,
