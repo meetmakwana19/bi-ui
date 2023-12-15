@@ -6,11 +6,13 @@ import SideNav from "./SideNav/SideNav";
 import UserToneTable from "./UserTone/UserToneTable";
 import KnowledgeBaseTable from "./KnowledgeBase/Table/KnowledgeBaseTable";
 import MenuModal from "./Modals/KnowledgeBase/MenuModal";
-import AddUserToneModal from "./UserTone/Modals/AddUserToneModal";
+import UserToneModal from "./UserTone/Modals/UserToneModal";
 import KnowledgeBaseModal from "./KnowledgeBase/Modals/KnowledgeBaseModal";
 import BrandVoiceForm from "./BrandVoice/Forms/AddBrandVoiceForm";
 import AddToneForm from "./UserTone/Forms/AddToneForm";
 import AddKnowledgeBaseForm from "./KnowledgeBase/Forms/AddKnowledgeBaseForm";
+import HomePage from "./Home/HomePage";
+import { IMicroAppsObj } from "../app/common/models";
 
 interface ModalProps {
   onHide: () => void;
@@ -26,7 +28,7 @@ interface CommonProperties {
   type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'muted' | 'light' | 'dark' | 'link' | 'sidebar';
 }
 
-const Layout = () => {
+const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,48 +42,47 @@ const Layout = () => {
 
     switch (location.pathname) {
 
-      case "/" || "/brand_voice":
+      case `/projects/${microAppsObj.token}`:
+      case `/projects/${microAppsObj.token}/brand-voice`:
         return [
           {
             label: `Add Brand Voice`,
             onClick: () => {
               cbModal({
-                component: (props: ModalProps) => <MenuModal {...props} navigate={navigate} />,
+                component: (props: ModalProps) => <MenuModal {...props} navigate={navigate} microAppsObj={microAppsObj}/>,
               });
             },
             ...commonProperties,
           },
         ];
 
-      case "/user-tone":
+      case `/projects/${microAppsObj.token}/user-tone`:
         return [
           {
             label: 'Add User Tone',
             onClick: () => {
               cbModal({
-                component: (props: ModalProps) => <AddUserToneModal {...props} navigate={navigate} />,
+                component: (props: ModalProps) => <UserToneModal {...props} navigate={navigate} microAppsObj={microAppsObj} />,
               });
             },
             ...commonProperties,
           },
         ];
 
-      case "/knowledge-base":
+      case `/projects/${microAppsObj.token}/knowledge-base`:
         return [
           {
             label: 'Add Knowledge Base',
             onClick: () => {
               cbModal({
-                component: (props: ModalProps) => <KnowledgeBaseModal {...props} navigate={navigate} />,
+                component: (props: ModalProps) => <KnowledgeBaseModal {...props} navigate={navigate} microAppsObj={microAppsObj} />,
               });
             },
             ...commonProperties,
           },
         ];
 
-      // Add more cases for different paths if needed
       default:
-        // Default case
         return [];
     }
   };
@@ -94,7 +95,8 @@ const Layout = () => {
             let title;
             switch (location.pathname) {
 
-              case  "/" || "/brand-voice":
+              case `/projects/${microAppsObj.token}`:
+              case `/projects/${microAppsObj.token}/brand-voice`:
                 title = (
                   <>
                     Brand Voice&nbsp;
@@ -107,7 +109,7 @@ const Layout = () => {
                 );
                 break;
 
-              case "/user-tone":
+              case `/projects/${microAppsObj.token}/user-tone`:
                 title = (
                   <>
                     User Tone&nbsp;
@@ -120,7 +122,7 @@ const Layout = () => {
                 );
                 break;
 
-              case "/knowledge-base":
+              case `/projects/${microAppsObj.token}/knowledge-base`:
                 title = (
                   <>
                     Kowledge Base&nbsp;
@@ -132,7 +134,6 @@ const Layout = () => {
                   </>
                 );
                 break;
-
 
               default:
                 title = (
@@ -155,17 +156,18 @@ const Layout = () => {
   };
 
   const leftSidebar = {
-    component: <SideNav />
+    component: <SideNav microAppsObj={microAppsObj}/>
   }
 
   const content = {
     component: (() => {
       switch (location.pathname) {
-        case "/" || "/brand-voice":
+        case `/projects/${microAppsObj.token}`:
+        case `/projects/${microAppsObj.token}/brand-voice`:
           return <TableEntries />
-        case "/user-tone":
+        case `/projects/${microAppsObj.token}/user-tone`:
           return <UserToneTable />
-        case "/knowledge-base":
+        case `/projects/${microAppsObj.token}/knowledge-base`:
           return <KnowledgeBaseTable />
         default:
           return null;
@@ -189,19 +191,20 @@ const Layout = () => {
   return (
     <div>
       <Routes>
-        <Route path="/intelligence-hub" element={<h1>Hello World</h1>} />
+        <Route path="/" element={<HomePage microAppsObj={microAppsObj} />} />
         {/* ROUTE PART-1 main page */}
-        <Route path="/" element={<MainLayout />}>
+        <Route path={`/projects/${microAppsObj.token}`} element={<MainLayout />}>
           {/* following routes are juswait for react-router-dom to know about the presence of these endpoints. Main content switching is handled in `content` method.*/}
           {/* not rendering content within Route component because tha needs to happen on the PageLayout component level.*/}
+          <Route index path="brand-voice" />
           <Route path="user-tone" />
           <Route path="knowledge-base" />
         </Route>
 
         {/* ROUTE PART-2 forms */}
-        <Route path="/brand-voice/add-brand-voice" element={<BrandVoiceForm />} />
-        <Route path="/user-tone/add-user-tone" element={<AddToneForm />} />
-        <Route path="/knowledge-base/add-knowledge-base" element={<AddKnowledgeBaseForm />} />
+        <Route path={`/projects/${microAppsObj.token}/brand-voice/add-brand-voice`} element={<BrandVoiceForm />} />
+        <Route path={`/projects/${microAppsObj.token}/user-tone/add-user-tone`} element={<AddToneForm />} />
+        <Route path={`/projects/${microAppsObj.token}/knowledge-base/add-knowledge-base`} element={<AddKnowledgeBaseForm />} />
       </Routes>
     </div>
   );

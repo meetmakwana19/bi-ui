@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { GenericCard, Icon, ModalBody, ModalHeader } from "@contentstack/venus-components";
+import { IMicroAppsObj } from "../../../app/common/models";
 
 interface MenuModalProps {
   onHide: () => void;
   show: boolean;
   closeModal: any;
   navigate: any,
+  microAppsObj: IMicroAppsObj,
 }
 
 const TextCardContent: React.FC<any> = () => {
@@ -45,7 +47,7 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
   useEffect(() => {
     const handleCardClick = () => {
       props.closeModal();
-      props.navigate("/brand-voice/add-brand-voice")
+      props.navigate(`/projects/${props.microAppsObj.token}/brand-voice/add-brand-voice`)
     };
 
     const genericCardObj = document.querySelectorAll(".GenericCard");

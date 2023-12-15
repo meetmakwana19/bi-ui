@@ -140,14 +140,23 @@ export default defineConfig({
 ```
 11. dd
 
+---
 
+## Learnings :
+
+1. Never use `/` in the `navigate()` function of react-router-dom. 
+```
+navigate("brand-voice") will leave to http://127.0.0.1:5173/projects/123456789/brand-voice
+
+navigate("/brand-voice") will leave to http://127.0.0.1:5173/brand-voice
+```
+2. Use that `/` in the switch case matching conditions like `case "/user-tone":`
+3. 
 
 
 ---
 
 (Can ignore)
-
-## Webpack setup : 
 
 ## About Webpack :
 

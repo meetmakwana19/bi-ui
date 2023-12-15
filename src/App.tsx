@@ -1,12 +1,12 @@
 import "@contentstack/venus-components/build/main.css"
 import "./App.css";
 import Layout from "./components/Layout";
+import { IMicroAppsObj } from "./app/common/models";
 
-function App() {
-
+const App = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {  
   return (
     <div className="app">
-      <Layout />
+      <Layout microAppsObj={microAppsObj}/>
     </div>
   );
 }

@@ -39,7 +39,7 @@ window.renderIntelligenceHub = (
     relativeUrl: "/intelligencehub",
     leftsidebarContainerDom: "backdrop",
     org_uid: null,
-    token: null,
+    token: "12345678",
     currentUser: {},
     currentOrganization: {},
     // check this
@@ -48,7 +48,7 @@ window.renderIntelligenceHub = (
   ReactDOM.render(
     <ErrorBoundary>
       <BrowserRouter>
-        <App />
+        <App microAppsObj={microAppsObj}/>
       </BrowserRouter>
     </ErrorBoundary>,
     document.getElementById(containerId),
