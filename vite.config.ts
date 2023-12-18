@@ -11,6 +11,7 @@ export default defineConfig({
       input: "src/main.tsx",
       output: {
         format: "umd",
+        entryFileNames: "app.bundle.js"
         // manualChunks: undefined,
       },
     },
