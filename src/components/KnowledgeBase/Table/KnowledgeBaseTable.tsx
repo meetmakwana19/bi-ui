@@ -96,7 +96,7 @@ const KnowledgeBaseTable: React.FC = () => {
             setItemStatusMap({ ...itemStatusMapTemp });
             setLoading(false);
             setData(responseData);
-            setTotalCounts(60);
+            // setTotalCounts(60);
         }
 
         catch (error) {

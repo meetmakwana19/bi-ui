@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App.tsx'
 import './index.css'
-import { BrowserRouter, Router } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { IMicroAppsObj } from './app/common/models/microAppObj.ts'
 import { createBrowserHistory, History } from 'history';
 import {

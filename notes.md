@@ -138,7 +138,13 @@ export default defineConfig({
 })
 
 ```
-11. dd
+11. Also in the output key, `entryFileNames` can be used to output the bundle of specific name like :
+```js
+      output: {
+        format: "umd",
+        entryFileNames: "app.bundle.js"
+      }
+```
 
 ---
 
@@ -151,9 +157,43 @@ navigate("brand-voice") will leave to http://127.0.0.1:5173/projects/123456789/b
 navigate("/brand-voice") will leave to http://127.0.0.1:5173/brand-voice
 ```
 2. Use that `/` in the switch case matching conditions like `case "/user-tone":`
-3. 
+3. Parent (ui-react) uses 'Hashrouter'.
+4. Passing of history prop in the highest level of Router used in `main.tsx` to wrap the App component in essential to maintain the hashed routing with the parent ui-react.
+
+## Major change due to `react-router-dom` v6 :
+
+1. The requirement is to pass a `history` prop whose value is generated from `createBrowserHistory()` like the following :
+```js
+              <Router history={history}>
+                <App microAppsObj={microAppsObj} />
+              </Router>
+```
+so that the history passed from the parent(ui-react project) can be accessed over here in my micro-app(micro-frontend) attached to the parent via a js bundle. 
+2. But the above code was in the react-router-dom v5 of other micro-apps. We are using v6 now which doesn't has `<Router>` as the highest level of router thus we tried using `BrowserRouter`  in our new microapp :
+```js
+      <BrowserRouter history={history}>
+        <App microAppsObj={microAppsObj}/>
+      </BrowserRouter>
+```
+3. But the above code of v6 gave the following error : 
+```
+Type '{ children: Element; history: History; }' is not assignable to type 'IntrinsicAttributes & BrowserRouterProps'.
+  Property 'history' does not exist on type 'IntrinsicAttributes & BrowserRouterProps'.ts(2322)
+```
+4. So following this error, a comment on S/O's [question](https://stackoverflow.com/q/69948150) was that 
+> Router components no longer take a history object in v6.x. You should also instead now use one of the higher level routers, i.e. BrowserRouter, etc.
+5. Needed to find some way so that the routing of my microapp can have access to the parent's histroy but this github [discussion]([https://](https://github.com/remix-run/react-router/discussions/8241#discussioncomment-1677474)) wasn't helpful either even after trying the custom 'HistoryRouter' approach.
+6. This one question at [S/O]([https://](https://stackoverflow.com/q/74768328)) was the one I needed but the answers weren't suitable for my usecase. 
+7. A comment at this [question]([https://](https://stackoverflow.com/q/70788581)) was saying about making a custom Router component but doing that didn't helped either.....
+
+## Routers :
 
 
+- SERVER SIDE: HashRouter uses a hash symbol in the URL, which has the effect of all subsequent URL path content being ignored in the server request (ie you send "www.mywebsite.com/#/person/john" the server gets "www.mywebsite.com". As a result the server will return the pre # URL response, and then the post # path will be handled (or parsed) by your client side react application.
+
+- CLIENT SIDE: BrowserRouter will not append the # symbol to your URL, however will create issues when you try to link to a page or reload a page. If the explicit route exists in your client react app, but not on your server, reloading and linking(anything that hits the server directly) will return 404 not found errors.
+
+> https://stackoverflow.com/questions/51974369/what-is-the-difference-between-hashrouter-and-browserrouter-in-react
 ---
 
 (Can ignore)
