@@ -1,10 +1,10 @@
 import { Button, EditableTags, FieldLabel, Help, PageHeader, PageLayout, TextInput, Textarea } from '@contentstack/venus-components';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../UserTone.css';
 
 function AddToneForm() {
 
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const content = {
     component: (
@@ -44,7 +44,7 @@ function AddToneForm() {
       }}
       />
     ),
-    backNavigation: () => navigate(-1),
+    backNavigation: () => history.goBack(),
   }
   return (
     <div className="add-form-layout">

@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { GenericCard, Icon, ModalBody, ModalHeader } from "@contentstack/venus-components";
-import { NavigateFunction } from "react-router-dom";
 import { IMicroAppsObj } from "../../../app/common/models";
 
 interface MenuModalProps {
   onHide: () => void;
   show: boolean;
   closeModal: () => void;
-  navigate: NavigateFunction,
+  history: any,
   microAppsObj: IMicroAppsObj,
 }
 
@@ -49,7 +48,7 @@ const UserToneModal: React.FC<MenuModalProps> = (props) => {
     useEffect(() => {
       const handleCardClick = () => {
         props.closeModal();
-        props.navigate(`/projects/${props.microAppsObj.token}/user-tone/add-user-tone`)
+        props.history.push(`/projects/${props.microAppsObj.token}/user-tone/add-user-tone`)
       };
     
       const genericCardObj = document.querySelectorAll(".GenericCard");

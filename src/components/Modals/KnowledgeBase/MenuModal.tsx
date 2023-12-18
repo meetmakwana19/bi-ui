@@ -6,7 +6,7 @@ interface MenuModalProps {
   onHide: () => void;
   show: boolean;
   closeModal: any;
-  navigate: any,
+  history: any,
   microAppsObj: IMicroAppsObj,
 }
 
@@ -47,7 +47,7 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
   useEffect(() => {
     const handleCardClick = () => {
       props.closeModal();
-      props.navigate(`/projects/${props.microAppsObj.token}/brand-voice/add-brand-voice`)
+      props.history.push(`/projects/${props.microAppsObj.token}/brand-voice/add-brand-voice`)
     };
 
     const genericCardObj = document.querySelectorAll(".GenericCard");

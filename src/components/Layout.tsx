@@ -1,6 +1,6 @@
 import React from "react";
 import { Help, Icon, PageHeader, PageLayout, cbModal } from "@contentstack/venus-components";
-import { Outlet, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import TableEntries from "./BrandVoice/TableEntries";
 import SideNav from "./SideNav/SideNav";
 import UserToneTable from "./UserTone/UserToneTable";
@@ -31,7 +31,7 @@ interface CommonProperties {
 const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
 
   const location = useLocation();
-  const navigate = useNavigate();
+  const history = useHistory();
 
   console.log("yoooooooo- ", location.pathname);
 
@@ -49,7 +49,7 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
             label: `Add Brand Voice`,
             onClick: () => {
               cbModal({
-                component: (props: ModalProps) => <MenuModal {...props} navigate={navigate} microAppsObj={microAppsObj}/>,
+                component: (props: ModalProps) => <MenuModal {...props} history={history} microAppsObj={microAppsObj} />,
               });
             },
             ...commonProperties,
@@ -62,7 +62,7 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
             label: 'Add User Tone',
             onClick: () => {
               cbModal({
-                component: (props: ModalProps) => <UserToneModal {...props} navigate={navigate} microAppsObj={microAppsObj} />,
+                component: (props: ModalProps) => <UserToneModal {...props} history={history} microAppsObj={microAppsObj} />,
               });
             },
             ...commonProperties,
@@ -75,7 +75,7 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
             label: 'Add Knowledge Base',
             onClick: () => {
               cbModal({
-                component: (props: ModalProps) => <KnowledgeBaseModal {...props} navigate={navigate} microAppsObj={microAppsObj} />,
+                component: (props: ModalProps) => <KnowledgeBaseModal {...props} history={history} microAppsObj={microAppsObj} />,
               });
             },
             ...commonProperties,
@@ -156,7 +156,7 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
   };
 
   const leftSidebar = {
-    component: <SideNav microAppsObj={microAppsObj}/>
+    component: <SideNav microAppsObj={microAppsObj} />
   }
 
   const content = {
@@ -183,29 +183,29 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
           leftSidebar={leftSidebar}
           content={content} hasBackground={false} version='v2' />
         {children}
-        <Outlet />
       </>
     );
   };
 
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<HomePage microAppsObj={microAppsObj} />} />
+      <Switch>
         {/* ROUTE PART-1 main page */}
-        <Route path={`/projects/${microAppsObj.token}`} element={<MainLayout />}>
-          {/* following routes are juswait for react-router-dom to know about the presence of these endpoints. Main content switching is handled in `content` method.*/}
-          {/* not rendering content within Route component because tha needs to happen on the PageLayout component level.*/}
-          <Route index path="brand-voice" />
-          <Route path="user-tone" />
-          <Route path="knowledge-base" />
-        </Route>
 
         {/* ROUTE PART-2 forms */}
-        <Route path={`/projects/${microAppsObj.token}/brand-voice/add-brand-voice`} element={<BrandVoiceForm />} />
-        <Route path={`/projects/${microAppsObj.token}/user-tone/add-user-tone`} element={<AddToneForm />} />
-        <Route path={`/projects/${microAppsObj.token}/knowledge-base/add-knowledge-base`} element={<AddKnowledgeBaseForm />} />
-      </Routes>
+        <Route path={`/projects/${microAppsObj.token}/brand-voice/add-brand-voice`} render={() => <BrandVoiceForm />} />
+        <Route path={`/projects/${microAppsObj.token}/user-tone/add-user-tone`} render={() => <AddToneForm />} />
+        <Route path={`/projects/${microAppsObj.token}/knowledge-base/add-knowledge-base`} render={() => <AddKnowledgeBaseForm />} />
+
+        {/* following routes are juswait for react-router-dom to know about the presence of these endpoints. Main content switching is handled in `content` method.*/}
+        {/* not rendering content within Route component because tha needs to happen on the PageLayout component level.*/}
+        <Route path="knowledge-base" />
+        <Route path="user-tone" />
+        <Route path="brand-voice" />
+        <Route path={`/projects/${microAppsObj.token}`} render={() => <MainLayout />} />
+
+        <Route path="/" render={() => <HomePage microAppsObj={microAppsObj} />} />
+      </Switch>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon, LeftNavigation } from '@contentstack/venus-components'
-import { useLocation, useNavigate } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { IMicroAppsObj } from "../../app/common/models";
 
 interface SideNavProps {
@@ -9,27 +9,27 @@ interface SideNavProps {
 
 const SideNav: React.FC<SideNavProps> = (props) => {
   
-  const navigate = useNavigate();
+  const history = useHistory();
   const location = useLocation();
 
   const navigationData: any = [
     {
       title: "Brand Voice",
-      onclick: () => navigate("brand-voice"),
+      onclick: () => history.push(`/projects/${props.microAppsObj.token}/brand-voice`),
       id: "Brand-Voice",
       icon: <Icon icon="WhatsNew" version="v2" size="medium" />,
       default: location.pathname === `/projects/${props.microAppsObj.token}/brand-voice` ? true : false,
     },
     {
       title: "User Tone",
-      onclick: () => navigate("user-tone"),
+      onclick: () => history.push(`/projects/${props.microAppsObj.token}/user-tone`),
       id: "User",
       icon: <Icon icon="UsersRoles" version="v2" size="medium" />,
       default: location.pathname === `/projects/${props.microAppsObj.token}/user-tone` ? true : false,
     },
     {
       title: "Knowledge Base",
-      onclick: () => navigate("knowledge-base"),
+      onclick: () => history.push(`/projects/${props.microAppsObj.token}/knowledge-base`),
       id: "knowledge_base",
       icon: <Icon icon="PublishRule" version="v2" size="medium" />,
       default: location.pathname === `/projects/${props.microAppsObj.token}/knowledge-base` ? true : false,
