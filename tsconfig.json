@@ -3,11 +3,17 @@
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
+    // "module": "ESNext",
+    // "lib": ["ES2020","DOM"],
+    "module": "CommonJS", // TypeScript code will be compiled as CommonJS modules for this Vite project
     "skipLibCheck": true,
 
+    /* This option is often needed when working with CommonJS modules in TypeScript. It helps in interoperability between CommonJS and ES modules.*/
+    "esModuleInterop": true,
+
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    // switching to default node mode.
+    // "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,

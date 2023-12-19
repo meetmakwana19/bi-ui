@@ -12,7 +12,7 @@ const HomePage = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
             </h1>
             <br />
 
-            <Button version="v2" onClick={() => history.push(`/projects/${microAppsObj.token}`)}>
+            <Button version="v2" onClick={() => history.push(`/projects/${microAppsObj.project_id}`)}>
                 Go to Intelligence Hub
             </Button>
         </div>

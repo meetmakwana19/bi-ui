@@ -185,6 +185,17 @@ Type '{ children: Element; history: History; }' is not assignable to type 'Intri
 5. Needed to find some way so that the routing of my microapp can have access to the parent's histroy but this github [discussion]([https://](https://github.com/remix-run/react-router/discussions/8241#discussioncomment-1677474)) wasn't helpful either even after trying the custom 'HistoryRouter' approach.
 6. This one question at [S/O]([https://](https://stackoverflow.com/q/74768328)) was the one I needed but the answers weren't suitable for my usecase. 
 7. A comment at this [question]([https://](https://stackoverflow.com/q/70788581)) was saying about making a custom Router component but doing that didn't helped either.....
+8. Based on [this](https://stackoverflow.com/a/71885181), Downgrading the react to v16 and RRD to v5 gave the following error and the page doesnt mount the component on url navigation 
+```
+Warning: <BrowserRouter> ignores the history prop. To use a custom history, use `import { Router }` instead of `import { BrowserRouter as Router }`
+```
+9. Using `import { Router  } from 'react-router-dom';` as alone without BrowserRouter doesnt render the component upon `history.push()` but using BrowserRouter does.
+
+## Solution to routing issue : 
+
+1. Had to keep the type of history prop as any in the global interface of the `main.tsx`.
+2. Downgraded the react version to 16 and RRD to v5.
+3. 
 
 ## Routers :
 

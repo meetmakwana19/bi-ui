@@ -48,7 +48,7 @@ const UserToneModal: React.FC<MenuModalProps> = (props) => {
     useEffect(() => {
       const handleCardClick = () => {
         props.closeModal();
-        props.history.push(`/projects/${props.microAppsObj.token}/user-tone/add-user-tone`)
+        props.history.push(`/projects/${props.microAppsObj.project_id}/user-tone/add-user-tone`)
       };
     
       const genericCardObj = document.querySelectorAll(".GenericCard");

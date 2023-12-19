@@ -5,6 +5,7 @@ export interface IMicroAppsObj {
   leftsidebarContainerDom: string;
   org_uid: string | null;
   token: string | null;
+  project_id: string;
   currentUser: any;
   currentOrganization: any;
   extentionUtils?: {

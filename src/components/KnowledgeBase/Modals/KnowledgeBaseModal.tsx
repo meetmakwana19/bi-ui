@@ -48,7 +48,7 @@ const KnowledgeBaseModal: React.FC<MenuModalProps> = (props) => {
     useEffect(() => {
       const handleCardClick = () => {
         props.closeModal();
-        props.history.push(`/projects/${props.microAppsObj.token}/knowledge-base/add-knowledge-base`)
+        props.history.push(`/projects/${props.microAppsObj.project_id}/knowledge-base/add-knowledge-base`)
       };
     
       const genericCardObj = document.querySelectorAll(".GenericCard");

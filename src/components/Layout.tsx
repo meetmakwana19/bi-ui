@@ -33,7 +33,7 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
   const location = useLocation();
   const history = useHistory();
 
-  console.log("yoooooooo- ", location.pathname);
+  console.log("yoooooooo- ", microAppsObj.project_id);
 
   const Action = (): IHeaderAction[] => {
     const commonProperties: CommonProperties = {
@@ -42,8 +42,8 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
 
     switch (location.pathname) {
 
-      case `/projects/${microAppsObj.token}`:
-      case `/projects/${microAppsObj.token}/brand-voice`:
+      case `/projects/${microAppsObj.project_id}`:
+      case `/projects/${microAppsObj.project_id}/brand-voice`:
         return [
           {
             label: `Add Brand Voice`,
@@ -56,7 +56,7 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
           },
         ];
 
-      case `/projects/${microAppsObj.token}/user-tone`:
+      case `/projects/${microAppsObj.project_id}/user-tone`:
         return [
           {
             label: 'Add User Tone',
@@ -69,7 +69,7 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
           },
         ];
 
-      case `/projects/${microAppsObj.token}/knowledge-base`:
+      case `/projects/${microAppsObj.project_id}/knowledge-base`:
         return [
           {
             label: 'Add Knowledge Base',
@@ -95,8 +95,8 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
             let title;
             switch (location.pathname) {
 
-              case `/projects/${microAppsObj.token}`:
-              case `/projects/${microAppsObj.token}/brand-voice`:
+              case `/projects/${microAppsObj.project_id}`:
+              case `/projects/${microAppsObj.project_id}/brand-voice`:
                 title = (
                   <>
                     Brand Voice&nbsp;
@@ -109,7 +109,7 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
                 );
                 break;
 
-              case `/projects/${microAppsObj.token}/user-tone`:
+              case `/projects/${microAppsObj.project_id}/user-tone`:
                 title = (
                   <>
                     User Tone&nbsp;
@@ -122,7 +122,7 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
                 );
                 break;
 
-              case `/projects/${microAppsObj.token}/knowledge-base`:
+              case `/projects/${microAppsObj.project_id}/knowledge-base`:
                 title = (
                   <>
                     Kowledge Base&nbsp;
@@ -162,12 +162,12 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
   const content = {
     component: (() => {
       switch (location.pathname) {
-        case `/projects/${microAppsObj.token}`:
-        case `/projects/${microAppsObj.token}/brand-voice`:
+        case `/projects/${microAppsObj.project_id}`:
+        case `/projects/${microAppsObj.project_id}/brand-voice`:
           return <TableEntries />
-        case `/projects/${microAppsObj.token}/user-tone`:
+        case `/projects/${microAppsObj.project_id}/user-tone`:
           return <UserToneTable />
-        case `/projects/${microAppsObj.token}/knowledge-base`:
+        case `/projects/${microAppsObj.project_id}/knowledge-base`:
           return <KnowledgeBaseTable />
         default:
           return null;
@@ -176,7 +176,7 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
     )()
   }
 
-  const MainLayout = ({ children }: React.PropsWithChildren) => {
+  const MainLayout = ({ children }: any) => {
     return (
       <>
         <PageLayout type="list" header={header}
@@ -193,16 +193,16 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
         {/* ROUTE PART-1 main page */}
 
         {/* ROUTE PART-2 forms */}
-        <Route path={`/projects/${microAppsObj.token}/brand-voice/add-brand-voice`} render={() => <BrandVoiceForm />} />
-        <Route path={`/projects/${microAppsObj.token}/user-tone/add-user-tone`} render={() => <AddToneForm />} />
-        <Route path={`/projects/${microAppsObj.token}/knowledge-base/add-knowledge-base`} render={() => <AddKnowledgeBaseForm />} />
+        <Route path={`/projects/${microAppsObj.project_id}/brand-voice/add-brand-voice`} render={() => <BrandVoiceForm />} />
+        <Route path={`/projects/${microAppsObj.project_id}/user-tone/add-user-tone`} render={() => <AddToneForm />} />
+        <Route path={`/projects/${microAppsObj.project_id}/knowledge-base/add-knowledge-base`} render={() => <AddKnowledgeBaseForm />} />
 
         {/* following routes are juswait for react-router-dom to know about the presence of these endpoints. Main content switching is handled in `content` method.*/}
         {/* not rendering content within Route component because tha needs to happen on the PageLayout component level.*/}
         <Route path="knowledge-base" />
         <Route path="user-tone" />
         <Route path="brand-voice" />
-        <Route path={`/projects/${microAppsObj.token}`} render={() => <MainLayout />} />
+        <Route path={`/projects/${microAppsObj.project_id}`} render={() => <MainLayout />} />
 
         <Route path="/" render={() => <HomePage microAppsObj={microAppsObj} />} />
       </Switch>
