@@ -28,10 +28,11 @@ declare global {
 }
 
 window.renderIntelligenceHub = (
-  containerId = 'root',
+  containerId = "root",
+  history = createBrowserHistory(),
   microAppsObj = {
-    relativeUrl: '/intelligencehub',
-    leftsidebarContainerDom: 'backdrop',
+    relativeUrl: "/intelligencehub",
+    leftsidebarContainerDom: "backdrop",
     org_uid: null,
     token: null,
     currentUser: {},
@@ -39,18 +40,12 @@ window.renderIntelligenceHub = (
     project_id: "12345678",
   }
 ) => {
-  const containerElement = document.getElementById(containerId);
-  if (!containerElement) {
-    console.error(`Container element with id '${containerId}' not found.`);
-    return;
-  }
-
   ReactDOM.render(
     <ErrorBoundary>
-      <Router>
+      <Router history={history}>
         <App microAppsObj={microAppsObj} />
       </Router>
     </ErrorBoundary>,
-    containerElement
+    document.getElementById(containerId),
   );
 };
