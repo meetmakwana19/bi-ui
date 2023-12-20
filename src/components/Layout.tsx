@@ -28,12 +28,9 @@ interface CommonProperties {
   type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'muted' | 'light' | 'dark' | 'link' | 'sidebar';
 }
 
-const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
-
+const MainLayout = ({ children, microAppsObj }: any) => {
   const location = useLocation();
   const history = useHistory();
-
-  console.log("yoooooooo- ", microAppsObj.project_id);
 
   const Action = (): IHeaderAction[] => {
     const commonProperties: CommonProperties = {
@@ -176,35 +173,43 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
     )()
   }
 
-  const MainLayout = ({ children }: any) => {
-    return (
-      <>
-        <PageLayout type="list" header={header}
-          leftSidebar={leftSidebar}
-          content={content} hasBackground={false} version='v2' />
-        {children}
-      </>
-    );
-  };
+  return (
+    <>
+      <PageLayout type="list" header={header}
+        leftSidebar={leftSidebar}
+        content={content} hasBackground={false} version='v2' />
+      {children}
+    </>
+  );
+};
 
+const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
+  console.log("yoooooooo- ", microAppsObj.project_id);
   return (
     <div>
       <Switch>
-        {/* ROUTE PART-1 main page */}
+        <Route exact path={`/projects/:projectId/brand-voice/add-brand-voice`}>
+          <BrandVoiceForm />
+        </Route>
+        <Route exact path={`/projects/:projectId/user-tone/add-user-tone`}>
+          <AddToneForm />
+        </Route>
+        <Route exact path={`/projects/:projectId/knowledge-base/add-knowledge-base`}>
+          <AddKnowledgeBaseForm />
+        </Route>
 
-        {/* ROUTE PART-2 forms */}
-        <Route path={`/projects/${microAppsObj.project_id}/brand-voice/add-brand-voice`} render={() => <BrandVoiceForm />} />
-        <Route path={`/projects/${microAppsObj.project_id}/user-tone/add-user-tone`} render={() => <AddToneForm />} />
-        <Route path={`/projects/${microAppsObj.project_id}/knowledge-base/add-knowledge-base`} render={() => <AddKnowledgeBaseForm />} />
-
-        {/* following routes are juswait for react-router-dom to know about the presence of these endpoints. Main content switching is handled in `content` method.*/}
-        {/* not rendering content within Route component because tha needs to happen on the PageLayout component level.*/}
-        <Route path="knowledge-base" />
+        {/* <Route path="knowledge-base" />
         <Route path="user-tone" />
-        <Route path="brand-voice" />
-        <Route path={`/projects/${microAppsObj.project_id}`} render={() => <MainLayout />} />
+        <Route path="brand-voice" /> */}
+        <Route path={`/projects`}>
+          <MainLayout microAppsObj={microAppsObj} />
+        </Route>
 
-        <Route path="/" render={() => <HomePage microAppsObj={microAppsObj} />} />
+        <Route path={"/"}>
+          <HomePage microAppsObj={microAppsObj} />
+        </Route>
+
+        <Route path="*" render={() => <h1>No page</h1>} />
       </Switch>
     </div>
   );

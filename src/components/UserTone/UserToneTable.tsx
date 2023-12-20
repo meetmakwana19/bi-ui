@@ -21,7 +21,7 @@ const UserToneTable: React.FC = () => {
 
     const [data, setData] = useState<DataObject[]>([]);
     const [loading, setLoading] = useState(false);
-    const [totalCounts, setTotalCounts] = useState(null);
+    const [totalCounts, setTotalCounts] = useState<number | null>(null);
     const [itemStatusMap, setItemStatusMap] = useState<ItemStatusMap>({});
     const [selectedAssets, updateSelectedAssets] = useState<SelectedAssets>({});
     const [resetRowSelection, updateResetRowSelection] = useState<boolean>(false);
