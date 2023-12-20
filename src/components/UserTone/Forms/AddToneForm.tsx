@@ -44,7 +44,7 @@ function AddToneForm() {
       }}
       />
     ),
-    backNavigation: () => history.goBack(),
+    backNavigation: () => history.go(-1),
   }
   return (
     <div className="add-form-layout">
