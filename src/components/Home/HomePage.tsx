@@ -1,21 +1,31 @@
 import React from 'react'
-import { Button } from '@contentstack/venus-components'
-import { useHistory } from 'react-router-dom'
+import { Button, PageHeader, PageLayout, StackCard } from '@contentstack/venus-components'
+import { Link, useHistory } from 'react-router-dom'
 import { IMicroAppsObj } from '../../app/common/models';
+import { ButtonGroup } from 'react-bootstrap';
 
 const HomePage = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
     const history = useHistory();
-    return (
-        <div style={{ padding: "2rem" }}>
-            <h1>
-                HomePage
-            </h1>
-            <br />
 
-            <Button version="v2" onClick={() => history.push(`/projects/${microAppsObj.project_id}`)}>
-                Go to Intelligence Hub
-            </Button>
-        </div>
+    const header = {
+        component: (
+            <PageHeader title={{ label: "Inelligence Hub Home" }} />
+        )
+    }
+    const content = {
+        component: (
+            <>
+                <Link to={`/projects/${microAppsObj.project_id}`}>
+                    <StackCard
+                        title={"Project 1"}
+                        version='v2'
+                    />
+                </Link>
+            </>
+        )
+    }
+    return (
+        <PageLayout header={header} content={content} type="card" />
     )
 }
 
