@@ -47,7 +47,7 @@ const MenuModal: React.FC<MenuModalProps> = (props) => {
   useEffect(() => {
     const handleCardClick = () => {
       props.closeModal();
-      props.history.push(`/projects/${props.microAppsObj.project_id}/brand-voice/add-brand-voice`)
+      props.history.push(`/intelligencehub/projects/${props.microAppsObj.project_id}/brand-voice/add-brand-voice`)
     };
 
     const genericCardObj = document.querySelectorAll(".GenericCard");

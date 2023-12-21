@@ -39,8 +39,8 @@ const MainLayout = ({ children, microAppsObj }: any) => {
 
     switch (location.pathname) {
 
-      case `/projects/${microAppsObj.project_id}`:
-      case `/projects/${microAppsObj.project_id}/brand-voice`:
+      case `/intelligencehub/projects/${microAppsObj.project_id}`:
+      case `/intelligencehub/projects/${microAppsObj.project_id}/brand-voice`:
         return [
           {
             label: `Add Brand Voice`,
@@ -53,7 +53,7 @@ const MainLayout = ({ children, microAppsObj }: any) => {
           },
         ];
 
-      case `/projects/${microAppsObj.project_id}/user-tone`:
+      case `/intelligencehub/projects/${microAppsObj.project_id}/user-tone`:
         return [
           {
             label: 'Add User Tone',
@@ -66,7 +66,7 @@ const MainLayout = ({ children, microAppsObj }: any) => {
           },
         ];
 
-      case `/projects/${microAppsObj.project_id}/knowledge-base`:
+      case `/intelligencehub/projects/${microAppsObj.project_id}/knowledge-base`:
         return [
           {
             label: 'Add Knowledge Base',
@@ -92,8 +92,8 @@ const MainLayout = ({ children, microAppsObj }: any) => {
             let title;
             switch (location.pathname) {
 
-              case `/projects/${microAppsObj.project_id}`:
-              case `/projects/${microAppsObj.project_id}/brand-voice`:
+              case `/intelligencehub/projects/${microAppsObj.project_id}`:
+              case `/intelligencehub/projects/${microAppsObj.project_id}/brand-voice`:
                 title = (
                   <>
                     Brand Voice&nbsp;
@@ -106,7 +106,7 @@ const MainLayout = ({ children, microAppsObj }: any) => {
                 );
                 break;
 
-              case `/projects/${microAppsObj.project_id}/user-tone`:
+              case `/intelligencehub/projects/${microAppsObj.project_id}/user-tone`:
                 title = (
                   <>
                     User Tone&nbsp;
@@ -119,7 +119,7 @@ const MainLayout = ({ children, microAppsObj }: any) => {
                 );
                 break;
 
-              case `/projects/${microAppsObj.project_id}/knowledge-base`:
+              case `/intelligencehub/projects/${microAppsObj.project_id}/knowledge-base`:
                 title = (
                   <>
                     Kowledge Base&nbsp;
@@ -159,12 +159,12 @@ const MainLayout = ({ children, microAppsObj }: any) => {
   const content = {
     component: (() => {
       switch (location.pathname) {
-        case `/projects/${microAppsObj.project_id}`:
-        case `/projects/${microAppsObj.project_id}/brand-voice`:
+        case `/intelligencehub/projects/${microAppsObj.project_id}`:
+        case `/intelligencehub/projects/${microAppsObj.project_id}/brand-voice`:
           return <TableEntries />
-        case `/projects/${microAppsObj.project_id}/user-tone`:
+        case `/intelligencehub/projects/${microAppsObj.project_id}/user-tone`:
           return <UserToneTable />
-        case `/projects/${microAppsObj.project_id}/knowledge-base`:
+        case `/intelligencehub/projects/${microAppsObj.project_id}/knowledge-base`:
           return <KnowledgeBaseTable />
         default:
           return null;
@@ -188,20 +188,20 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
   return (
     <div>
       <Switch>
-        <Route exact path={`/projects/:projectId/brand-voice/add-brand-voice`}>
+        <Route exact path={`/intelligencehub/projects/:projectId/brand-voice/add-brand-voice`}>
           <BrandVoiceForm />
         </Route>
-        <Route exact path={`/projects/:projectId/user-tone/add-user-tone`}>
+        <Route exact path={`/intelligencehub/projects/:projectId/user-tone/add-user-tone`}>
           <AddToneForm />
         </Route>
-        <Route exact path={`/projects/:projectId/knowledge-base/add-knowledge-base`}>
+        <Route exact path={`/intelligencehub/projects/:projectId/knowledge-base/add-knowledge-base`}>
           <AddKnowledgeBaseForm />
         </Route>
 
         {/* <Route path="knowledge-base" />
         <Route path="user-tone" />
         <Route path="brand-voice" /> */}
-        <Route path={`/projects`}>
+        <Route path={`/intelligencehub/projects`}>
           <MainLayout microAppsObj={microAppsObj} />
         </Route>
 
@@ -209,6 +209,7 @@ const Layout = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
           <HomePage microAppsObj={microAppsObj} />
         </Route>
 
+        {/* wild card route */}
         <Route path="*" render={() => <h1>No page</h1>} />
       </Switch>
     </div>

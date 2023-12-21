@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom'
 import App from './App.tsx'
 import './index.css'
 import { Router } from 'react-router-dom';
@@ -40,11 +40,12 @@ window.renderIntelligenceHub = (
     project_id: "12345678",
   }
 ) => {
-  ReactDOM.createRoot(document.getElementById('root')!).render(
+  ReactDOM.render(
     <ErrorBoundary>
       <Router history={history}>
         <App microAppsObj={microAppsObj} />
       </Router>
     </ErrorBoundary>,
+    document.getElementById(containerId),
   );
 };

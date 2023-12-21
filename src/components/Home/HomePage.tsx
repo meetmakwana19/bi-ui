@@ -15,7 +15,7 @@ const HomePage = ({ microAppsObj }: { microAppsObj: IMicroAppsObj }) => {
     const content = {
         component: (
             <>
-                <Link to={`/projects/${microAppsObj.project_id}`}>
+                <Link to={`intelligencehub/projects/${microAppsObj.project_id}`}>
                     <StackCard
                         title={"Project 1"}
                         version='v2'

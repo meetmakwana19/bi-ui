@@ -150,9 +150,9 @@ export default defineConfig({
 
 ## Learnings :
 
-1. Never use `/` in the `navigate()` function of react-router-dom. 
+1. Never use `/` in the `navigate()` function of react-router-dom v6.
 ```
-navigate("brand-voice") will leave to http://127.0.0.1:5173/projects/123456789/brand-voice
+navigate("brand-voice") will leave to http://127.0.0.1:5173/!projects/123456789/brand-voice
 
 navigate("/brand-voice") will leave to http://127.0.0.1:5173/brand-voice
 ```
@@ -193,12 +193,22 @@ Warning: <BrowserRouter> ignores the history prop. To use a custom history, use 
 
 ## Solution to routing issue : 
 
-1. Had to keep the type of history prop as any in the global interface of the `main.tsx`.
+1. Had to keep the type of history prop as `any` in the global interface of the `main.tsx`.
 2. Downgraded the react version to 16 and RRD to v5.
-3. 
+3. Made changes to the `tsconfig.json`.
+
+## Observations while testing # url : 
+
+1. React v16 + RRDv5, Traditional `{ Router }`, `ReactDOM.render()` syntax :
+   1. In dev mode : 
+      1. `onclick: () => history.push()` leads to URL change but wild card route is rendered.
+   2. In bundle mode : 
+      1. Attached on ui-react as intended. 
+      2. On projects route -> 404 - Page not found
+      3. `/intelligence` not route maintained onClick of card.
+      4. Back navigation to home page works. 
 
 ## Routers :
-
 
 - SERVER SIDE: HashRouter uses a hash symbol in the URL, which has the effect of all subsequent URL path content being ignored in the server request (ie you send "www.mywebsite.com/#/person/john" the server gets "www.mywebsite.com". As a result the server will return the pre # URL response, and then the post # path will be handled (or parsed) by your client side react application.
 
