@@ -204,9 +204,25 @@ Warning: <BrowserRouter> ignores the history prop. To use a custom history, use 
       1. `onclick: () => history.push()` leads to URL change but wild card route is rendered.
    2. In bundle mode : 
       1. Attached on ui-react as intended. 
-      2. On projects route -> 404 - Page not found
-      3. `/intelligence` not route maintained onClick of card.
-      4. Back navigation to home page works. 
+2. React v18 + RRDv5, Traditional `{ Router }`, `ReactDOM.render()` syntax :
+   1. In dev mode : 
+      1. `onclick: () => history.push()` leads to URL change but wild card route is rendered.
+      2. Following error on browser console 
+         ```
+         main.tsx:43 Warning: ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot
+         ```
+   2. In bundle mode :
+      1. Attached on ui-react as intended.
+      2. No browser console error for ReactDOM syntax.
+      3. But a bigger issue of the following error which arises when any button on left navigation of ui-react is clicked and the ui is freezed without rendering any component. Need to refresh to render the component. Although URL slug changes. 
+      ```
+      Uncaught TypeError: Cannot read properties of undefined (reading 'current')
+      ```
+3. React v18 + RRDv5, Traditional `{ Router }`, `ReactDOM.createroot(document.getElementById(containerId)!).render()` syntax :
+   1. In dev mode : 
+      1. `onclick: () => history.push()` leads to URL change but wild card route is rendered.
+   2. In bundle mode :
+      1. Attached on ui-react as intended.
 
 ## Routers :
 
